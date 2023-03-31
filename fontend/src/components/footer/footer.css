@@ -1,0 +1,67 @@
+.footer {
+    width: 100%;
+    background-color: #000;
+}
+
+
+
+/* quick links  */
+
+.footgrid {
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.quick-links {
+    padding: 10px;
+}
+
+.quick-links h3{
+    color: #ffffff;
+    margin: 10px  0px 5px;
+}
+
+.quick_link {
+    margin: 0px 0px;
+    padding: 0px 0px 0px 0px;
+    list-style-type: none;
+}
+
+.quick_link li{
+    padding: 10px 0;
+    display: block;
+} 
+
+.quick_link li a{
+    color: #ddd;
+    font-size: 0.9em;
+    text-decoration: none;
+} 
+
+.quick_link li a:hover {
+    color: #fff;
+}
+
+
+
+/* payments methods */
+
+.paymentMethod {
+    padding: 10px;
+} 
+
+.paymentMethod h3{
+    color: #ffffff;
+    margin: 10px  0px 5px;
+}
+
+.paymentMethod .content{
+    font-size: 0.9em;
+    color: #ddd;
+    margin: 10px 0;
+    line-height: 25px;
+} 

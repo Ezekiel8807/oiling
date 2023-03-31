@@ -1,0 +1,36 @@
+.header {
+    background: rgb(228,24,24);
+    background: linear-gradient(90deg, rgba(228,24,24,1) 0%, rgba(237,193,104,1) 100%);
+}
+
+.board {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../public/asset/img/bg/oilpalm.jpg');
+}
+
+.div1 {
+    width: 90%;
+    height: 400px;
+    background-color: blue;
+}
+
+.div1 h1 {
+    color: #fff;
+}
+
+.div1 .vendorInput {
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+}
+
+.div1 .findVendor button {
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    padding: 10px 10px;
+    cursor: pointer;
+    background-color: #1dbf73;
+}

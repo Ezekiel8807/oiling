@@ -1,0 +1,23 @@
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navlink {
+    padding: 20px;
+}
+
+.navlink a {
+    color: #fff;
+    padding: 5px 20px;
+    font-weight: bold;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+.navlink a:last-child {
+    border: 2px solid #fff;
+    border-radius: 5px;
+}

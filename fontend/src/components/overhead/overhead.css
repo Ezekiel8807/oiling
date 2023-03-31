@@ -1,0 +1,40 @@
+.overhead {
+    background-color: #e41827;
+}
+
+.call {
+    margin: 5px 20px;
+    display: inline-block;
+}
+
+.call_icon {
+    font-size: 0.8em;
+    color: #ffffff;
+}
+
+.call a{
+    padding: 0 10px;
+    color: #ffffff;
+    font-weight: lighter;
+    text-decoration: none;
+}
+
+.over_container {
+    width: 70%;
+    display: inline-block;
+}
+
+.overhead_items {
+    margin: 0px 0px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.item {
+    margin: 5px 20px;
+    color: #ffffff;
+}
+
+
