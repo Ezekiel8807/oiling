@@ -2,8 +2,8 @@ import './header.css'
 
 
 // include header components
-import Logo from '../logo/Logo';
-import Divider from '../divider/Divider';
+// import Logo from '../logo/Logo';
+// import Divider from '../divider/Divider';
 import Navbar from '../navbar/Navbar';
 // import Overhead from '../overhead/Overhead';
 // import { BsSearch } from "react-icons/bs";
@@ -18,7 +18,7 @@ const Header = () => {
     // }
 
     //public folder
-    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+    // const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
     return(
         <div className='header'>
@@ -28,12 +28,16 @@ const Header = () => {
             <div className='board'>
 
                 <div className='div1'>
-                    <h1>Find the perfect <i>Vendor</i><br/> to get your palm oil at cheap rate.</h1>
-                    <form className='findVendor'>
-                        {/* <BsSearch style={ searchbtn }/> */}
-                        <input className='vendorInput' type="text" placeholder='Try "My oil connect"'/>
-                        <button type='submit'> Search </button>
-                    </form>
+
+                    <div className="info">
+                        <h1>Find the perfect <i>Vendor</i><br/> to get your palm oil at cheap rate.</h1>
+                        <form className='findVendor'>
+
+                            {/* <BsSearch style={ searchbtn }/> */}
+                            <input className='vendorInput' type="text" placeholder='Try "My oil connect"'/>
+                            <button type='submit'> Search </button>
+                        </form>
+                    </div>
                 </div>
              </div>
         </div>

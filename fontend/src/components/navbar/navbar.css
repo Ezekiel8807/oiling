@@ -2,11 +2,20 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+
+.navbtn {
+    display: none;
+}
+
+.nav-logo {
+    flex: 2;
+    padding: 10px;
 }
 
 .navlink {
     padding: 20px;
+    justify-content: space-between;
 }
 
 .navlink a {
@@ -20,4 +29,32 @@
 .navlink a:last-child {
     border: 2px solid #fff;
     border-radius: 5px;
+}
+
+
+@media screen and (max-width: 680px){
+
+    .navbar {
+        display: block;
+    }
+
+    .navbtn {
+        right: 10px;
+        display: block;
+        position: absolute;
+    }
+
+
+    .navlink {
+        display: none;
+        background-color: #fff;
+    }
+
+
+    .navlink a {
+        padding: 10px;
+        display: block;
+        color: black;
+        border-bottom: 1px solid #ddd;
+    }
 }

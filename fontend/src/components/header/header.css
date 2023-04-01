@@ -11,14 +11,19 @@
 }
 
 .div1 {
-    width: 90%;
-    height: 400px;
-    background-color: blue;
+    opacity: 0.5;
+    background-color: #000;
 }
 
-.div1 h1 {
+.info {
+    padding: 50px 10px;
+    text-align: center;
+} 
+
+.info h1 {
     color: #fff;
 }
+
 
 .div1 .vendorInput {
     border: none;
