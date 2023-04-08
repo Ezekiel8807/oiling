@@ -1,0 +1,104 @@
+.loginBlock{
+}
+
+
+/* form element styling */
+.loginBlock form {
+    max-width: 90%;
+    width: 400px;
+    margin: 50px auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px #ddd;
+} 
+
+
+/* form heading h2 element */
+.loginHead {
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px;
+}
+
+
+/* login with button styling */
+.login_with button{
+    font-size: 1em;
+    width: 90%;
+    display: block;
+    padding: 10px;
+    margin: 10px auto;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+
+/* divider styling */
+.divider {
+    color: #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+.login_ {
+    
+}
+
+
+.login_ input {
+    width: 85%;
+    padding: 10px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    outline-style: none;
+    border: 1px solid #ddd;
+}
+
+.forget {
+    color: #e41827;
+    margin-left: 5%;
+    text-decoration: none;
+}
+
+
+.loginButtonBlock {
+    padding: 20px;
+    text-align: right;
+}
+
+.loginButton {
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 2px;
+    border:  1px solid #ddd;
+    background: rgb(228,24,24);
+    box-shadow: 0px 0px 5px #ddd;
+    background: linear-gradient(90deg, rgba(228,24,24,1) 0%, rgba(237,193,104,1) 100%);
+}
+
+.login_foot {
+    border-top: 1px solid #ddd ;
+}
+
+.login_foot p {
+    padding: 20px;
+    margin: 0px 0px;
+    text-align: center;
+    border-top: 1px solid #ddd ;
+}
+
+
+.login_foot p a{
+    color: #e41827;
+    text-decoration: none;
+}

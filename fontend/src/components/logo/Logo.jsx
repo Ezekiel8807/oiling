@@ -9,7 +9,7 @@ const Logo = () => {
 
     return( 
         <div className="logo">
-            <span>Oily.</span>
+            <a href="/">Oily<span>.</span></a>
         </div>
     );
 }

@@ -4,7 +4,7 @@ import './header.css'
 // include header components
 // import Logo from '../logo/Logo';
 // import Divider from '../divider/Divider';
-import Navbar from '../navbar/Navbar';
+// import Navbar from '../navbar/Navbar';
 // import Overhead from '../overhead/Overhead';
 // import { BsSearch } from "react-icons/bs";
 
@@ -22,9 +22,6 @@ const Header = () => {
 
     return(
         <div className='header'>
-
-            <Navbar />
-
             <div className='board'>
 
                 <div className='div1'>

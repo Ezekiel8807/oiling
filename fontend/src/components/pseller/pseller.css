@@ -12,6 +12,7 @@
     overflow-y: hidden;
     overflow-x: auto;
     white-space: nowrap;
+    margin-bottom: 20px;
 }
 
 .scontainer ::-webkit-scrollbar {

@@ -2,6 +2,8 @@
 .navbar {
     display: flex;
     flex-direction: row;
+    background: rgb(228,24,24);
+    background: linear-gradient(90deg, rgba(228,24,24,1) 0%, rgba(237,193,104,1) 100%);
 }
 
 .navbtn {

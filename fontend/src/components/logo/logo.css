@@ -2,10 +2,16 @@
     cursor: pointer;
 }
 
-.logo span{
+.logo a{
     font-size: 30px;
     font-weight: bold;
     color: #fff;
+    text-decoration: none;
+}
+
+.logo a span {
+    color: #1dbf73;
+    font-weight: bold;
 }
 
 /* e41827 */

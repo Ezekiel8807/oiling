@@ -1,11 +1,9 @@
 import './landing.css'
-import React from "react";
 
 
 //import components
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 import Pseller from '../../components/pseller/Pseller';
+import Header from '../../components/header/Header';
 // import Overhead from '../../components/overhead/Overhead';
 
 
@@ -14,7 +12,6 @@ const Landing = () => {
         <div className="landing_page">
             <Header />
             <Pseller />
-            <Footer />
         </div>
     );
 }

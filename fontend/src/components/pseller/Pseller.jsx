@@ -6,8 +6,35 @@ import { BsFillStarFill } from "react-icons/bs";
 
 const Pseller = () => {
 
+    const rank = 5.0;
+    const badge = ["000000", "0000ff", "ffff00", "#ff0000"];
+
+    const sellerBadge = () => {
+        if (rank >= 0.0 && rank <= 1.0){
+            let color = badge[0];
+            return color;
+
+        }else if (rank >= 1.1 && rank <= 2.0){
+            let color = badge[1];
+            return color;
+
+        }else if (rank >= 2.1 && rank <= 3.0){
+            let color = badge[2];
+            return color;
+
+        }else if (rank >= 3.1 && rank <= 4.0){
+            let color = badge[3];
+            return color;
+            
+        }else {
+            let color = badge[3];  
+            return color;
+        }
+    }
+
+
     const star = {
-        "color": "#f00",
+        "color": sellerBadge(),
         "fontSize": "10px"
     }
 
@@ -16,7 +43,7 @@ const Pseller = () => {
 
     return(
         <div className="pseller">
-            <h2 className="psh">Our Polular Sellers</h2>
+            <h2 className="psh">Our Popular Sellers</h2>
 
             <div className="scontainer">  
 
