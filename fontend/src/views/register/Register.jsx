@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './register.css'
 
 
@@ -31,7 +32,7 @@ const Register = () => {
                     </div>
 
                     <div className="login_foot">
-                        <p>Already a member? <a href="http://" target="_blank" rel="noopener noreferrer">Sign in</a></p>
+                        <p>Already a member? <Link to="/login" target="_self" rel="noopener noreferrer">Sign in</Link></p>
                     </div>
                     
                     

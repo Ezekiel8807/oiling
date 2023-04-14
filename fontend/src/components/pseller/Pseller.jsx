@@ -1,15 +1,30 @@
 import "./pseller.css";
+import vendors from "../../db/vendor";
+
 
 
 // icons
 import { BsFillStarFill } from "react-icons/bs";
+import { useNavigate } from "react-router";
 
+
+
+
+
+
+
+
+//vendors
 const Pseller = () => {
 
-    const rank = 5.0;
+    //public folder
+    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    const navigate = useNavigate();
+
     const badge = ["000000", "0000ff", "ffff00", "#ff0000"];
 
-    const sellerBadge = () => {
+    const sellerBadge = (rank) => {
         if (rank >= 0.0 && rank <= 1.0){
             let color = badge[0];
             return color;
@@ -33,13 +48,10 @@ const Pseller = () => {
     }
 
 
-    const star = {
-        "color": sellerBadge(),
-        "fontSize": "10px"
+    //go to vendor page 
+    const vendorPage = ( vendorUsername ) => {
+        navigate(`/vendor?${vendorUsername}`);
     }
-
-    //public folder
-    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
     return(
         <div className="pseller">
@@ -47,83 +59,24 @@ const Pseller = () => {
 
             <div className="scontainer">  
 
-                <div className="seller">
-                    <div className="sap">
-                        <img src={pf + 'img/bg/palm_Oil_25_Liters.jpg'} alt="spp" />
-                    </div>
-                    <div className="sbf">
-                        <span className="spp"><img src={pf + 'img/bg/oil_5_litres.webp'} alt="spp" /></span>
-                        <div className="sbf2">
-                            <b>Ezekel8807</b>
-                            <span></span> 4.5 <BsFillStarFill style={ star}/><br/>
+                {vendors.map(vendor => {
+                    return(
+                        <div className="seller" key={vendor.id}  onClick={ () => { vendorPage(vendor.username) }}>
+                            <div className="sap">
+                                <img src={pf + vendor.coverPhoto} alt="spp" />
+                            </div>
+                            <div className="sbf">
+                                <span className="spp"><img src={pf +  vendor.profilePhoto} alt="spp" /></span>
+                                <div className="sbf2">
+                                    <b>{vendor.username}</b>
+                                    <span></span> {vendor.rating} <BsFillStarFill style={{"color": sellerBadge(vendor.rating),"fontSize": "10px"}}/><br/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div className="seller">
-                    <div className="sap">
-                        <img src={pf + 'img/bg/palm_Oil_25_Liters.jpg'} alt="spp" />
-                    </div>
-                    <div className="sbf">
-                        <span className="spp"><img src={pf + 'img/bg/oil_5_litres.webp'} alt="spp" /></span>
-                        <div className="sbf2">
-                            <b>Ezekel8807</b>
-                            <span></span> 4.5 <BsFillStarFill style={ star}/><br/>
-                        </div>
-                    </div>
-                </div>
+                    )
+                })}
 
-                <div className="seller">
-                    <div className="sap">
-                        <img src={pf + 'img/bg/palm_Oil_25_Liters.jpg'} alt="spp" />
-                    </div>
-                    <div className="sbf">
-                        <span className="spp"><img src={pf + 'img/bg/oil_5_litres.webp'} alt="spp" /></span>
-                        <div className="sbf2">
-                            <b>Ezekel8807</b>
-                            <span></span> 4.5 <BsFillStarFill style={ star}/><br/>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="seller">
-                    <div className="sap">
-                        <img src={pf + 'img/bg/palm_Oil_25_Liters.jpg'} alt="spp" />
-                    </div>
-                    <div className="sbf">
-                        <span className="spp"><img src={pf + 'img/bg/oil_5_litres.webp'} alt="spp" /></span>
-                        <div className="sbf2">
-                            <b>Ezekel8807</b>
-                            <span></span> 4.5 <BsFillStarFill style={ star}/><br/>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="seller">
-                    <div className="sap">
-                        <img src={pf + 'img/bg/palm_Oil_25_Liters.jpg'} alt="spp" />
-                    </div>
-                    <div className="sbf">
-                        <span className="spp"><img src={pf + 'img/bg/oil_5_litres.webp'} alt="spp" /></span>
-                        <div className="sbf2">
-                            <b>Ezekel8807</b>
-                            <span></span> 4.5 <BsFillStarFill style={ star}/><br/>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="seller">
-                    <div className="sap">
-                        <img src={pf + 'img/bg/palm_Oil_25_Liters.jpg'} alt="spp" />
-                    </div>
-                    <div className="sbf">
-                        <span className="spp"><img src={pf + 'img/bg/oil_5_litres.webp'} alt="spp" /></span>
-                        <div className="sbf2">
-                            <b>Ezekel8807</b>
-                            <span></span> 4.5 <BsFillStarFill style={ star}/><br/>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     )

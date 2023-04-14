@@ -1,0 +1,38 @@
+
+
+.dispatch {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+}
+
+.dispatcherImage {
+    height: 400px;
+}
+
+.dispatcherImage img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.dispatcherBlock {
+    text-align: center;
+}
+
+.dispatcherBlock h1{
+    max-width: 70%;
+    font-size: 5em;
+    margin: auto;
+    text-align: center;
+}
+
+.dispatcherBlock button {
+    font-size: 1em;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    border-radius: 50px;
+    background-color: #fff;
+    border: 2px solid #000;
+}

@@ -28,7 +28,7 @@ const Header = () => {
 
                     <div className="info">
                         <h1>Find the perfect <i>Vendor</i><br/> to get your palm oil at cheap rate.</h1>
-                        <form className='findVendor'>
+                        <form className='findVendor' method='GET'>
 
                             {/* <BsSearch style={ searchbtn }/> */}
                             <input className='vendorInput' type="text" placeholder='Try "My oil connect"'/>

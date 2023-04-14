@@ -1,12 +1,48 @@
 import './login.css'
+import axios from 'axios'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
-const Login = () => {
+import ErrMsg from '../../components/errmsg/ErrMsg';
+
+
+const Login = () => { 
+
+    //local state to store user inputs
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errMsg, setErrMsg] = useState("");
+
+
+
+    const signWithEmail = async (e) => {
+        e.preventDefault();
+
+        if(!username || !password ){
+            setErrMsg("All fields required");
+
+        }else {
+            const loginInfo = {
+                username,
+                password
+            }
+
+            const response = await axios.post(`/e`, loginInfo);
+
+            if(!response) {
+                setErrMsg("Incoreect credentials");
+            }
+        }
+    }
+
+
+
     return(
         <div className="login">
             <div className="loginBlock">
 
-                <form action="" method="POST">
+                <form onSubmit={ signWithEmail } action="" method="POST">
 
                     <h2 className='loginHead'>Sign In To Oily</h2>
 
@@ -20,8 +56,9 @@ const Login = () => {
                     </div>
 
                     <div className="login_">
-                        <input type="text" name="username" id="username" placeholder='Username' required/> 
-                        <input type="text" name="password" id="password" placeholder='Password' required/>
+                        <ErrMsg errMsg={ errMsg }/>
+                        <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" placeholder='Username' required/> 
+                        <input onChange={ (e) => {setPassword(e.target.value)}} type="text" name="password" id="password" placeholder='Password' required/>
                     </div>
                     <a className='forget' href="http://">Forget Password?</a>
 
@@ -30,7 +67,7 @@ const Login = () => {
                     </div>
 
                     <div className="login_foot">
-                        <p>Not a member yet? <a href="http://" target="_blank" rel="noopener noreferrer">Sign up</a></p>
+                        <p>Not a member yet? <Link to="/register" target="_self" rel="noopener noreferrer">Sign up</Link></p>
                     </div>
                     
                 </form>
