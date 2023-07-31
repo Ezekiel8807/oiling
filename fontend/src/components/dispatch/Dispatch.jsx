@@ -8,13 +8,14 @@ const Dispatch = () => {
 
     return(
         <div className="dispatch">
-            <div className="dispatcherImage">
-                <img src={ pf + "img/bg/oilpalm.jpg"} alt="dispatcher" />
+
+            <div className="dispatchBlock">
+                <h1>Become Distributor</h1>
+                <button>Start Now</button>
             </div>
             
-            <div className="dispatcherBlock">
-                <h1>Become a distributor</h1>
-                <button>Start Now</button>
+            <div className="dispatchBlock">
+                <img src={ pf + "img/bg/oilpalm.jpg"} alt="dispatcher" />
             </div>
         </div>
     )

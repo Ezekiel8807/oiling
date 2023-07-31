@@ -5,7 +5,7 @@ const vendor = [
         "username": "Ezekiel8807",
         "location": "Ogun",
         "profilePhoto": "img/bg/oil_5_litres.webp",
-        "coverPhoto": "img/bg/palm_Oil_25_Liters.jpg",
+        "coverPhoto": "img/bg/oilpalm.jpg",
         "Address": "3, Olatunja Street, Ijako, Sango Ota."
     },
     {

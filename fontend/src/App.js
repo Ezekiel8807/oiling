@@ -13,17 +13,28 @@ import Profile from './views/profile/Profile';
 
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
+import SellerDash from './views/sellerDash/SellerDash';
 
 function App() {
+
+  //public folder
+  const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+
+
+
+
+
+
   return (
     <div className="App">
       <Navbar />
       <Routes>
 
-        <Route exact path="/" element={ <Home/> } />
+        <Route exact path="/" element={ <Home pf={ pf } /> } />
         <Route path="/login" element={ <Login/> } />
         <Route path="/register" element={ <Register/> } />
         <Route path="/:username" element={ <Profile /> } />
+        <Route path="/seller" element={ <SellerDash pf={ pf }/> } />
         <Route path="*" element={ <NotFound/> } />
       </Routes>
       <Footer />

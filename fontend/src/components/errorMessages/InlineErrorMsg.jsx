@@ -1,10 +1,10 @@
 
 import "./errmsg.css";
 
-const ErrMsg = ({errMsg}) => {
+const InlineErrorMsg = ({errMsg}) => {
     return(
         <small className="err_msg">{ errMsg }</small>
     )
 }
 
-export default ErrMsg;
+export default InlineErrorMsg;

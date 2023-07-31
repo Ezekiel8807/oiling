@@ -1,12 +1,12 @@
 import cors from 'cors';
 import path from 'path';
 import Express from 'express';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
 
 //controllers
-import index from './control/index.js';
+import index from './api/index.js';
 
 //configure environment variable
 dotenv.config();
@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 //initiate express
 const getpalmoil = Express();
 
-// ========== middle wares =======================
+// ======= middle wares ==========
 getpalmoil.use(cors());
 
 // parse application/json

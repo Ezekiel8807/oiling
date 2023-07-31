@@ -1,6 +1,7 @@
-import "./pseller.css";
-import vendors from "../../db/vendor";
+import "./nseller.css"
 
+
+import vendors from "../../db/vendor";
 
 
 import SellerCard from "../sellercard/SellerCard";
@@ -13,12 +14,12 @@ import { BlockTitle1 } from "../blockTitle/BlockTitle";
 
 
 
-//vendors
-const Pseller = () => {
+//New vendors
+const Nseller = () => {
 
     return(
-        <div className="pseller">
-            <BlockTitle1 title="Our Popular Sellers" />
+        <div className="Nseller">
+            <BlockTitle1 title="New Sellers" />
 
             <div className="scontainer">  
 
@@ -32,4 +33,4 @@ const Pseller = () => {
     )
 }
 
-export default Pseller;
+export default Nseller;

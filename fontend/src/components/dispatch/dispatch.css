@@ -3,35 +3,30 @@
 .dispatch {
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.dispatcherImage {
-    height: 400px;
-}
-
-.dispatcherImage img{
-    width: 100%;
-    height: 100%;
-}
-
-
-.dispatcherBlock {
+.dispatchBlock {
+    padding: 20px 0;
     text-align: center;
 }
 
-.dispatcherBlock h1{
-    max-width: 70%;
-    font-size: 5em;
+.dispatchBlock img{
+    width: 100%;
+    height: 150px;
+}
+
+.dispatchBlock h1{
+    font-size: 1.8em;
     margin: auto;
     text-align: center;
 }
 
-.dispatcherBlock button {
+.dispatchBlock button {
     font-size: 1em;
-    padding: 20px;
-    margin: 20px;
-    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
     border-radius: 50px;
     background-color: #fff;
     border: 2px solid #000;

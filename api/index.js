@@ -4,7 +4,9 @@ import { landingRoute } from "../Router/indexRouter.js";
 
 const Router = express.Router();
 
-Router.get('/', landingRoute);
+Router.get('/auth', (req, res) => {
+    
+});
 
 
 

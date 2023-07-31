@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
-import ErrMsg from '../../components/errmsg/ErrMsg';
+import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
 
 
 const Login = () => { 
@@ -56,9 +56,9 @@ const Login = () => {
                     </div>
 
                     <div className="login_">
-                        <ErrMsg errMsg={ errMsg }/>
-                        <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" placeholder='Username' required/> 
-                        <input onChange={ (e) => {setPassword(e.target.value)}} type="text" name="password" id="password" placeholder='Password' required/>
+                        <InlineErrorMsg errMsg={ errMsg }/>
+                        <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' required/> 
+                        <input onChange={ (e) => {setPassword(e.target.value)}} type="text" name="password" id="password" autoComplete="true" placeholder='Password' required/>
                     </div>
                     <a className='forget' href="http://">Forget Password?</a>
 
