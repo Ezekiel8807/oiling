@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 
 
@@ -17,19 +17,23 @@ import SellerDash from './views/sellerDash/SellerDash';
 
 function App() {
 
+  const [userData, setUserData] = useState({});
+  const [isUser, setIsUser] = useState(false);
+
   //public folder
   const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
-
-
-
-
+  useEffect(() => {
+    setIsUser();
+  
+  }, [])
+  
+  
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar userData={userData}/>
       <Routes>
-
         <Route exact path="/" element={ <Home pf={ pf } /> } />
         <Route path="/login" element={ <Login/> } />
         <Route path="/register" element={ <Register/> } />
