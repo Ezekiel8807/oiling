@@ -1,6 +1,6 @@
 import './login.css'
-import axios from 'axios'
 import { useState } from 'react';
+import {axiosBaseUrl} from "../../config"
 import { Link } from 'react-router-dom';
 
 
@@ -15,7 +15,9 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState("");
 
 
+    //initiate navigation
 
+    //sign in with email and password
     const signWithEmail = async (e) => {
         e.preventDefault();
 
@@ -28,10 +30,13 @@ const Login = () => {
                 password
             }
 
-            const response = await axios.post(`/e`, loginInfo);
+            const res = await axiosBaseUrl.post("login/", loginInfo); 
 
-            if(!response) {
-                setErrMsg("Incoreect credentials");
+            //check login status
+            if(res.status !== 201){
+                setErrMsg('Incorrect credentials');
+
+            }else{
             }
         }
     }
@@ -58,7 +63,7 @@ const Login = () => {
                     <div className="login_">
                         <InlineErrorMsg errMsg={ errMsg }/>
                         <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' required/> 
-                        <input onChange={ (e) => {setPassword(e.target.value)}} type="text" name="password" id="password" autoComplete="true" placeholder='Password' required/>
+                        <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>
                     </div>
                     <a className='forget' href="http://">Forget Password?</a>
 

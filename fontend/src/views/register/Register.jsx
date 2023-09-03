@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './register.css'
 
-import { axiosBaseUrl } from '../../config';
+// import axios from 'axios'
+import {axiosBaseUrl} from "../../config"
 import { useState } from 'react';
+
+
+//components
 import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
 
 
@@ -17,6 +21,8 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // initialize useNavigation
+    const navigate = useNavigate();
 
     //form validation
     const handleRegister = async (e) => {
@@ -34,12 +40,18 @@ const Register = () => {
                 password
             }
 
+            const resResponse = await axiosBaseUrl.post("register/", registrationInfo); 
+            const savedUser = await resResponse.json();
+            console.log(savedUser);
+            //check registration status
+            if(!savedUser){
+                console.log(savedUser);
+                //setErrMsg(res.response.data.msg);
 
-            const response = await axiosBaseUrl.post("auth/", registrationInfo);
-
-            if(!response) {
-                setErrMsg("Incoreect credentials");
+            }else{
+                navigate("/login");
             }
+
         }
     
     }
@@ -62,7 +74,7 @@ const Register = () => {
                     </div>
 
                     <div className="login_">
-                        <InlineErrorMsg msg={ errMsg } />
+                        <InlineErrorMsg errMsg={ errMsg } />
                         <input onChange={ (e) => setUsername(e.target.value)} type="text" name="username" id="username" autoComplete="true" placeholder='Username' required/> 
                         <input onChange={ (e) => setEmail(e.target.value)} type="email" name="email" id="email" autoComplete="true" placeholder='Email' required/> 
                         <input onChange={ (e) => setPassword(e.target.value)} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>

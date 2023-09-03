@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 
-const baseURL = process.env.BASE_URL 
-
 // 👇️ export your instance
 export const axiosBaseUrl = axios.create({
-  baseURL: baseURL,
+  baseURL: "http://127.0.0.1:5000/api/",
 });
+
+

@@ -38,11 +38,11 @@ const Navbar = () => {
 
             
 
-            <div className="navlink" id="navlink">
-                <a href="/seller">Become a Seller</a>  
+            <div className="navlink" id="navlink">  
                 <a href="/dispatcher">Become a Dispatcher</a> 
-                <a href="/login">Sign In</a> 
-                <a href="/register">Join</a>   
+                <a href="/register">Register</a> 
+                <a href="/login">Login</a> 
+  
             </div>
             
         </div>

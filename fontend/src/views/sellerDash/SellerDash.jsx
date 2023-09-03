@@ -1,7 +1,7 @@
 import './sellerDash.css'
 
 import sellers from '../../db/vendor'
-import { BlockTitle2, BlockTitle3 } from '../../components/blockTitle/BlockTitle'
+import { BlockTitle2 } from '../../components/blockTitle/BlockTitle'
 
 const SellerDash = ({pf}) => {
 
