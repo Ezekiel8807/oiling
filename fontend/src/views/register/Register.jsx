@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './register.css'
 
 // import axios from 'axios'
-import {axiosBaseUrl} from "../../config"
+//import {axiosBaseUrl} from "../../config"
 import { useState } from 'react';
 
 
@@ -13,7 +13,7 @@ import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
 
 
 
-const Register = () => {
+const Register = ({serverError, serverSuccess}) => {
 
     //manage form data with react state
     const [errMsg, setErrMsg] = useState("");
@@ -40,17 +40,52 @@ const Register = () => {
                 password
             }
 
-            const resResponse = await axiosBaseUrl.post("register/", registrationInfo); 
-            const savedUser = await resResponse.json();
-            console.log(savedUser);
-            //check registration status
-            if(!savedUser){
-                console.log(savedUser);
-                //setErrMsg(res.response.data.msg);
+            
+            fetch('http://127.0.0.1:5000/api/register/', {
+                            
+                
+                // Adding method type
+                method: "POST",
+                
+                // Adding body or contents to send
+                body: JSON.stringify(registrationInfo),
+                
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
 
-            }else{
-                navigate("/login");
-            }
+            // Converting to JSON
+            .then(response => response.json())
+            
+            // Displaying results to console
+            .then((data) => {
+                if(data.status !== 201) {
+                    serverError(data.msg);
+                    navigate("/login");
+
+                }else{
+                    serverSuccess("Account created!");
+                    navigate("/login");
+                }
+            })
+
+            .catch(err => console.log(err))
+
+            // const resResponse = await axiosBaseUrl.post("register/", registrationInfo); 
+            // const savedUser = await resResponse.json();
+
+            // if( savedUser )
+            // console.log(savedUser);
+            // //check registration status
+            // if(!savedUser){
+            //     console.log(savedUser);
+            //     //setErrMsg(res.response.data.msg);
+
+            // }else{
+            //     navigate("/login");
+            // }
 
         }
     

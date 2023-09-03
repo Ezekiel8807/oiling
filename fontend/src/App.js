@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
+// import { useState } from 'react';
 import { Routes, Route } from "react-router-dom"
+
+//mesages notifier
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 //import components
@@ -17,31 +21,35 @@ import SellerDash from './views/sellerDash/SellerDash';
 
 function App() {
 
-  const [userData, setUserData] = useState({});
-  const [isUser, setIsUser] = useState(false);
+  // const [userData, setUserData] = useState({});
+  // const [isUser, setIsUser] = useState(false);
 
   //public folder
   const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  useEffect(() => {
-    setIsUser();
+  // useEffect(() => {
+  //   setIsUser();
   
-  }, [])
+  // }, [])
   
+  // server error messsages
+  const serverSuccess = (msg) => toast.success(msg);
+  const serverError = ( msg ) => toast.error(msg);
   
 
   return (
     <div className="App">
-      <Navbar userData={userData}/>
+      <Navbar />
       <Routes>
         <Route exact path="/" element={ <Home pf={ pf } /> } />
         <Route path="/login" element={ <Login/> } />
-        <Route path="/register" element={ <Register/> } />
+        <Route path="/register" element={ <Register serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/:username" element={ <Profile /> } />
         <Route path="/seller" element={ <SellerDash pf={ pf }/> } />
         <Route path="*" element={ <NotFound/> } />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
