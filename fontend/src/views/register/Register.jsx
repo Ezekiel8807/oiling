@@ -29,20 +29,18 @@ const Register = ({serverError, serverSuccess}) => {
 
         //prevent form default behaviour
         e.preventDefault();
-    
-        if(!username || !email || !password ){
-            setErrMsg("All fields required");
+
+ 
+
+        // check for empty values
+        if(!username || !email || !password ) {
+            return setErrMsg("All fields required");
 
         }else {
-            const registrationInfo = {
-                username,
-                email,
-                password
-            }
 
-            
-            fetch('http://127.0.0.1:5000/api/register/', {
-                            
+            const registrationInfo = { username, email, password }
+
+            const response = await fetch(`http://127.0.0.1:5000/api/register/`, {              
                 
                 // Adding method type
                 method: "POST",
@@ -56,39 +54,16 @@ const Register = ({serverError, serverSuccess}) => {
                 }
             })
 
-            // Converting to JSON
-            .then(response => response.json())
-            
-            // Displaying results to console
-            .then((data) => {
-                if(data.status !== 201) {
-                    serverError(data.msg);
-                    navigate("/login");
+            const data = await response.json();
 
-                }else{
-                    serverSuccess("Account created!");
-                    navigate("/login");
-                }
-            })
+            if(response.status !== 201 ){
+                setErrMsg(data.msg);
 
-            .catch(err => console.log(err))
-
-            // const resResponse = await axiosBaseUrl.post("register/", registrationInfo); 
-            // const savedUser = await resResponse.json();
-
-            // if( savedUser )
-            // console.log(savedUser);
-            // //check registration status
-            // if(!savedUser){
-            //     console.log(savedUser);
-            //     //setErrMsg(res.response.data.msg);
-
-            // }else{
-            //     navigate("/login");
-            // }
-
-        }
-    
+            }else {
+                serverSuccess(data.msg);
+                navigate("/login");
+            }
+        }  
     }
 
     return(

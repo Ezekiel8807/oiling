@@ -6,7 +6,13 @@ import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
 
 //controller
-import controller from './Router/auth.js';
+import controller from './Router/controller.js';
+
+
+
+
+
+
 import DataBase from './dataBase.js';
 
 //setting file path
