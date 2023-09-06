@@ -6,8 +6,8 @@ import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
 
 //controller
-import controller from './Router/controller.js';
-
+import UserController from './Router/controller.js';
+import AdminController from './Router/AdminController.js';
 
 
 
@@ -42,8 +42,8 @@ getpalmoil.use(Express.static(path.join(__dirname + '/fontend/build')));
 
 
 // express entry point
-getpalmoil.use("/api", controller);
-
+getpalmoil.use("/api", UserController);
+getpalmoil.use("/api/admin", AdminController);
 
 //not found routes
 getpalmoil.use("*", (req, res) => {

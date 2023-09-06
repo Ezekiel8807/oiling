@@ -47,7 +47,7 @@ export const login = async (req, res) => {
 
         //check if user exist with that username
         const user = await userData.findOne({ username: username });
-        if (!user) return res.status(400).json({ msg: "User does not exist. " });
+        if (!user) return res.status(404).json({ msg: "User does not exist. " });
     
         //encrypt user password and compare 
         const isMatch = await bcrypt.compare(password, user.password);

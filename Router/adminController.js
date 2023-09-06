@@ -1,10 +1,8 @@
 import React from "react";
 import express from "express";
 
-//registration api
-import { register, login } from "../api/auth.js";
-
-import {singleUser} from "../api/user.js";
+//administrators api
+import { adminLogin } from "../api/admin.js";
 
 //initialize express router
 const Router = express.Router();
@@ -14,20 +12,14 @@ const Router = express.Router();
 
 
 // ========= user controller ================
-Router.post('/login', login );
+Router.post('/login', adminLogin );
 // Router.get('/auth', authRouter );
 // Router.update('/auth', authRouter );
 
 
 //Registration
-Router.post('/register', register );
+// Router.post('/register', register );
 // Router.get('/register', authRouter );
 // Router.update('/register', authRouter );
-
-
-
-
-//user 
-Router.get('/:username', singleUser );
 
 export default Router;

@@ -1,13 +1,12 @@
 import './login.css'
 import { useState } from 'react';
-import {axiosBaseUrl} from "../../config"
 import { Link } from 'react-router-dom';
 
 
 import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
 
 
-const Login = () => { 
+const Login = ({serverError, serverSuccess}) => { 
 
     //local state to store user inputs
     const [username, setUsername] = useState('');
@@ -25,18 +24,34 @@ const Login = () => {
             setErrMsg("All fields required");
 
         }else {
-            const loginInfo = {
-                username,
-                password
-            }
+            const loginInfo = { username, password };
 
-            const res = await axiosBaseUrl.post("login/", loginInfo); 
+            const response = await fetch(`http://127.0.0.1:5000/api/login/`, {              
+                
+                // Adding method type
+                method: "POST",
+                
+                // Adding body or contents to send
+                body: JSON.stringify(loginInfo),
+                
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+
+            const data = await response.json(); 
 
             //check login status
-            if(res.status !== 201){
-                setErrMsg('Incorrect credentials');
+            
+            if(response.status === 500) {
+                serverError("Sorry! something when wrong");
+
+            }else if (response.status !== 200){
+                setErrMsg(data.msg);
 
             }else{
+                serverSuccess('login Successful');
             }
         }
     }

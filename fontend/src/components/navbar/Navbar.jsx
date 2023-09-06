@@ -11,7 +11,7 @@ const navbar = {
 }
 
 
-const Navbar = () => {
+const Navbar = ({isLogin, pf}) => {
 
 
     //function to open and close navbar
@@ -27,24 +27,29 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-
+            
+            { !isLogin && 
             <div className="navbtn" onClick={ openCloseNav }>
                 <BsList style={ navbar } />
-            </div>
+            </div>}
 
             <div className="nav-logo">
                 <Logo />
             </div>
 
-            
-
+            { !isLogin && 
             <div className="navlink" id="navlink">  
                 <a href="/dispatcher">Become a Dispatcher</a> 
                 <a href="/register">Register</a> 
                 <a href="/login">Login</a> 
   
+            </div>}
+
+            { isLogin && 
+            <div className="header_profilePhoto_nav">
+                <img src="" alt="" />
             </div>
-            
+            } 
         </div>
     )
 }

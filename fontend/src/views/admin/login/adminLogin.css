@@ -1,0 +1,69 @@
+/* form element styling */
+.adminLogin form {
+    max-width: 90%;
+    width: 400px;
+    margin: 50px auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px #ddd;
+} 
+
+
+/* form heading h2 element */
+.adminLogin h1 {
+    padding: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px 0px;
+}
+
+.adminLogin b {
+    font-size: 0.8em;
+    text-align: center;
+    display: block;
+}
+
+
+/* login with button styling */
+.login_with button{
+    font-size: 1em;
+    width: 90%;
+    display: block;
+    padding: 10px;
+    margin: 10px auto;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+
+.adminLogin input {
+    width: 85%;
+    padding: 10px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    outline-style: none;
+    border: 1px solid #ddd;
+}
+
+
+.adminLogin .loginButtonBlock {
+    padding: 20px;
+}
+
+.adminLogin .loginButtonBlock button {
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 30px;
+    border-radius: 2px;
+    border:  1px solid #ddd;
+    background: rgb(228,24,24);
+    box-shadow: 0px 0px 5px #ddd;
+    background: linear-gradient(90deg, rgba(228,24,24,1) 0%, rgba(237,193,104,1) 100%);
+}
