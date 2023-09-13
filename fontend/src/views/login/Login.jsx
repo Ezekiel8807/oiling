@@ -1,6 +1,6 @@
 import './login.css'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
@@ -14,7 +14,8 @@ const Login = ({serverError, serverSuccess}) => {
     const [errMsg, setErrMsg] = useState("");
 
 
-    //initiate navigation
+    // initialize useNavigation
+    const navigate = useNavigate();
 
     //sign in with email and password
     const signWithEmail = async (e) => {
@@ -51,7 +52,9 @@ const Login = ({serverError, serverSuccess}) => {
                 setErrMsg(data.msg);
 
             }else{
+                navigate("/");
                 serverSuccess('login Successful');
+                console.log(data);
             }
         }
     }
@@ -80,6 +83,8 @@ const Login = ({serverError, serverSuccess}) => {
                         <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' required/> 
                         <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>
                     </div>
+                    
+                    <small style={{ "margin" : "2% 5%", "textDecoration": "none" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
                     <a className='forget' href="http://">Forget Password?</a>
 
                     <div className="loginButtonBlock">

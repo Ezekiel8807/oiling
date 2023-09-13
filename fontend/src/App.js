@@ -23,8 +23,8 @@ function App() {
   const [userData, setUserData] = useState({
     "isLogin": false,
     "isAdminLogin": false,
-    "info": {},
-    "store": {}
+    "info": [],
+    "store": []
   });
   // const [isUser, setIsUser] = useState(false);
 

@@ -89,7 +89,7 @@ const Register = ({serverError, serverSuccess}) => {
                         <input onChange={ (e) => setEmail(e.target.value)} type="email" name="email" id="email" autoComplete="true" placeholder='Email' required/> 
                         <input onChange={ (e) => setPassword(e.target.value)} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>
                     </div>
-                    {/* <a className='forget' href="http://">Forget Password?</a> */}
+                    <small style={{ "margin" : "2% 5%", "display": "block", "textDecoration": "none" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
 
                     <div className="loginButtonBlock">
                         <button className='loginButton' type="submit">Register</button>

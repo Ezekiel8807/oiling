@@ -15,7 +15,7 @@ const Dispatch = () => {
             </div>
             
             <div className="dispatchBlock">
-                <img src={ pf + "img/bg/oilpalm.jpg"} alt="dispatcher" />
+                <img src={ pf + "img/bg/a.jpeg"} alt="dispatcher" />
             </div>
         </div>
     )
