@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './register.css'
 
 // import axios from 'axios'
-import {axiosBaseUrl} from "../../config"
+//import {axiosBaseUrl} from "../../config"
 import { useState } from 'react';
 
 
@@ -13,7 +13,7 @@ import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
 
 
 
-const Register = () => {
+const Register = ({serverError, serverSuccess}) => {
 
     //manage form data with react state
     const [errMsg, setErrMsg] = useState("");
@@ -29,31 +29,41 @@ const Register = () => {
 
         //prevent form default behaviour
         e.preventDefault();
-    
-        if(!username || !email || !password ){
-            setErrMsg("All fields required");
+
+ 
+
+        // check for empty values
+        if(!username || !email || !password ) {
+            return setErrMsg("All fields required");
 
         }else {
-            const registrationInfo = {
-                username,
-                email,
-                password
-            }
 
-            const resResponse = await axiosBaseUrl.post("register/", registrationInfo); 
-            const savedUser = await resResponse.json();
-            console.log(savedUser);
-            //check registration status
-            if(!savedUser){
-                console.log(savedUser);
-                //setErrMsg(res.response.data.msg);
+            const registrationInfo = { username, email, password }
 
-            }else{
+            const response = await fetch(`http://127.0.0.1:5000/api/register/`, {              
+                
+                // Adding method type
+                method: "POST",
+                
+                // Adding body or contents to send
+                body: JSON.stringify(registrationInfo),
+                
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+
+            const data = await response.json();
+
+            if(response.status !== 201 ){
+                setErrMsg(data.msg);
+
+            }else {
+                serverSuccess(data.msg);
                 navigate("/login");
             }
-
-        }
-    
+        }  
     }
 
     return(
@@ -79,7 +89,7 @@ const Register = () => {
                         <input onChange={ (e) => setEmail(e.target.value)} type="email" name="email" id="email" autoComplete="true" placeholder='Email' required/> 
                         <input onChange={ (e) => setPassword(e.target.value)} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>
                     </div>
-                    {/* <a className='forget' href="http://">Forget Password?</a> */}
+                    <small style={{ "margin" : "2% 5%", "display": "block", "textDecoration": "none" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
 
                     <div className="loginButtonBlock">
                         <button className='loginButton' type="submit">Register</button>

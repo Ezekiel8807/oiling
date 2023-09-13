@@ -1,22 +1,24 @@
 import React from "react";
 import express from "express";
 
-//registration api
-import { register, login } from "../api/auth.js";
-
+//administrators api
+import { adminLogin } from "../api/admin.js";
 
 //initialize express router
 const Router = express.Router();
 
+// ======= Admin controller ================
 
-//authentication
-Router.post('/login', login );
+
+
+// ========= user controller ================
+Router.post('/login', adminLogin );
 // Router.get('/auth', authRouter );
 // Router.update('/auth', authRouter );
 
 
 //Registration
-Router.post('/register', register );
+// Router.post('/register', register );
 // Router.get('/register', authRouter );
 // Router.update('/register', authRouter );
 

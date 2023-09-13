@@ -1,9 +1,5 @@
-.loginBlock{
-}
-
-
 /* form element styling */
-.loginBlock form {
+.adminLogin form {
     max-width: 90%;
     width: 400px;
     margin: 50px auto;
@@ -14,12 +10,18 @@
 
 
 /* form heading h2 element */
-.loginHead {
+.adminLogin h1 {
     padding: 20px;
-    font-size: 1.5em;
+    font-size: 2.5em;
     font-weight: bold;
     text-align: center;
     margin: 0px 0px;
+}
+
+.adminLogin b {
+    font-size: 0.8em;
+    text-align: center;
+    display: block;
 }
 
 
@@ -36,21 +38,7 @@
 }
 
 
-/* divider styling */
-.divider {
-    color: #ddd;
-    padding: 20px;
-    text-align: center;
-}
-
-
-
-.login_ {
-    
-}
-
-
-.login_ input {
+.adminLogin input {
     width: 85%;
     padding: 10px;
     margin-left: 5%;
@@ -61,45 +49,21 @@
     border: 1px solid #ddd;
 }
 
-.forget {
-    font-size: 12px;
-    color: #e41827;
-    margin-left: 5%;
-    text-decoration: none;
-}
 
-
-.loginButtonBlock {
+.adminLogin .loginButtonBlock {
     padding: 20px;
-    text-align: right;
 }
 
-.loginButton {
+.adminLogin .loginButtonBlock button {
+    width: 100%;
     color: #fff;
     font-size: 16px;
     outline: none;
     cursor: pointer;
-    padding: 5px 20px;
+    padding: 10px 30px;
     border-radius: 2px;
     border:  1px solid #ddd;
     background: rgb(228,24,24);
     box-shadow: 0px 0px 5px #ddd;
     background: linear-gradient(90deg, rgba(228,24,24,1) 0%, rgba(237,193,104,1) 100%);
-}
-
-.login_foot {
-    border-top: 1px solid #ddd ;
-}
-
-.login_foot p {
-    padding: 20px;
-    margin: 0px 0px;
-    text-align: center;
-    border-top: 1px solid #ddd ;
-}
-
-
-.login_foot p a{
-    color: #e41827;
-    text-decoration: none;
 }
