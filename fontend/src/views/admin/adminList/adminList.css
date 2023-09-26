@@ -1,0 +1,30 @@
+.adminList {
+    width: 100%;
+    overflow-x: scroll;
+    border: 1px solid #ddd;
+}
+
+
+.adminList_head:first-child {
+    padding: 10px;
+    background-color: #ddd;
+}
+
+.adminList_head th {
+    padding: 10px;
+    text-align: left;
+}
+
+.adminList_body td{
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 640px){
+
+    .adminList {
+        width: 100px;
+        overflow-x: scroll;
+
+    }
+}

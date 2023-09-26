@@ -1,0 +1,31 @@
+.dashboard {
+}
+
+.-board {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.-board .main-content{
+    width: 100%;
+}
+
+.-board .sub-content {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+@media screen and (max-width: 800px){
+    .-board {
+        display: block;
+    }
+
+    .-board .main-content{
+        width: 100%;
+    }
+
+    .sub-content {
+        margin: auto;
+    }
+}
+

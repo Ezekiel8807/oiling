@@ -11,7 +11,7 @@ const navbar = {
 }
 
 
-const Navbar = ({isLogin, pf}) => {
+const Navbar = ({adminData, isLogin}) => {
 
 
     //function to open and close navbar
@@ -38,10 +38,15 @@ const Navbar = ({isLogin, pf}) => {
             </div>
 
             { !isLogin && 
-            <div className="navlink" id="navlink">  
-                <a href="/dispatcher">Become a Dispatcher</a> 
-                <a href="/register">Register</a> 
-                <a href="/login">Login</a> 
+            <div className="navlink" id="navlink"> 
+                <a href="/"> Home </a> 
+                <a href="/order"> Order </a>
+                <a href="/about"> About </a> 
+                <a href="/contact"> Contact </a> 
+                 
+
+                {/* <a href="/register">Register</a> 
+                <a href="/login">Login</a>  */}
   
             </div>}
 

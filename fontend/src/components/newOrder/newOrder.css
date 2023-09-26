@@ -1,0 +1,46 @@
+.newOrder_div {
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #ddd;
+}
+
+
+.actionsBtn {
+    border-top: 2px solid #ddd;
+}
+
+.actionsBtn button {
+    font-size: 1em;
+    padding: 5px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.actionsBtn .decline {
+    width: 120px;
+    background-color: #d81e1e;
+}
+
+.actionsBtn .processing {
+    width: 120px;
+    margin-left: 10px;
+    background-color: #221be5;
+}
+
+.actionsBtn .delivered {
+    width: 100%;
+    background-color: #15bb41;
+}
+
+@media screen and (max-width: 640px){
+
+    .newOrder_div {
+        display: block;
+        margin: 10px auto;
+    }
+}

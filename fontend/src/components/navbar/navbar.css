@@ -28,10 +28,10 @@
     text-decoration: none;
 }
 
-.navlink a:last-child {
+/* .navlink a:last-child {
     border: 2px solid #fff;
     border-radius: 5px;
-}
+} */
 
 
 @media screen and (max-width: 680px){

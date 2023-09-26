@@ -7,13 +7,12 @@ import { Link } from 'react-router-dom';
 import InlineErrorMsg from '../../../components/errorMessages/InlineErrorMsg';
 
 
-const AdminLogin = ({serverError, serverSuccess}) => {
+const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
 
     //local state to store user inputs
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState("");
-
 
 
 
@@ -51,7 +50,9 @@ const AdminLogin = ({serverError, serverSuccess}) => {
             }else if (response.status !== 200){
                 setErrMsg(data.msg);
 
-            }else{
+            }else{ 
+                localStorage.setItem( "adminData", JSON.stringify({ loginStatus : true, token: data.token }));
+                window.location.reload();
                 serverSuccess('login Successful');
             }
         }

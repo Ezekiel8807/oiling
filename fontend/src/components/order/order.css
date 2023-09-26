@@ -1,0 +1,41 @@
+.order {
+    width: 500px;
+    max-width: 100%;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #ddd;
+}
+
+.order h1 {
+    padding: 20px;
+    text-align: center;
+    margin: 0px 0px 20px;
+}
+
+.orderForm {
+    width: 90%;
+    margin: 0px auto;
+    background-color: palevioletred;
+}
+
+
+form input {
+    width: 80%;
+    position: relative;
+}
+
+
+
+.orderBtn {
+    width: 50%;
+    font-size: 1em;
+    margin: auto;
+    display: block;
+    padding: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid #11c049;
+    background-color: #11c049;
+}

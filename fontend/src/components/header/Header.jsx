@@ -1,6 +1,5 @@
 import './header.css'
 
-import Search from '../search/Search';
 // include header components
 // import Logo from '../logo/Logo';
 // import Divider from '../divider/Divider';
@@ -28,7 +27,6 @@ const Header = () => {
 
                     <div className="info">
                         <h1>Find the perfect <i>Vendor</i><br/> to get your palm oil at cheap rate.</h1>
-                        <Search />
                     </div>
                 </div>
              </div>

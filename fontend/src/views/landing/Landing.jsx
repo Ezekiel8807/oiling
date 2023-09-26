@@ -8,19 +8,15 @@ import Footer from '../../components/footer/Footer';
 
 //import components
 import Header from '../../components/header/Header';
-import Dispatch from '../../components/dispatch/Dispatch';
-import Nseller from '../../components/nseller/Nseller';
-import Pseller from '../../components/pseller/Pseller';
+import Order from '../../components/order/Order';
 
 
-const Landing = ({pf, isLogin}) => {
+const Landing = ({ pf, vendors}) => {
     return( 
         <div className="landing_page">
-            <Navbar isLogin = {isLogin} pf={pf} />
+            <Navbar  pf={pf} />
             <Header />
-            <Pseller />
-            <Dispatch />
-            <Nseller pf={pf}/>
+            <Order />
             <Footer />
         </div>
     );
