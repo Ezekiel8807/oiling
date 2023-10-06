@@ -18,10 +18,9 @@ export const singleUser = async (req, res) => {
 
 export const allUser = async (req, res) => {
     try{
-        const { username } = req.params;
 
         //check if user exist with that username
-        const user = await userData.find({ username: username });
+        const user = await userData.find();
         res.status(200).json(user);
 
     }catch(err){

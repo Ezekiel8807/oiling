@@ -1,17 +1,13 @@
 import './dashboard.css';
 //components
 import Sider from '../../../components/sider/Sider';
-import Header from '../../../components/navbar/Navbar';
 import NewOrder from '../../../components/newOrder/NewOrder';
 import { useEffect, useState } from 'react';
 
 
 const Dashboard = ({pf, serverSuccess, adminData }) => {
 
-    const getOrders = JSON.parse(localStorage.getItem("orders"));
-    const [orders, setOrders] = useState( getOrders != null ? getOrders : []);
-
-
+    const [orders, setOrders] = useState([]);
 
     //get all orders
     const getOders =  async () => {
@@ -19,28 +15,34 @@ const Dashboard = ({pf, serverSuccess, adminData }) => {
 
         const data = await response.json();
 
-        //check login status
+        //check response status
         if (response.status !== 200){
             return console.log(data.msg);
 
         }else{ 
             localStorage.setItem( "orders", JSON.stringify([...data]));
-            const orders = JSON.parse(localStorage.getItem("orders"));
-            setOrders(orders);
         }
     } 
 
+
+    const getAllNewOrders = () => {
+        const allOrders = JSON.parse(localStorage.getItem("orders"));
+
+        const newOrders = allOrders.filter(order => order.status === "new");
+        setOrders(newOrders);
+    }
+
     useEffect( () => {
         getOders();
+        getAllNewOrders()
     },[])
     
 
 
     return (
         <div className="dashboard">
-            <Header adminData={adminData} />
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData}/>
                 <div className="main-content">
                     <h1 id='dash_heading' className='dash_heading'>New Orders</h1>
                     <div id="sub-content" className="sub-content">

@@ -3,12 +3,11 @@ import "./product.css";
 
 //components
 import Sider from '../../../components/sider/Sider';
-import Header from '../../../components/navbar/Navbar';
 import ProductCard from "../../../components/productCard/ProductCard";
 
 
 
-const Product = ({pf, serverSuccess}) => {
+const Product = ({pf, serverSuccess, adminData}) => {
 
 
     const products = [ 
@@ -52,9 +51,8 @@ const Product = ({pf, serverSuccess}) => {
 
     return (
         <div className="dashboard">
-            <Header />
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
                 <div className="main-content">
         
                     <h1 id='dash_heading' className='dash_heading'>Products</h1>

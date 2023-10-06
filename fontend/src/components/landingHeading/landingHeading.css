@@ -1,0 +1,17 @@
+.h1_heading {
+    margin: 50px auto;
+}
+
+.headingTitle {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.line {
+    width: 100px;
+    height: 3px;
+    margin: 0px auto;
+    background-color: #e41818;
+}
+

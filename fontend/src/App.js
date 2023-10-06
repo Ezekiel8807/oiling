@@ -1,3 +1,4 @@
+import './app.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 
@@ -13,11 +14,14 @@ import AdminDashboard from './views/admin/dashboard/Dashboard';
 import CreateAdmin from './views/admin/createAdmin/CreateAdmin.jsx';
 
 
-import NotFound from './views/notfound/NotFound';
+import Login from './views/login/Login';
 import Home from './views/landing/Landing';
+import Register from "./views/register/Register"
+import NotFound from './views/notfound/NotFound';
 import AdminList from './views/admin/adminList/AdminList';
 import OrderList from './views/admin/orderList/OrderList';
 import Product from './views/admin/product/Product.jsx';
+import Navbar from './components/navbar/Navbar.jsx';
 
 // import Profile from './views/profile/Profile';
 // import SellerDash from './views/sellerDash/SellerDash';
@@ -35,6 +39,17 @@ function App() {
   //public folder
   const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  //function to open and close admin mobile navbar
+  const openCloseAdminMobileNav = () => {
+    const adminNav = document.getElementById("adminNav");
+
+    if(adminNav.style.display === "block"){
+      adminNav.style.display = "none";
+    }else {
+      adminNav.style.display = "block";
+    }
+  }
+
   useEffect(() => {
     const adminData = JSON.parse(localStorage.getItem('adminData'));
     setAdminData(adminData);
@@ -45,25 +60,29 @@ function App() {
   return (
     <div className="App">
 
+      <Navbar adminData={adminData} openCloseAdminMobileNav={openCloseAdminMobileNav} />
+
       <Routes>
 
         {/* Index landing Route */}
         <Route exact path="/" element={ <Home pf={ pf } vendors={vendors} serverSuccess= {serverSuccess} serverError={serverError}/> } />
+        <Route exact path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
+        <Route exact path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
 
         {/* admin landing route */}
         <Route path="/admin" element={ adminData ? <AdminDashboard pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> : 
         <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
 
         {/* create Admin route */}
-        <Route path="/admin/createAdmin" element={ adminData ?  <CreateAdmin pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> :
+        <Route path="/admin/createAdmin" element={ adminData ?  <CreateAdmin pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> :
         <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
 
         {/* admin list route */}
-        <Route path="/admin/adminList" element={ adminData ? <AdminList pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> : 
+        <Route path="/admin/adminList" element={ adminData ? <AdminList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> : 
         <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
 
         {/* admin list route */}
-        <Route path="/admin/orderList" element={ adminData ? <OrderList pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> : 
+        <Route path="/admin/orderList" element={ adminData ? <OrderList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> : 
         <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
 
         {/* Admin login route */}

@@ -20,6 +20,13 @@
     border: 1px solid #ddd;
 }
 
+.actionBtn {
+    border: none;
+    color: #ff0000;
+    background: none;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 640px){
 
     .adminList {

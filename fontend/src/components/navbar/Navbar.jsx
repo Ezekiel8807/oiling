@@ -1,4 +1,3 @@
-import Logo from "../logo/Logo";
 import "./navbar.css"
 
 
@@ -11,11 +10,11 @@ const navbar = {
 }
 
 
-const Navbar = ({adminData, isLogin}) => {
+const Navbar = ({adminData, isLogin, openCloseAdminMobileNav}) => {
 
 
-    //function to open and close navbar
-    const openCloseNav = () => {
+    //function to open and close user mobile navbar
+    const openCloseUserMobileNav = () => {
         let nav =  document.getElementById("navlink");
 
         if(nav.style.display === "block"){
@@ -25,19 +24,21 @@ const Navbar = ({adminData, isLogin}) => {
         }
     }
 
+
     return (
         <div className="navbar">
             
-            { !isLogin && 
-            <div className="navbtn" onClick={ openCloseNav }>
+            <div className="navbtn" onClick={ (adminData === null) ? openCloseUserMobileNav : openCloseAdminMobileNav }>
                 <BsList style={ navbar } />
-            </div>}
-
-            <div className="nav-logo">
-                <Logo />
             </div>
 
-            { !isLogin && 
+            <div className="nav-logo">
+                <div className="logo">
+                    <a href={ (adminData === null) ? "/" : "/admin"}>Oily<span>.</span></a>
+                </div>
+            </div>
+
+            { (adminData === null) && 
             <div className="navlink" id="navlink"> 
                 <a href="/"> Home </a> 
                 <a href="/order"> Order </a>

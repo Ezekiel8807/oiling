@@ -3,11 +3,14 @@ import mongoose from 'mongoose'
 
 
 const orderSchema = new mongoose.Schema({
-    id: Number,
     fullname: String,
     product: String,
     quality: Number,
     quantity: Number,
+    status: {
+        type: String,
+        default: "new"
+    },
     amount: Number
 });
 

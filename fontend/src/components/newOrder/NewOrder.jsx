@@ -5,7 +5,7 @@ import './newOrder.css';
 const NewOrder = ({orders}) => {
 
     const decline = (id) => {
-        
+        console.log(id);
     }
 
     const processing = (id) => {
@@ -34,7 +34,7 @@ const NewOrder = ({orders}) => {
                             </tr>
                             <tr>
                                 <td>Quality: </td>
-                                <td>{order.quality}</td>
+                                <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
                             </tr>
                             <tr>
                                 <td>Quantity: </td>
@@ -47,9 +47,9 @@ const NewOrder = ({orders}) => {
                         </tbody>
                     </table>
                     <div className="actionsBtn">
-                        <button onClick={decline} className='decline'>Decline</button>
-                        <button onClick={processing} className='processing'>processing</button>
-                        <button onClick={delivered} className='delivered'>Delivered</button>
+                        <button onClick={ decline(order._id)} className='decline'>Decline</button>
+                        <button onClick={processing(order._id)} className='processing'>processing</button>
+                        <button onClick={delivered(order._id)} className='delivered'>Delivered</button>
                     </div>
                 </div>
             )}

@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import "./sider.css";
 
-const Sider = ({serverSuccess, pf }) => {
+const Sider = ({serverSuccess, pf, adminData}) => {
 
 
     const logout = () => {
@@ -9,22 +10,22 @@ const Sider = ({serverSuccess, pf }) => {
         serverSuccess("logout Successful");
     }
 
-
+    
 
     return (
-        <div className="side-content">
+        <div id="adminNav" className="side-content">
             <div className="adminLogo">
                 <img src={`${pf}img/bg/oilpalm.jpg`} alt="adminLogo" />
             </div>
 
-            <h2 className="sideLabel"> EZEKIEL8807</h2>
+            <h2 className="sideLabel">{adminData.admin.username}</h2>
 
             <nav className="sideNav">
-                <a href="/admin">Home</a>
-                <a href="/admin/product">Products</a>
-                <a href="/admin/OrderList">Order List</a>
-                <a href="/admin/adminList">Admin List</a>
-                <a href="/admin/createAdmin">Create Admin</a>
+                <Link to="/admin">Home</Link>
+                <Link to="/admin/product">Products</Link>
+                <Link to="/admin/OrderList">Order List</Link>
+                <Link to="/admin/adminList">Admin List</Link>
+                <Link to="/admin/createAdmin">Create Admin</Link>
                 <button  onClick={ logout }>Logout</button>
             </nav>
         </div>

@@ -2,11 +2,15 @@ import React from "react";
 import express from "express";
 
 //administrators api
-import { adminLogin, createAdmin } from "../api/admin.js";
-import { allOrder, setOrder } from "../api/order.js";
+import { adminLogin, createAdmin, getAllAdmins } from "../api/admin.js";
+import { allOrder, declineOrder, removeOrder, setOrder } from "../api/order.js";
 
 //initialize express router
 const Router = express.Router();
+
+
+// ======= Admin controller ================
+Router.get("/admins", getAllAdmins );
 
 // ======= Admin controller ================
 Router.post('/login', adminLogin );
@@ -20,10 +24,11 @@ Router.post('/register', createAdmin );
 // Router.update('/register', authRouter );
 
 
-//Registration
+//Order routes
 Router.get('/order', allOrder );
 Router.post('/order', setOrder );
-// Router.get('/register', authRouter );
-// Router.update('/register', authRouter );
+Router.get('/order/:id', removeOrder);
+Router.put('/order/:id', declineOrder);
+
 
 export default Router;

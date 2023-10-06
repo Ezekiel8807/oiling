@@ -1,68 +1,32 @@
 import './orderList.css';
-
+import { useState, useEffect } from 'react';
 
 //components
 import Sider from '../../../components/sider/Sider';
-import Header from '../../../components/navbar/Navbar';
 
 
 
-const OrderList = ({pf, serverSuccess}) => {
 
-    const orders = [
-        {
-            "id": 1,
-            "fullname": "Ayebidun Ezekiel",
-            "product": "palm oil",
-            "quality": "5 liters",
-            "quantity": "2",
-            "amount": "#14,5000",
-            "status": "delivered"
-        },
-        {
-            "id": 2,
-            "fullname": "Ayebidun Ezekiel",
-            "product": "palm oil",
-            "quality": "5 liters",
-            "quantity": "2",
-            "amount": "#14,5000",
-            "status": "delivered"
-        },
-        {
-            "id": 3,
-            "fullname": "Ayebidun Ezekiel",
-            "product": "palm oil",
-            "quality": "5 liters",
-            "quantity": "2",
-            "amount": "#14,5000",
-            "status": "delivered"
-        },
-        {
-            "id": 4,
-            "fullname": "Ayebidun Ezekiel",
-            "product": "palm oil",
-            "quality": "5 liters",
-            "quantity": "2",
-            "amount": "#14,5000",
-            "status": "delivered"
-        }
-    ]
-
-    // useEffect(() => {
+const OrderList = ({pf, serverSuccess, adminData}) => {
 
 
-    
-    //   return () => {
-    //     second
-    //   }
-    // }, [])
+    // get all Oders fron the localstorage
+    const [orders, setOrders] = useState([]);
+
+    const fetchOrders = () => {
+        const getOrders = JSON.parse(localStorage.getItem("orders"));
+        setOrders(getOrders);
+    }
+
+    useEffect(() => {
+        fetchOrders();
+    }, [])
     
 
     return (
         <div className="dashboard">
-            <Header />
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
                 <div className="main-content">
 
                     <h1 id='dash_heading' className='dash_heading'>Order List</h1>
@@ -82,15 +46,16 @@ const OrderList = ({pf, serverSuccess}) => {
                                 </tr>
                             </thead>
                             { orders.map(order => 
-                                <tbody id='orderId'>
-                                    <tr key={order.id} className='adminList_body'>
+
+                                <tbody key={order._id} >
+                                    <tr className='adminList_body'>
                                         <td>{order.fullname}</td>
                                         <td>{order.product}</td>
-                                        <td>{order.quality}</td>
+                                        <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
                                         <td>{order.quantity}</td>
                                         <td>{order.amount}</td>
                                         <td>{order.status}</td>
-                                        <td><button>Delete</button></td>
+                                        <td><button className='actionBtn'>Delete</button></td>
                                     </tr>
                                 </tbody>
                             )}

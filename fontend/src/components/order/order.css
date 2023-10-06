@@ -1,7 +1,7 @@
 .order {
     width: 500px;
-    max-width: 100%;
-    margin: 10px auto;
+    max-width: 90%;
+    margin: 50px auto;
     border-radius: 5px;
     box-sizing: border-box;
     background-color: #fff;
@@ -9,21 +9,39 @@
 }
 
 .order h1 {
-    padding: 20px;
+    width: 300px;
+    margin: auto;
+    padding-top: 20px;
     text-align: center;
-    margin: 0px 0px 20px;
+    padding-bottom: 20px;
+}
+
+.order h1 span{
+    color: #e41818;
 }
 
 .orderForm {
     width: 90%;
     margin: 0px auto;
-    background-color: palevioletred;
 }
 
 
 form input {
-    width: 80%;
-    position: relative;
+    width: 96%;
+    padding: 2%;
+    margin: 10px auto;
+}
+
+form select {
+    width: 96%;
+    padding: 2%;
+    margin: 10px auto;
+}
+
+form textarea {
+    width: 96%;
+    padding: 2%;
+    margin: 10px auto;
 }
 
 

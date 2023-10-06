@@ -3,54 +3,40 @@ import './adminList.css';
 
 //components
 import Sider from '../../../components/sider/Sider';
-import Header from '../../../components/navbar/Navbar';
+import { useState, useEffect } from 'react';
 
 
 
-const AdminList = ({pf, serverSuccess}) => {
+const AdminList = ({pf, serverSuccess, adminData}) => {
 
-    const admins = [
-        {
-            "_id": 1,
-            "username": "Ezekiel8807",
-            "email": "Ayeolueaseyi@gmail.com",
-            "password": "kjsbdhebshjdv"
-        },
-        {
-            "_id": 2,
-            "username": "Ezekiel8123",
-            "email": "Ayeolueaseyi@gmail.com",
-            "password": "kjsbdhebshjdv"
-        },
-        {
-            "_id": 3,
-            "username": "Ezekiel1254",
-            "email": "Ayeolueaseyi@gmail.com",
-            "password": "kjsbdhebshjdv"
-        },
-        {
-            "_id": 4,
-            "username": "Ezekiel2435",
-            "email": "Ayeolueaseyi@gmail.com",
-            "password": "kjsbdhebshjdv"
-        },
-    ]
+    const [admins, setAdmins] = useState( JSON.parse(localStorage.getItem("admins")) != null ? JSON.parse(localStorage.getItem("admins")) : [] );
 
-    // useEffect(() => {
+    //get all orders
+    const getAlAdmins =  async () => {
+        const response = await fetch(`http://127.0.0.1:5000/api/admin/admins`)
 
+        const data = await response.json();
 
-    
-    //   return () => {
-    //     second
-    //   }
-    // }, [])
+        //check login status
+        if (response.status !== 200){
+            return console.log(data.msg);
+
+        }else{ 
+            localStorage.setItem( "admins", JSON.stringify([...data]));
+            const admins = JSON.parse(localStorage.getItem("admins"));
+            setAdmins(admins);
+        }
+    } 
+
+    useEffect(() => {
+        getAlAdmins();
+    }, [])
     
 
     return (
         <div className="dashboard">
-            <Header />
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
                 <div className="main-content">
 
                     <h1 id='dash_heading' className='dash_heading'>Admin List</h1>
@@ -62,17 +48,17 @@ const AdminList = ({pf, serverSuccess}) => {
                                 <tr>
                                     <th>USERNAME</th>
                                     <th>EMAIL</th>
-                                    <th>PASSWORD</th>
+                                    <th>TYPE</th>
                                     <th>ACTION</th>
                                 </tr>
                             </thead>
                             { admins.map(admin => 
-                                <tbody id='adminId' className='adminList_body'>
-                                    <tr key={admin._id}>
+                                <tbody key={admin._id} className='adminList_body'>
+                                    <tr id='adminId'>
                                         <td>{admin.username}</td>
                                         <td>{admin.email}</td>
-                                        <td>{admin.password}</td>
-                                        <td><button>Delete</button></td>
+                                        <td>{admin.type}</td>
+                                        <td><button className='actionBtn'>Delete</button></td>
                                     </tr>
                                 </tbody>
                             )}

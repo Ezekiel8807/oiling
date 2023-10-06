@@ -51,7 +51,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
                 setErrMsg(data.msg);
 
             }else{ 
-                localStorage.setItem( "adminData", JSON.stringify({ loginStatus : true, token: data.token }));
+                localStorage.setItem( "adminData", JSON.stringify({...data }));
                 window.location.reload();
                 serverSuccess('login Successful');
             }

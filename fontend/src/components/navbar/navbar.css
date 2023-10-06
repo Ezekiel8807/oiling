@@ -1,5 +1,6 @@
 
 .navbar {
+    width: 100%;
     display: flex;
     flex-direction: row;
     background: rgb(228,24,24);
@@ -10,10 +11,28 @@
     display: none;
 }
 
+/* \logo */
 .nav-logo {
     flex: 2;
     padding: 10px;
 }
+
+.logo {
+    cursor: pointer;
+}
+
+.logo a{
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo a span {
+    color: #1dbf73;
+    font-weight: bold;
+}
+
 
 .navlink {
     padding: 20px;
@@ -34,7 +53,7 @@
 } */
 
 
-@media screen and (max-width: 680px){
+@media screen and (max-width: 800px){
 
     .navbar {
         display: block;

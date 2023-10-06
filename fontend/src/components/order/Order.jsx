@@ -8,31 +8,43 @@ const Order = () => {
     return (
         <div className="order">
 
-            <h1>Make Your Order Now!!!</h1>
+            <h1>Make Your Order <span>Now!!!</span></h1>
 
             <div className="orderForm">
 
                 <form action="">
 
-                    <input type="text" placeholder="Fullname" required/>
+                    <label htmlFor="fullname">Fullname: </label>
+                    <input type="text" id="fullname" name="fullname" placeholder=" Enter fullname" required/>
+
+                    <label htmlFor="phone">Phone: </label>
+                    <input type="tel" id="phone" name="phone" placeholder=" Enter Phone number" required/>
 
                     <label>Quality: </label>
-                    <input type="number" placeholder="Number of kegs" required/>
-                    <select name="State" id="" required>
-                        <option selected value="5">5 liters</option>
+                    <select name="quality" id="quality" required>
+                        <option value="1">1 bottle</option>
+                        <option value="5">5 liters</option>
                         <option value="25">25 liters</option>
                     </select>
 
-                    <label>Location: </label>
+                    <label>Quantity: </label>
+                    <input type="number" placeholder="Number of kegs" required/>
+
+                    <label>Country: </label>
                     <select name="State" id="" required>
                         <option selected value="ogun">Ogun</option>
                     </select>
 
+                    <label>State: </label>
                     <select name="LocalGovernment" id="" placeholder="Local Government" required>
                         <option selected value="ado-odo-ota">Ado-odo-ota</option>
                     </select>
 
-                    <textarea type="text" placeholder="Enter your address in details" required></textarea>
+                    <label>Adress: </label>
+                    <input type="tel" name="" id="" />
+                    <textarea type="a" placeholder="Enter your address in details" required></textarea>
+
+
                     <small><span>#500</span> for delivery fees</small>
                     <p>The amount below is to be paid on delivery <span>#5,700</span></p>
 

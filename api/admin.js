@@ -30,8 +30,8 @@ export const adminLogin = async (req, res) => {
 // admin Registration api
 export const createAdmin = async (req, res) => {
   try {
-      const { username, password } = req.body;
-      if (!username || !password ) return res.status(401).json({ msg: "Invalid credentials. " });
+      const { username, email, password } = req.body;
+      if (!username || !password ) return res.status(401).json({ msg: "Invalid credentials." });
 
       //check if admin exist with that username
       const usernameExist = await admins.findOne({ username: username });
@@ -43,6 +43,7 @@ export const createAdmin = async (req, res) => {
   
       const newadmin = new admins({
           username,
+          email,
           password: passwordHash,
       });
 
@@ -51,5 +52,33 @@ export const createAdmin = async (req, res) => {
 
     } catch (err) {
       res.status(500).json({ error: err.message });
+  }
+}
+
+
+// export const SingleAdmin = async (req, res) => {
+//   try{
+
+//     const { id } =  req.params;
+
+//     //get all admins
+//     const admin = await admins.findById(id);
+//     res.status(200).json(admin);
+
+//   }catch(err){
+//       res.status(404).json({ msg: "Invalid credentials. " });
+//   }
+// }
+
+
+//get all admins function
+export const getAllAdmins = async (req, res) => {
+  try{
+    //get all admins
+    const AllAdmins = await admins.find();
+    res.status(200).json(AllAdmins);
+
+  }catch(err){
+      res.status(404).json({ msg: "Invalid credentials. " });
   }
 }
