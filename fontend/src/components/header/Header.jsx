@@ -22,9 +22,7 @@ const Header = () => {
     return(
         <div className='header'>
             <div className='board'>
-
                 <div className='div1'>
-
                     <div className="info">
                         <h1>Find the perfect <i>Vendor</i><br/> to get your palm oil at cheap rate.</h1>
                     </div>
