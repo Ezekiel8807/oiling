@@ -6,14 +6,10 @@ import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
 
 //controller
+import DataBase from './dataBase.js';
 import UserController from './Router/controller.js';
 import AdminController from './Router/AdminController.js';
 
-
-
-
-
-import DataBase from './dataBase.js';
 
 //setting file path
 const __filename = fileURLToPath(import.meta.url);
