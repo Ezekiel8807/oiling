@@ -52,7 +52,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
 
             }else{ 
                 localStorage.setItem( "adminData", JSON.stringify({...data }));
-                window.location.reload();
+                window.location.replace("/admin");
                 serverSuccess('login Successful');
             }
         }

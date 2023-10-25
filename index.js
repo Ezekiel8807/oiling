@@ -10,6 +10,8 @@ import DataBase from './dataBase.js';
 import UserController from './Router/controller.js';
 import AdminController from './Router/AdminController.js';
 
+//listening port number
+const port = process.env.PORT || 5000;
 
 //setting file path
 const __filename = fileURLToPath(import.meta.url);
@@ -47,4 +49,4 @@ getpalmoil.use("*", (req, res) => {
 });
 
 //server listening port
-getpalmoil.listen( process.env.PORT, () => console.log("server runing on port " + process.env.PORT));
+getpalmoil.listen( port, () => console.log("server runing on port " + port));

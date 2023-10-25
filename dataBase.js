@@ -1,12 +1,9 @@
 //MongoDB connection via mongoose
 import mongoose from 'mongoose'
 
-const server = '127.0.0.1:27017'; 
-const database = 'oily';
-
 
 const DataBase = () => {
-    mongoose.connect(`mongodb://${server}/${database}`)
+    mongoose.connect(`mongodb://${process.env.MONGOLINK}`)
     .then(() => {
       console.log('Database connection successful');
 
