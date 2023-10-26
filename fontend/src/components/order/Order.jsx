@@ -14,11 +14,11 @@ const Order = () => {
 
                 <form action="">
 
-                    <label htmlFor="fullname">Fullname: </label>
-                    <input type="text" id="fullname" name="fullname" placeholder=" Enter fullname" required/>
-
-                    <label htmlFor="phone">Phone: </label>
-                    <input type="tel" id="phone" name="phone" placeholder=" Enter Phone number" required/>
+                <label>Product: </label>
+                    <select name="product" id="product" required>
+                        <option value="palmOil">Palm oil</option>
+                        <option value="grountnutOil">Grountnut oil</option>
+                    </select>
 
                     <label>Quality: </label>
                     <select name="quality" id="quality" required>
@@ -29,20 +29,6 @@ const Order = () => {
 
                     <label>Quantity: </label>
                     <input type="number" placeholder="Number of kegs" required/>
-
-                    <label>Country: </label>
-                    <select name="State" id="" required>
-                        <option selected value="ogun">Ogun</option>
-                    </select>
-
-                    <label>State: </label>
-                    <select name="LocalGovernment" id="" placeholder="Local Government" required>
-                        <option selected value="ado-odo-ota">Ado-odo-ota</option>
-                    </select>
-
-                    <label>Adress: </label>
-                    <input type="tel" name="" id="" />
-                    <textarea type="a" placeholder="Enter your address in details" required></textarea>
 
 
                     <small><span>#500</span> for delivery fees</small>

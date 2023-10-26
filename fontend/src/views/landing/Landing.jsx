@@ -1,5 +1,5 @@
 import './landing.css'
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //icons
 import { SiHandshake } from 'react-icons/si'
@@ -13,19 +13,20 @@ import Footer from '../../components/footer/Footer';
 
 
 //import components
-import Header from '../../components/header/Header';
+// import Slider from '../../components/slider/Slider';
 import Order from '../../components/order/Order';
 import LandingHeading from '../../components/landingHeading/LandingHeading';
+
 
 
 const Landing = ({ pf, vendors}) => {
     return( 
         <div className="landing_page">
-            <Header />
+            {/* <Slider /> */}
 
-            {/* <div className="adminLogin-block">
+            <div className="adminLogin-block">
                 <Link to="/admin">Admin Portal</Link>
-            </div> */}
+            </div>
 
             {/* features block */}
             <div className="features">
