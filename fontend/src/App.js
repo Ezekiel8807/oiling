@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 
 //mesages notifier
-import store from "./db/vendor.js"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -53,7 +52,6 @@ function App() {
   useEffect(() => {
     const adminData = JSON.parse(localStorage.getItem('adminData'));
     setAdminData(adminData);
-    setVendors(store);
   }, [])
   
 
@@ -65,34 +63,30 @@ function App() {
       <Routes>
 
         {/* Index landing Route */}
-        <Route exact path="/" element={ <Home pf={ pf } vendors={vendors} serverSuccess= {serverSuccess} serverError={serverError}/> } />
+        <Route exact path="/" element={ <Home pf={ pf } vendors={vendors} serverSuccess= {serverSuccess} serverError={serverError}/> }/>
         <Route exact path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route exact path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
 
         {/* admin landing route */}
-        <Route path="/admin" element={ adminData ? <AdminDashboard pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> : 
-        <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
-
-        {/* create Admin route */}
-        <Route path="/admin/createAdmin" element={ adminData ?  <CreateAdmin pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> :
-        <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
-
-        {/* admin list route */}
-        <Route path="/admin/adminList" element={ adminData ? <AdminList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> : 
-        <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
-
-        {/* admin list route */}
-        <Route path="/admin/orderList" element={ adminData ? <OrderList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> : 
-        <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
 
         {/* Admin login route */}
-        <Route path="/admin/login" element={!adminData ?  <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>:
-        <AdminDashboard pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/>} />
+        { !adminData && <Route path="/admin/login" element={<AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+
+        { adminData && <Route path="/admin" element={<AdminDashboard pf={ pf } adminData={adminData} serverSuccess={serverSuccess} serverError={serverError}/>} />}
+        { !adminData && <Route path="/admin" element={<AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+
+        {/* create Admin route */}
+        { adminData && <Route path="/admin/createAdmin" element={ <CreateAdmin pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> } />}
+        
+
+        {/* admin list route */}
+        { adminData && <Route path="/admin/adminList" element={<AdminList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> } /> }
+
+        {/* admin list route */}
+        { adminData && <Route path="/admin/orderList" element={<OrderList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
 
         {/* Admin product route */}
-        <Route path="/admin/product" element={ adminData ?  <Product pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>:
-        <AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />
-
+        { adminData && <Route path="/admin/product" element={<Product pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError} />} />}
 
         <Route path="*" element={ <NotFound /> } />
 

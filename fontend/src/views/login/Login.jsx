@@ -2,7 +2,7 @@ import './login.css'
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-
+//components
 import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
 
 
@@ -27,7 +27,7 @@ const Login = ({serverError, serverSuccess}) => {
         }else {
             const loginInfo = { username, password };
 
-            const response = await fetch(`http://127.0.0.1:5000/api/login/`, {              
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}login/`, {              
                 
                 // Adding method type
                 method: "POST",

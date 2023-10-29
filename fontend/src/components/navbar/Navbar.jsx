@@ -44,10 +44,8 @@ const Navbar = ({adminData, isLogin, openCloseAdminMobileNav}) => {
                 <a href="/order"> Order </a>
                 <a href="/about"> About </a> 
                 <a href="/contact"> Contact </a> 
-                 
-
-                {/* <a href="/register">Register</a> 
-                <a href="/login">Login</a>  */}
+                <a href="/register">Register</a> 
+                <a href="/login">Login</a> 
   
             </div>}
 

@@ -26,7 +26,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
         }else {
             const loginInfo = { username, password };
 
-            const response = await fetch(`http://127.0.0.1:5000/api/admin/login`, {              
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admin/login`, {              
                 
                 // Adding method type
                 method: "POST",
