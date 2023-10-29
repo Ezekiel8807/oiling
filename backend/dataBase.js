@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 
 
 const DataBase = () => {
-    mongoose.connect(`mongodb://${process.env.MONGOLINK}`)
+    mongoose.connect(`${process.env.MONGOLINK}`)
     .then(() => {
       console.log('Database connection successful');
 
