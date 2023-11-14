@@ -13,7 +13,7 @@ import Footer from '../../components/footer/Footer';
 
 
 //import components
-// import Slider from '../../components/slider/Slider';
+import Slider from '../../components/slide/Slide';
 import Order from '../../components/order/Order';
 import LandingHeading from '../../components/landingHeading/LandingHeading';
 
@@ -22,7 +22,7 @@ import LandingHeading from '../../components/landingHeading/LandingHeading';
 const Landing = ({ pf, vendors}) => {
     return( 
         <div className="landing_page">
-            {/* <Slider /> */}
+            <Slider />
 
             <div className="adminLogin-block">
                 <Link to="/admin">Admin Portal</Link>

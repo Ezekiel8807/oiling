@@ -1,12 +1,13 @@
 import cors from 'cors';
-import path from 'path';
-import Express, { Router } from 'express';
+// import path from 'path';
 import dotenv from 'dotenv';
-import {fileURLToPath} from 'url';
+import mongoose from 'mongoose';
+// import {fileURLToPath} from 'url';
 import bodyParser from 'body-parser';
+import Express, { Router } from 'express';
+
 
 //controller
-import DataBase from './dataBase.js';
 import UserController from './Router/userController.js';
 import AdminController from './Router/AdminController.js';
 
@@ -24,7 +25,12 @@ const getpalmoil = Express();
 dotenv.config();
 
 //DataBace instancate
-DataBase();
+mongoose.connect(process.env.MONGOLINK,{useNewUrlParser:true})
+.then(()=>{
+    console.log("MongoDB is Connected..")
+}).catch(err=>{
+    console.log(err.message);
+})
 
 // ======= middle wares ==========
 getpalmoil.use(cors());
@@ -45,6 +51,7 @@ getpalmoil.use("/api/admin", AdminController);
 
 //not found routes
 getpalmoil.use("*", (req, res) => {
+    res.send("Page not found!!!");
     // res.sendFile(path.join(__dirname + '/fontend/build',  'index.html'));
     res.status(404);
 });

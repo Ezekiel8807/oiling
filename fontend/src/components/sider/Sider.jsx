@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import "./sider.css";
+import { Link } from "react-router-dom";
 
-const Sider = ({serverSuccess, pf, adminData}) => {
+const Side = ({serverSuccess, pf, adminData}) => {
 
 
     const logout = () => {
@@ -32,4 +32,4 @@ const Sider = ({serverSuccess, pf, adminData}) => {
     )
 }
 
-export default Sider;   
+export default Side;   
