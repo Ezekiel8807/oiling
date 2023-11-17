@@ -1,5 +1,5 @@
 import './landing.css'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 //icons
 import { SiHandshake } from 'react-icons/si'
@@ -24,9 +24,9 @@ const Landing = ({ pf, vendors}) => {
         <div className="landing_page">
             <Slider />
 
-            <div className="adminLogin-block">
-                <Link to="/admin">Admin Portal</Link>
-            </div>
+            {/* <div className="adminLogin-block"> */}
+                {/* <Link to="/admin">Admin Portal</Link> */}
+            {/* </div>  */}
 
             {/* features block */}
             <div className="features">
@@ -55,7 +55,7 @@ const Landing = ({ pf, vendors}) => {
                 </div>
             </div>
 
-            <Order />
+            <Order id="buyNow"/>
 
             <div className="test_comment">
 
@@ -67,16 +67,12 @@ const Landing = ({ pf, vendors}) => {
                         <div className="testimony">
                             <div className="test_image">
                                 <div className="test_image_block">
-                                    <img src={`${pf}img/bg/b.jpeg`} alt="test_photo" />
+                                    <img src={`${pf}img/bg/c.jpg`} alt="test_photo" />
                                 </div>
                             </div>
                             <div className="test_info">
                                 <h3>Ayebidun Ezekiel </h3>
-                                <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegitabe oil.</p>   
-
-                                <div className="button_box">
-                                    <button type="button">Mail me</button>
-                                </div>
+                                <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegitabe oil.</p>  
                             </div>
                         </div>
                     </div>

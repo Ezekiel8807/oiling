@@ -1,34 +1,39 @@
-.slide {
-    width: 100%;
-    overflow-x: hidden;
-}
-
-/* .board {
-    width: 100%;
+.imgBox {
+    width: 300px;
     height: 300px;
+    margin: 20px auto;
 }
 
-.info {
-    padding: 50px 10px;
+.imgBox img {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
     text-align: center;
-} 
-
-.info h1 {
-    color: #fff;
 }
 
-
-.div1 .vendorInput {
-    border: none;
-    outline: none;
-    padding: 10px 10px;
+.content h1 {
+    font-size: 3em;
+    text-align: center;
 }
 
-.div1 .findVendor button {
-    color: #fff;
-    border: none;
+.content p {
+    font-size: 3em;
+    text-align: center;
+    color: #e41818;
     font-weight: bold;
-    padding: 10px 10px;
+}
+
+.content a {
+    width: 200px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    color: #ffffff;
+    margin: 20px auto;
     cursor: pointer;
-    background-color: #1dbf73;
-} */
+    display: block;
+    text-decoration: none;
+    background-color: #e41818;
+}

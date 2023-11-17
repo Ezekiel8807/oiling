@@ -1,32 +1,59 @@
 import "./slide.css";
-import Slider from 'slider-moon';
-import 'slider-moon/dist/style.css'
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-
+// Import Swiper styles
+import 'swiper/css';
 
 
 
 const Slide = () => {
 
-
+    // static files
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    //Slider image array
-    const items = [`${pf}/img/bg/a.jpeg`, `${pf}/img/bg/b.jpeg`, `${pf}/img/bg/oilpalm.jpg`, `${pf}/img/bg/a.jpeg`];
-
     return(
-        <Slider slideClass={'my-slider-no-arrows'} infinite={true} bullets={true} arrowsNav={false}>
-            <div className='slider my-slider-no-arrows slide'>
-                <ul className='slider-wrapper'>
-                    {items.map((item) => (
-                        <li key={item}>
-                            <img src={item} alt="Slide"/>
-                        </li>
-                    ))}
-                </ul>
+        <Swiper
+        spaceBetween={50}
+        slidesPerView={1}
+        onSlideChange={() => console.log('slide change')}
+        onSwiper={(swiper) => console.log(swiper)}
+      >
+        <SwiperSlide>
+            <div className="slide2">
+
+                <div className="image">
+                    <div className="imgBox">
+                        <img src={`${pf}/img/bg/f.png`} alt="image1" />
+                    </div>
+                </div>
+
+                <div className="content">
+                    <h1>Buy your oil at affordable</h1>
+                    <p>Price</p>
+                    <a href="#buyNow">Order Now</a>
+                </div>
             </div>
-        </Slider>
+        </SwiperSlide> 
+
+        <SwiperSlide>
+            <div className="slide2">
+
+                <div className="image">
+                    <div className="imgBox">
+                        <img src={`${pf}/img/bg/e.png`} alt="image1" />
+                    </div>
+                </div>
+
+                <div className="content">
+                    <h1>Buy your oil at affordable</h1>
+                    <p>Price</p>
+                    <a href="#buyNow">Order Now</a>
+                </div>
+            </div>
+        </SwiperSlide> 
+      </Swiper>
     )
 }
 
