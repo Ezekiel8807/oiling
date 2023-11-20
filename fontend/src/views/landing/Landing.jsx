@@ -55,7 +55,7 @@ const Landing = ({ pf, vendors}) => {
                 </div>
             </div>
 
-            <Order id="buyNow"/>
+            <Order/>
 
             <div className="test_comment">
 
@@ -73,7 +73,10 @@ const Landing = ({ pf, vendors}) => {
                             <div className="test_info">
                                 <h3>Ayebidun Ezekiel </h3>
                                 <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegitabe oil.</p>  
+                                <div class="button_box"><button type="button">Mail me</button></div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -83,7 +86,7 @@ const Landing = ({ pf, vendors}) => {
                     <LandingHeading title={"Comment"} />
 
                     <form className="comment">
-
+                        
                         <label htmlFor="name">FULLNAME: </label>
                         <input type="text" name="name" id="name" placeholder="Enter your fullname" required/>
 
@@ -100,7 +103,7 @@ const Landing = ({ pf, vendors}) => {
                 </div>
             </div>
 
-            <Footer />
+            <Footer pf={pf} />
         </div>
     );
 }
