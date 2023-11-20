@@ -22,7 +22,7 @@ import LandingHeading from '../../components/landingHeading/LandingHeading';
 const Landing = ({ pf, vendors}) => {
     return( 
         <div className="landing_page">
-            <Slider />
+            <Slider pf={pf}/>
 
             {/* <div className="adminLogin-block"> */}
                 {/* <Link to="/admin">Admin Portal</Link> */}

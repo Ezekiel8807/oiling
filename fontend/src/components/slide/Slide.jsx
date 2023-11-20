@@ -8,10 +8,7 @@ import 'swiper/css';
 
 
 
-const Slide = () => {
-
-    // static files
-    const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+const Slide = ({pf}) => {
 
     return(
         <Swiper
@@ -25,7 +22,7 @@ const Slide = () => {
 
                 <div className="image">
                     <div className="imgBox">
-                        <img src={`${pf}/img/bg/f.png`} alt="image1" />
+                        <img src={`${pf}img/bg/f.png`} alt="image1" />
                     </div>
                 </div>
 
@@ -42,7 +39,7 @@ const Slide = () => {
 
                 <div className="image">
                     <div className="imgBox">
-                        <img src={`${pf}/img/bg/e.png`} alt="image1" />
+                        <img src={`${pf}img/bg/e.png`} alt="image1" />
                     </div>
                 </div>
 
