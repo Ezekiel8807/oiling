@@ -17,10 +17,10 @@ const Navbar = ({adminData, isLogin, openCloseAdminMobileNav}) => {
     const openCloseUserMobileNav = () => {
         let nav =  document.getElementById("navlink");
 
-        if(nav.style.display === "none"){
-            nav.style.display = "block";
-        }else {
+        if(nav.style.display === "block"){
             nav.style.display = "none";
+        }else {
+            nav.style.display = "block";
         }
     }
 

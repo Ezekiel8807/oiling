@@ -30,7 +30,7 @@
 .navlink {
     width: 100%;
     z-index: 10;
-    display: block;
+    display: none;
     position: absolute;
     background-color: #fff;
     transition: 3s all ease-in-out;
