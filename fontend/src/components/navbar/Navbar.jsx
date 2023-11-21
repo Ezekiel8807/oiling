@@ -27,27 +27,25 @@ const Navbar = ({adminData, isLogin, openCloseAdminMobileNav}) => {
 
     return (
         <div className="navbar">
+
+        
+            <a className="logo" href={ (adminData === null) ? "/" : "/admin"}>Oiling<span>.</span></a>
+       
             
             <div className="navbtn" onClick={ (adminData === null) ? openCloseUserMobileNav : openCloseAdminMobileNav }>
                 <BsList style={ navbar } />
             </div>
 
-            <div className="nav-logo">
-                <div className="logo">
-                    <a href={ (adminData === null) ? "/" : "/admin"}>Oily<span>.</span></a>
-                </div>
-            </div>
 
             { (adminData === null) && 
-            <div className="navlink" id="navlink"> 
+            <nav className="navlink" id="navlink"> 
                 <a href="/"> Home </a> 
                 <a href="/order"> Order </a>
                 <a href="/about"> About </a> 
                 <a href="/contact"> Contact </a> 
                 <a href="/register">Register</a> 
                 <a href="/login">Login</a> 
-  
-            </div>}
+            </nav>}
 
             { isLogin && 
             <div className="header_profilePhoto_nav">

@@ -1,81 +1,91 @@
-
 .navbar {
     width: 100%;
-    display: flex;
-    flex-direction: row;
     background: rgb(228,24,24);
     background: linear-gradient(90deg, rgba(228,24,24,1) 0%, rgba(237,193,104,1) 100%);
 }
 
-.navbtn {
-    display: none;
-}
-
-/* \logo */
-.nav-logo {
-    flex: 2;
-    padding: 10px;
-}
-
 .logo {
-    cursor: pointer;
-}
-
-.logo a{
+    width: 100px;
     font-size: 30px;
     font-weight: bold;
     color: #fff;
+    padding: 10px;
+    display: block;
     text-decoration: none;
 }
 
-.logo a span {
+.logo span {
     color: #1dbf73;
     font-weight: bold;
 }
 
 
-.navlink {
-    padding: 20px;
-    justify-content: space-between;
+.navbtn {
+    top: 0;
+    right: 0;
+    position: absolute
 }
+
+
+.navlink {
+    width: 100%;
+    z-index: 10;
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    transition: 3s all ease-in-out;
+}
+
 
 .navlink a {
-    color: #fff;
-    padding: 5px 20px;
-    font-weight: bold;
-    justify-content: space-around;
+    padding: 20px;
+    display: block;
+    color: black;
     text-decoration: none;
+    border-bottom: 1px solid #ddd;
 }
 
-/* .navlink a:last-child {
-    border: 2px solid #fff;
-    border-radius: 5px;
-} */
-
-
-@media screen and (max-width: 800px){
+@media screen and (min-width: 800px){
 
     .navbar {
-        display: block;
+        width: 100%;
+        height: 80px;
+    }
+
+    .logo {
+        font-size: 2.5em;
+        padding: 15px;
     }
 
     .navbtn {
-        right: 10px;
-        display: block;
-        position: absolute;
+        display: none;
     }
 
+    .navbar {
+        display: inline-block;
+    }
 
     .navlink {
-        display: none;
-        background-color: #fff;
+        top: 30px;
+        width: 50%;
+        right: 0;
+        display: flex;
+        position: absolute;
+        background: none;
+        transition: 3s all ease-in-out;
     }
 
-
     .navlink a {
-        padding: 10px;
-        display: block;
-        color: black;
-        border-bottom: 1px solid #ddd;
+        font-size: 1em;
+        padding: 0px;
+        width: 100px;
+        color: #fff;
+        font-weight: bold;
+        border-bottom: none;
+        text-decoration: none;
+    }
+
+    .navlink a:hover {
+        color: #000;
     }
 }

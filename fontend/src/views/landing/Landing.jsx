@@ -24,10 +24,6 @@ const Landing = ({ pf, vendors}) => {
         <div className="landing_page">
             <Slider pf={pf}/>
 
-            {/* <div className="adminLogin-block"> */}
-                {/* <Link to="/admin">Admin Portal</Link> */}
-            {/* </div>  */}
-
             {/* features block */}
             <div className="features">
 
