@@ -27,7 +27,7 @@ const Slide = ({pf}) => {
                 </div>
 
                 <div className="content">
-                    <h1>Buy your oil at affordable</h1>
+                    <h1>Buy your oil at an affordable</h1>
                     <p>Price</p>
                     <a href="#buyNow">Order Now</a>
                 </div>
@@ -44,7 +44,7 @@ const Slide = ({pf}) => {
                 </div>
 
                 <div className="content">
-                    <h1>Buy your oil at affordable</h1>
+                    <h1>Buy your oil at an affordable</h1>
                     <p>Price</p>
                     <a href="#buyNow">Order Now</a>
                 </div>

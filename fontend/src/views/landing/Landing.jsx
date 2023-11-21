@@ -68,7 +68,7 @@ const Landing = ({ pf, vendors}) => {
                             </div>
                             <div className="test_info">
                                 <h3>Ayebidun Ezekiel </h3>
-                                <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegitabe oil.</p>  
+                                <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegetable oil.</p>  
                                 <div class="button_box"><button type="button">Mail me</button></div>
                             </div>
 
@@ -83,13 +83,13 @@ const Landing = ({ pf, vendors}) => {
 
                     <form className="comment">
                         
-                        <label htmlFor="name">FULLNAME: </label>
+                        <label htmlFor="name">Fullname: </label>
                         <input type="text" name="name" id="name" placeholder="Enter your fullname" required/>
 
-                        <label htmlFor="email">EMAIL: </label>
+                        <label htmlFor="email">Email: </label>
                         <input type="text" name="email" id="email" placeholder="Enter your email" required/>
 
-                        <label htmlFor="message">MESSAGE</label>
+                        <label htmlFor="message">Message</label>
                         <textarea name="message" id="message" cols="30" rows="10" placeholder="Your messages goes here..." required></textarea>
 
                         <div className="messageBtn">
