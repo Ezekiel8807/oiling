@@ -44,17 +44,16 @@ const Login = ({serverError, serverSuccess}) => {
             const data = await response.json(); 
 
             //check login status
-            
-            if(response.status === 500) {
-                serverError("Sorry! something when wrong");
-
-            }else if (response.status !== 200){
-                setErrMsg(data.msg);
-
-            }else{
+            if (response.status === 200){
                 navigate("/");
                 serverSuccess('login Successful');
-                console.log(data);
+                console.log(data); 
+
+            }else if (response.status === 500){
+                serverError("Sorry! something when wrong") 
+
+            }else{
+                setErrMsg(data.msg)
             }
         }
     }
@@ -80,12 +79,12 @@ const Login = ({serverError, serverSuccess}) => {
 
                     <div className="login_">
                         <InlineErrorMsg errMsg={ errMsg }/>
-                        <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' required/> 
-                        <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>
+                        <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' /> 
+                        <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' />
                     </div>
                     
                     <small style={{ "margin" : "2% 5%", "textDecoration": "none" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
-                    <a className='forget' href="http://">Forget Password?</a>
+                    <Link className='forget' to="/forget" target="_self" rel="noopener noreferrer">Forget Password? </Link>
 
                     <div className="loginButtonBlock">
                         <button className='loginButton' type="submit">Login</button>

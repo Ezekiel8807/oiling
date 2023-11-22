@@ -8,7 +8,8 @@ import Express, { Router } from 'express';
 
 
 //controller
-import UserController from './Router/userController.js';
+import controller from './Router/controller.js';
+// import UserController from './Router/userController.js';
 import AdminController from './Router/AdminController.js';
 
 //listening port number
@@ -46,7 +47,7 @@ getpalmoil.use(bodyParser.urlencoded({ extended: false }));
 
 
 // express entry point
-getpalmoil.use("/api", UserController);
+getpalmoil.use("/api", controller);
 getpalmoil.use("/api/admin", AdminController);
 
 //not found routes

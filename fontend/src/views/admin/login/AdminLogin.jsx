@@ -43,17 +43,16 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
             const data = await response.json(); 
 
             //check login status
-            
-            if(response.status === 500) {
-                serverError("Sorry! something when wrong");
-
-            }else if (response.status !== 200){
-                setErrMsg(data.msg);
-
-            }else{ 
+            if (response.status === 200){
                 localStorage.setItem( "adminData", JSON.stringify({...data }));
                 window.location.replace("/admin");
                 serverSuccess('login Successful');
+
+            }else if (response.status === 500){
+                serverError("Sorry! something when wrong") 
+
+            }else{
+                setErrMsg(data.msg);
             }
         }
     }
@@ -64,8 +63,8 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
                 <h1> Admin </h1>
                 <b> Signin To Administrative Page</b>
                 <InlineErrorMsg errMsg={ errMsg }/>
-                <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' required/> 
-                <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' required/>
+                <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' /> 
+                <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' />
                 <small style={{ "marginLeft" : "5%" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
 
                 <div className ="loginButtonBlock">

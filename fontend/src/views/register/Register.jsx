@@ -50,12 +50,19 @@ const Register = ({serverError, serverSuccess}) => {
 
             const data = await response.json();
 
-            if(response.status !== 201 ){
+            
+            if(response.status === 200 ){
                 setErrMsg(data.msg);
 
-            }else {
-                serverSuccess(data.msg);
+            }else if(response.status === 201 ){
                 navigate("/login");
+                serverSuccess('Registration Successful');
+
+            }else if (response.status === 500){
+                serverError("Sorry! something when wrong") 
+
+            }else {
+                setErrMsg(data.msg);
             }
         }  
     }
