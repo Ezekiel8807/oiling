@@ -10,7 +10,13 @@ const navbar = {
 }
 
 
-const Navbar = ({adminData, isLogin, openCloseAdminMobileNav}) => {
+const Navbar = ({admin, user, serverSuccess, openCloseAdminMobileNav}) => {
+
+    const userLogout = () => {
+        localStorage.clear("user");
+        window.location.replace("/");
+        serverSuccess("logout Successful");
+    }
 
 
     //function to open and close user mobile navbar
@@ -29,25 +35,26 @@ const Navbar = ({adminData, isLogin, openCloseAdminMobileNav}) => {
         <div className="navbar">
 
         
-            <a className="logo" href={ (adminData === null) ? "/" : "/admin"}>Oiling<span>.</span></a>
+            <a className="logo" href={ (admin === null) ? "/" : "/admin"}>Oiling<span>.</span></a>
        
             
-            <div className="navbtn" onClick={ (adminData === null) ? openCloseUserMobileNav : openCloseAdminMobileNav }>
+            <div className="navbtn" onClick={ (admin === null) ? openCloseUserMobileNav : openCloseAdminMobileNav }>
                 <BsList style={ navbar } />
             </div>
 
 
-            { (adminData === null) && 
+            { (admin === null) && 
             <nav className="navlink" id="navlink"> 
                 <a href="/"> Home </a> 
-                <a href="/order"> Order </a>
+                {user && <a href={`/${user["user"].username}`}> profile </a>}
+                {user && <a href={`/${user["user"]._id}/orders`}> Order </a>}
                 <a href="/about"> About </a> 
-                <a href="/contact"> Contact </a> 
-                <a href="/register">Register</a> 
-                <a href="/login">Login</a> 
+                {!user && <a href="/register">Register</a>} 
+                {!user && <a href="/login">Login</a> }
+                {user && <button className="userLogout" onClick={ userLogout }> Logout </button>}
             </nav>}
 
-            { isLogin && 
+            { admin && 
             <div className="header_profilePhoto_nav">
                 <img src="" alt="" />
             </div>

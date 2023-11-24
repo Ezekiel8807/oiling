@@ -1,6 +1,6 @@
 import './login.css'
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';   //useNavigate
 
 //components
 import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
@@ -15,7 +15,7 @@ const Login = ({serverError, serverSuccess}) => {
 
 
     // initialize useNavigation
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     //sign in with email and password
     const signWithEmail = async (e) => {
@@ -45,9 +45,9 @@ const Login = ({serverError, serverSuccess}) => {
 
             //check login status
             if (response.status === 200){
-                navigate("/");
+                localStorage.setItem( "user", JSON.stringify({...data }));
+                window.location.replace("/");
                 serverSuccess('login Successful');
-                console.log(data); 
 
             }else if (response.status === 500){
                 serverError("Sorry! something when wrong") 

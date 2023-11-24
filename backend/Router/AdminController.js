@@ -9,10 +9,10 @@ const Router = express.Router();
 
 
 // ======= Admin controller ================
-Router.get("/admins", getAllAdmins );
+Router.get("/admins", getAllAdmins);
 
 // ======= Admin controller ================
-Router.post('/login', adminLogin );
+Router.post('/login', adminLogin);
 // Router.get('/auth', authRouter );
 // Router.update('/auth', authRouter );
 

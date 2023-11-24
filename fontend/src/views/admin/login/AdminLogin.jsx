@@ -44,7 +44,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
 
             //check login status
             if (response.status === 200){
-                localStorage.setItem( "adminData", JSON.stringify({...data }));
+                localStorage.setItem( "admin", JSON.stringify({...data }));
                 window.location.replace("/admin");
                 serverSuccess('login Successful');
 

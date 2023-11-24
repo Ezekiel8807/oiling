@@ -22,14 +22,19 @@ import OrderList from './views/admin/orderList/OrderList';
 import Product from './views/admin/product/Product.jsx';
 import Navbar from './components/navbar/Navbar.jsx';
 
-// import Profile from './views/profile/Profile';
+import Profile from './views/profile/Profile';
 // import SellerDash from './views/sellerDash/SellerDash';
+
+import UserOrder from './views/userOrder/UserOrder.jsx';
 
 function App() {
 
-  const getAdminData = JSON.parse(localStorage.getItem('adminData'));
-  const [ vendors, setVendors] = useState([]);
-  const [ adminData, setAdminData] = useState(getAdminData != null ? getAdminData : false);
+  const getAdmin = JSON.parse(localStorage.getItem('admin'));
+  const getUser = JSON.parse(localStorage.getItem('user'));
+
+
+  const [ user, setUser] = useState(getUser != null ? getUser : false);
+  const [ admin, setAdmin] = useState(getAdmin != null ? getAdmin : false);
 
   // server error messsages
   const serverSuccess = (msg) => toast.success(msg);
@@ -37,6 +42,19 @@ function App() {
 
   //public folder
   const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+
+
+  useEffect(() => {
+
+    //Update user data on refresh
+    setUser(JSON.parse(localStorage.getItem('user')));
+
+    //up
+    setAdmin(JSON.parse(localStorage.getItem('admin')));
+
+  }, [])
+
+
 
   //function to open and close admin mobile navbar
   const openCloseAdminMobileNav = () => {
@@ -49,44 +67,44 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const adminData = JSON.parse(localStorage.getItem('adminData'));
-    setAdminData(adminData);
-  }, [])
   
 
   return (
     <div className="App">
 
-      <Navbar adminData={adminData} openCloseAdminMobileNav={openCloseAdminMobileNav} />
+      <Navbar admin={admin} user={user} serverSuccess= {serverSuccess} openCloseAdminMobileNav={openCloseAdminMobileNav} />
 
       <Routes>
 
-        {/* Index landing Route */}
-        <Route exact path="/" element={ <Home pf={ pf } vendors={vendors} serverSuccess= {serverSuccess} serverError={serverError}/> }/>
-        <Route exact path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
-        <Route exact path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
+        {/* Index Routes */}
+        {admin === null && <Route exact path="/" element={ <Home pf={ pf } user={user} serverSuccess= {serverSuccess} serverError={serverError}/> }/>}
+        <Route path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
+        <Route path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
 
-        {/* admin landing route */}
 
-        {/* Admin login route */}
-        { !adminData && <Route path="/admin/login" element={<AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+        {/* User routes */}
+        <Route path="/:username" element={ <Profile user={user} serverSuccess={serverSuccess} serverError={serverError}/> } />
+        <Route path="/:username/orders" element={ <UserOrder user={user} serverSuccess={serverSuccess} serverError={serverError}/> } />
 
-        { adminData && <Route path="/admin" element={<AdminDashboard pf={ pf } adminData={adminData} serverSuccess={serverSuccess} serverError={serverError}/>} />}
-        { !adminData && <Route path="/admin" element={<AdminLogin adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+
+        {/* Admin routes */}
+        { !admin && <Route path="/admin/login" element={<AdminLogin admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+
+        { admin && <Route path="/admin" element={<AdminDashboard pf={ pf } admin={admin} serverSuccess={serverSuccess} serverError={serverError}/>} />}
+        { !admin && <Route path="/admin" element={<AdminLogin admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
 
         {/* create Admin route */}
-        { adminData && <Route path="/admin/createAdmin" element={ <CreateAdmin pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> } />}
+        { admin && <Route path="/admin/createAdmin" element={ <CreateAdmin pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/> } />}
         
 
         {/* admin list route */}
-        { adminData && <Route path="/admin/adminList" element={<AdminList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/> } /> }
+        { admin && <Route path="/admin/adminList" element={<AdminList pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/> } /> }
 
         {/* admin list route */}
-        { adminData && <Route path="/admin/orderList" element={<OrderList pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+        { admin && <Route path="/admin/orderList" element={<OrderList pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
 
         {/* Admin product route */}
-        { adminData && <Route path="/admin/product" element={<Product pf={ pf } adminData={adminData} serverSuccess= {serverSuccess} serverError={serverError} />} />}
+        { admin && <Route path="/admin/product" element={<Product pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError} />} />}
 
         <Route path="*" element={ <NotFound /> } />
 

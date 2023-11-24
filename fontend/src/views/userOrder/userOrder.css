@@ -1,0 +1,7 @@
+.my_order {
+    width: 700px;
+    height: 100px;
+    max-width: 80%;
+    background: red;
+    margin: 20px auto;
+}

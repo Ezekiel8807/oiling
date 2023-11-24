@@ -19,7 +19,7 @@ import LandingHeading from '../../components/landingHeading/LandingHeading';
 
 
 
-const Landing = ({ pf, vendors}) => {
+const Landing = ({ pf, user}) => {
     return( 
         <div className="landing_page">
             <Slider pf={pf}/>
