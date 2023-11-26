@@ -1,7 +1,7 @@
 .my_order {
     width: 700px;
     height: 100px;
-    max-width: 80%;
-    background: red;
+    max-width: 90%;
+    background-color: #cccccc;
     margin: 20px auto;
 }

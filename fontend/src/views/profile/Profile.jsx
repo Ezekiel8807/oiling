@@ -2,7 +2,7 @@ import "./profile.css";
 
 import {Container, Row, Col} from 'react-bootstrap';
 
-const Profile = () => {
+const Profile = ({user}) => {
 
     //public folder
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -24,7 +24,7 @@ const Profile = () => {
                             </div>
 
                             <div class="user-profile-label">
-                                <label htmlFor="Username"><h2 id="Username">Ezekiel8807</h2></label>
+                                <label htmlFor="Username"><h2 id="Username">{user["user"].username}</h2></label>
                             </div>
 
                             <div className="profile_others">

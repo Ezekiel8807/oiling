@@ -1,18 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
 import "./order.css";
 
 
 //components
 
 
-const Order = () => {
+const Order = ({user, serverError}) => {
 
     const [product, setProduct] = useState("");
     const [quality, setQuality] = useState("");
     const [quantity, setQuantity] = useState("");
 
+
+    //react router navigation
+    const navigate = useNavigate();
+
     const handleOrder = (e) => {
         e.preventDefault();
+
+
+        if(user === null) {
+            navigate("/login");
+            serverError("Login required!");
+        }
+            
 
 
         console.log("hello");

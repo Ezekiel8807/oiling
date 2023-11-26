@@ -19,7 +19,16 @@ import LandingHeading from '../../components/landingHeading/LandingHeading';
 
 
 
-const Landing = ({ pf, user}) => {
+
+const Landing = ({ pf, user, serverError}) => {
+
+
+    const handleOrder  = (e) => {
+        e.preventDefault();
+    }
+
+
+    
     return( 
         <div className="landing_page">
             <Slider pf={pf}/>
@@ -51,7 +60,7 @@ const Landing = ({ pf, user}) => {
                 </div>
             </div>
 
-            <Order/>
+            <Order user={user} handleOrder={ handleOrder } serverError={ serverError} />
 
             <div className="test_comment">
 
@@ -60,19 +69,15 @@ const Landing = ({ pf, user}) => {
                     <LandingHeading title={"Testimony"} />
 
                     <div className="testimony">
-                        <div className="testimony">
-                            <div className="test_image">
-                                <div className="test_image_block">
-                                    <img src={`${pf}img/bg/c.jpg`} alt="test_photo" />
-                                </div>
+                        <div className="test_image">
+                            <div className="test_image_block">
+                                <img src={`${pf}img/bg/c.jpg`} alt="test_photo" />
                             </div>
-                            <div className="test_info">
-                                <h3>Ayebidun Ezekiel </h3>
-                                <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegetable oil.</p>  
-                                <div className="button_box"><button type="button">Mail me</button></div>
-                            </div>
-
-
+                        </div>
+                        <div className="test_info">
+                            <h3>Ayebidun Ezekiel </h3>
+                            <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegetable oil.</p>  
+                            <div className="button_box"><button type="button">Mail me</button></div>
                         </div>
                     </div>
                 </div>
