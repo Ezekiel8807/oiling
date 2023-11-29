@@ -1,7 +1,7 @@
 import "./sider.css";
 import { Link } from "react-router-dom";
 
-const Side = ({serverSuccess, pf, adminData}) => {
+const Side = ({serverSuccess, pf, admin}) => {
 
 
     const logout = () => {
@@ -18,7 +18,7 @@ const Side = ({serverSuccess, pf, adminData}) => {
                 <img src={`${pf}img/bg/oilpalm.jpg`} alt="adminLogo" />
             </div>
 
-            <h2 className="sideLabel">{adminData.admin.username}</h2>
+            <h2 className="sideLabel">{admin['admin'].username}</h2>
 
             <nav className="sideNav">
                 <Link to="/admin">Home</Link>

@@ -5,7 +5,7 @@ import NewOrder from '../../../components/newOrder/NewOrder';
 import { useEffect, useState } from 'react';
 
 
-const Dashboard = ({pf, serverSuccess, adminData }) => {
+const Dashboard = ({pf, serverSuccess, admin }) => {
 
     const [orders, setOrders] = useState([]);
 
@@ -42,7 +42,7 @@ const Dashboard = ({pf, serverSuccess, adminData }) => {
     return (
         <div className="dashboard">
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData}/>
+                <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin}/>
                 <div className="main-content">
                     <h1 id='dash_heading' className='dash_heading'>New Orders</h1>
                     <div id="sub-content" className="sub-content">

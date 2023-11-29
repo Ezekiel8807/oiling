@@ -7,7 +7,7 @@ import ProductCard from "../../../components/productCard/ProductCard";
 
 
 
-const Product = ({pf, serverSuccess, adminData}) => {
+const Product = ({pf, serverSuccess, admin}) => {
 
 
     const products = [ 
@@ -52,7 +52,7 @@ const Product = ({pf, serverSuccess, adminData}) => {
     return (
         <div className="dashboard">
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin} />
                 <div className="main-content">
         
                     <h1 id='dash_heading' className='dash_heading'>Products</h1>
