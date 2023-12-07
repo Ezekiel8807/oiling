@@ -1,10 +1,20 @@
 import './userOrder.css'
 
+
+//component
+import Order from "../../components/order/Order.jsx"
+
+
 const UserOrder = () => {
 
     return(
         <div className="userOrder">
-            <div className="my_order"></div>
+
+            <Order />
+
+            <div className="my_order">
+
+            </div>
         </div>
     )
 }

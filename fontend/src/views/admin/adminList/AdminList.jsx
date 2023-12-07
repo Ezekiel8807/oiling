@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 
 
-const AdminList = ({pf, serverSuccess, adminData}) => {
+const AdminList = ({pf, serverSuccess, admin}) => {
 
     const [admins, setAdmins] = useState( JSON.parse(localStorage.getItem("admins")) != null ? JSON.parse(localStorage.getItem("admins")) : [] );
 
@@ -36,7 +36,7 @@ const AdminList = ({pf, serverSuccess, adminData}) => {
     return (
         <div className="dashboard">
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin} />
                 <div className="main-content">
 
                     <h1 id='dash_heading' className='dash_heading'>Admin List</h1>

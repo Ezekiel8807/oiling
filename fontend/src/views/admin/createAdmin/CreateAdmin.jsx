@@ -9,7 +9,7 @@ import Sider from '../../../components/sider/Sider';
 import InlineErrorMsg from "../../../components/errorMessages/InlineErrorMsg";
 
 
-const CreateAdmin = ({pf, serverSuccess, serverError, adminData}) => {
+const CreateAdmin = ({pf, serverSuccess, serverError, admin}) => {
 
     //local state to store user inputs
     const [username, setUsername] = useState("");
@@ -58,7 +58,7 @@ const CreateAdmin = ({pf, serverSuccess, serverError, adminData}) => {
     return(
         <div className="createAdmin">
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin} />
                 <div className="main-content">
                     <h1 id='dash_heading' className='dash_heading'>Create Admin</h1>
                     <div id="sub-content" className="sub-content">

@@ -7,7 +7,7 @@ import Sider from '../../../components/sider/Sider';
 
 
 
-const OrderList = ({pf, serverSuccess, adminData}) => {
+const OrderList = ({pf, serverSuccess, admin}) => {
 
 
     // get all Oders fron the localstorage
@@ -26,7 +26,7 @@ const OrderList = ({pf, serverSuccess, adminData}) => {
     return (
         <div className="dashboard">
             <main className='-board'>
-                <Sider pf={ pf } serverSuccess= {serverSuccess} adminData={adminData} />
+                <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin} />
                 <div className="main-content">
 
                     <h1 id='dash_heading' className='dash_heading'>Order List</h1>

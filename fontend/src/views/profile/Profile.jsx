@@ -20,7 +20,7 @@ const Profile = ({user}) => {
                                 </div>
                             </div>
                             <div className="pro_photo">
-                                <img src={pf + "img/bg/oil_5_litres.webp"} alt="pro_photo" />
+                                <img src={pf + "img/bg/d.jpg"} alt="pro_photo" />
                             </div>
 
                             <div class="user-profile-label">

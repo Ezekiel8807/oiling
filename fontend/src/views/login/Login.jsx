@@ -11,6 +11,7 @@ const Login = ({serverError, serverSuccess}) => {
     //local state to store user inputs
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loginFormValue, setLoginFormValue] = useState("Login");
     const [errMsg, setErrMsg] = useState("");
 
 
@@ -20,6 +21,7 @@ const Login = ({serverError, serverSuccess}) => {
     //sign in with email and password
     const signWithEmail = async (e) => {
         e.preventDefault();
+        setLoginFormValue("Authenticating...")
 
         if(!username || !password ){
             setErrMsg("All fields required");
@@ -87,7 +89,7 @@ const Login = ({serverError, serverSuccess}) => {
                     <Link className='forget' to="/forget" target="_self" rel="noopener noreferrer">Forget Password? </Link>
 
                     <div className="loginButtonBlock">
-                        <button className='loginButton' type="submit">Login</button>
+                        <button className='loginButton' type="submit">{loginFormValue}</button>
                     </div>
 
                     <div className="login_foot">

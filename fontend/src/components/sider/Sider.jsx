@@ -15,7 +15,7 @@ const Side = ({serverSuccess, pf, admin}) => {
     return (
         <div id="adminNav" className="side-content">
             <div className="adminLogo">
-                <img src={`${pf}img/bg/oilpalm.jpg`} alt="adminLogo" />
+                <img src={`${pf}img/bg/d.jpg`} alt="adminLogo" />
             </div>
 
             <h2 className="sideLabel">{admin['admin'].username}</h2>
