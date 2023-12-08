@@ -1,5 +1,7 @@
 .profile {
     padding: 20px;
+    display: grid;
+    column-gap: 50px;
     background-color: #f7f7f7;
 }
 

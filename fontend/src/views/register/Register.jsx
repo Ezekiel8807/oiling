@@ -14,6 +14,7 @@ const Register = ({serverError, serverSuccess}) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [regButtonValue, setRegButtonValue] = useState("Register");
 
     // initialize useNavigation
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Register = ({serverError, serverSuccess}) => {
             return setErrMsg("All fields required");
 
         }else {
-
+            setRegButtonValue("Processing...");
             const registrationInfo = { username, email, password }
 
             const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}register/`, {              
@@ -53,16 +54,19 @@ const Register = ({serverError, serverSuccess}) => {
             
             if(response.status === 200 ){
                 setErrMsg(data.msg);
+                setRegButtonValue("Register");
 
             }else if(response.status === 201 ){
                 navigate("/login");
                 serverSuccess('Registration Successful');
 
             }else if (response.status === 500){
-                serverError("Sorry! something when wrong") 
+                serverError("Sorry! something when wrong");
+                setRegButtonValue("Register");
 
             }else {
                 setErrMsg(data.msg);
+                setRegButtonValue("Register");
             }
         }  
     }
@@ -93,7 +97,7 @@ const Register = ({serverError, serverSuccess}) => {
                     <small style={{ "margin" : "2% 5%", "display": "block", "textDecoration": "none" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
 
                     <div className="loginButtonBlock">
-                        <button className='loginButton' type="submit">Register</button>
+                        <button className='loginButton' type="submit">{ regButtonValue }</button>
                     </div>
 
                     <div className="login_foot">

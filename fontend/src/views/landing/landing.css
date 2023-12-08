@@ -57,7 +57,6 @@
 
 /* contact form design */
 
-
 /* testimony and comment block */
 .test_comment {
     display: flex;
@@ -111,17 +110,20 @@
 }
 
 .test_info .button_box {
+    padding: 20px;
     text-align: center;
 }
 
-.test_info .button_box button {
+.test_info .button_box a {
     width: 100px;
-    padding: 10px;
     border: none;
+    margin: auto;
+    padding: 10px;
+    display: block;
     cursor: pointer;
     color: #ffffff;
-    margin: 20px auto;
     border-radius: 10px;
+    text-decoration: none;
     background-color: #e41818;
 }
 

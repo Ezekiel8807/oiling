@@ -21,12 +21,14 @@ const Login = ({serverError, serverSuccess}) => {
     //sign in with email and password
     const signWithEmail = async (e) => {
         e.preventDefault();
-        setLoginFormValue("Authenticating...")
 
         if(!username || !password ){
             setErrMsg("All fields required");
 
+
         }else {
+
+            setLoginFormValue("Authenticating...")
             const loginInfo = { username, password };
 
             const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}login/`, {              
@@ -52,10 +54,12 @@ const Login = ({serverError, serverSuccess}) => {
                 serverSuccess('login Successful');
 
             }else if (response.status === 500){
-                serverError("Sorry! something when wrong") 
+                serverError("Sorry! something when wrong");
+                setLoginFormValue("Login");
 
             }else{
-                setErrMsg(data.msg)
+                setErrMsg(data.msg);
+                setLoginFormValue("Login");
             }
         }
     }

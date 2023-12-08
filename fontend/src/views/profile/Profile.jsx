@@ -1,7 +1,5 @@
 import "./profile.css";
 
-import {Container, Row, Col} from 'react-bootstrap';
-
 const Profile = ({user}) => {
 
     //public folder
@@ -10,40 +8,38 @@ const Profile = ({user}) => {
 
     return(
         <div className="profile">
-            <Container>
-                <Row>
-                    <Col>
-                        <div className="profileBlock">
-                            <div className ="profileStatus">
-                                <div className="user-online-indicator is-online " data-user-id="103748313">
-                                    <i class="dot">·</i>Online
-                                </div>
-                            </div>
-                            <div className="pro_photo">
-                                <img src={pf + "img/bg/d.jpg"} alt="pro_photo" />
-                            </div>
 
-                            <div class="user-profile-label">
-                                <label htmlFor="Username"><h2 id="Username">{user["user"].username}</h2></label>
-                            </div>
+            <div className="profileBlock">
+                <div className ="profileStatus">
+                    <div className="user-online-indicator is-online " data-user-id="103748313">
+                        <i class="dot">·</i>Online
+                    </div>
+                </div>
+                <div className="pro_photo">
+                    <img src={pf + "img/bg/d.jpg"} alt="pro_photo" />
+                </div>
 
-                            <div className="profile_others">
-                                <table>
-                                    <tr>
-                                        <td>City: </td>
-                                        <td>Sano Ota</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Country: </td>
-                                        <td>Nigeria</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Join Since: </td>
-                                        <td>may 2020</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div> 
+                <div class="user-profile-label">
+                    <label htmlFor="Username"><h2 id="Username">{user["user"].username}</h2></label>
+                </div>
+
+                <div className="profile_others">
+                    <table>
+                        <tr>
+                            <td>City: </td>
+                            <td>Sano Ota</td>
+                        </tr>
+                        <tr>
+                            <td>Country: </td>
+                            <td>Nigeria</td>
+                        </tr>
+                        <tr>
+                            <td>Join Since: </td>
+                            <td>may 2020</td>
+                        </tr>
+                    </table>
+                </div>
+            </div> 
 
                         <div className="otherInfo">
                             <div className="discription">
@@ -80,9 +76,9 @@ const Profile = ({user}) => {
                             </div>
                         </div>  
  
-                    </Col>
 
-                    <Col>
+
+
                         <div className="gigNav">
                             <ul>
                                 <li></li>
@@ -90,9 +86,7 @@ const Profile = ({user}) => {
                                 <li></li>
                             </ul>
                         </div>
-                    </Col>
-                </Row>
-            </Container>
+
 
 
 

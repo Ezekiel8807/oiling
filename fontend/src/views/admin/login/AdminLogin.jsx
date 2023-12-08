@@ -12,6 +12,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
     //local state to store user inputs
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loginFormValue, setLoginFormValue] = useState("Login");
     const [errMsg, setErrMsg] = useState("");
 
 
@@ -19,6 +20,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
     //login Action
     const adminLogin = async (e) => {
         e.preventDefault();
+        setLoginFormValue("Authenticating...")
 
         if(!username || !password ){
             setErrMsg("All fields required");
@@ -68,7 +70,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
                 <small style={{ "marginLeft" : "5%" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
 
                 <div className ="loginButtonBlock">
-                    <button type="submit"> Login</button>
+                    <button type="submit">{ loginFormValue }</button>
                 </div>  
                 
             </form>
