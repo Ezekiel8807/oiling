@@ -77,7 +77,7 @@ const Landing = ({ pf, user, serverError}) => {
                         <div className="test_info">
                             <h3>Ayebidun Ezekiel </h3>
                             <p>Thank you oily! i dont have to find myself in the supermarket before i get my vegetable oil.</p>  
-                            <div className="button_box"><a href="mailto:ayeoluwaseyi@gmail.com" target="_blank">Mail me</a></div>
+                            <div className="button_box"><a href="mailto:ayeoluwaseyi@gmail.com" target="_blank" rel="noreferrer">Mail me</a></div>
                         </div>
                     </div>
                 </div>
