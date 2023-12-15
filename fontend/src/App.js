@@ -8,19 +8,26 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 //import components
+import Navbar from './components/navbar/Navbar.jsx';
+
+
+
+
 import AdminLogin from './views/admin/login/AdminLogin';
 import AdminDashboard from './views/admin/dashboard/Dashboard';
 import CreateAdmin from './views/admin/createAdmin/CreateAdmin.jsx';
 
 
+//
 import Login from './views/login/Login';
 import Home from './views/landing/Landing';
+import About from './views/about/About.jsx';
 import Register from "./views/register/Register"
 import NotFound from './views/notfound/NotFound';
 import AdminList from './views/admin/adminList/AdminList';
 import OrderList from './views/admin/orderList/OrderList';
 import Product from './views/admin/product/Product.jsx';
-import Navbar from './components/navbar/Navbar.jsx';
+
 
 import Profile from './views/profile/Profile';
 // import SellerDash from './views/sellerDash/SellerDash';
@@ -78,6 +85,7 @@ function App() {
 
         {/* Index Routes */}
         {admin === null && <Route exact path="/" element={ <Home pf={ pf } user={user} serverSuccess= {serverSuccess} serverError={serverError}/> }/>}
+        <Route path="/about" element={ <About pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
 

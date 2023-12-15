@@ -23,8 +23,35 @@ const Profile = ({user}) => {
                 </div>
 
                 <div className="pro-other">
-                    Personal Information
-                    f
+                    <form className="pro-info">
+                        <div className="pro-info-person">
+                            <h2>Personal Details</h2>
+
+                            <div className="input-box">
+                                <label htmlFor="firstname"></label>
+                                <input type="text" name="firstname" id="firstname" />
+                            </div>
+
+                            <div className="input-box">
+                                <label htmlFor="lastname"></label>
+                                <input type="text" name="lastname" id="lastname" />
+                            </div>
+
+                             <div className="input-box">
+                                <label htmlFor="lastname"></label>
+                                <input type="tel" name="lastname" id="lastname" />
+                            </div>
+
+                        </div>
+                        <div className="pro-info-shipping">
+                            <h2>Shipping Details</h2>
+
+                            <input type="text" name="firstname" placeholder="First Name"/>
+                            <input type="text" name="midname" placeholder="Middle Name"/>
+                            <input type="text" name="lastname" placeholder="Last Name"/>
+                        </div>
+                        
+                    </form>
                 </div>
             </div>
         </div>

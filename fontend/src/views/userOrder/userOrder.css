@@ -1,7 +1,32 @@
+
+.userOrder {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+}
+
+
 .my_order {
-    width: 700px;
-    height: 100px;
-    max-width: 90%;
     background-color: #cccccc;
-    margin: 20px auto;
+}
+
+.recent-order h1{
+    padding: 10px;
+}
+
+.recent-order h1{
+    padding-top: 30px;
+}
+
+
+
+@media screen and (max-width: 600px){
+    .userOrder {
+        grid-template-columns:1fr;
+    }
+
+    .new-Order {
+        display: none;
+    }
+    
 }
