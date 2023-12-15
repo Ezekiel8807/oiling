@@ -12,24 +12,22 @@ import Navbar from './components/navbar/Navbar.jsx';
 
 
 
-
+//imported Admin paages
 import AdminLogin from './views/admin/login/AdminLogin';
+import Product from './views/admin/product/Product.jsx';
+import AdminList from './views/admin/adminList/AdminList';
+import OrderList from './views/admin/orderList/OrderList';
 import AdminDashboard from './views/admin/dashboard/Dashboard';
 import CreateAdmin from './views/admin/createAdmin/CreateAdmin.jsx';
 
 
-//
+//imported user paages
 import Login from './views/login/Login';
 import Home from './views/landing/Landing';
 import About from './views/about/About.jsx';
-import Register from "./views/register/Register"
-import NotFound from './views/notfound/NotFound';
-import AdminList from './views/admin/adminList/AdminList';
-import OrderList from './views/admin/orderList/OrderList';
-import Product from './views/admin/product/Product.jsx';
-
-
 import Profile from './views/profile/Profile';
+import Register from "./views/register/Register";
+import NotFound from './views/notfound/NotFound';
 // import SellerDash from './views/sellerDash/SellerDash';
 
 import UserOrder from './views/userOrder/UserOrder.jsx';
