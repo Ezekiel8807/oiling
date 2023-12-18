@@ -42,6 +42,11 @@ const UserOrder = () => {
                                     <b>Amount: </b> 
                                     <span><i>#</i>50000</span>
                                 </div>
+
+                                <div className="recent-order-body-content-item">
+                                    <b>Duration: </b> 
+                                    <span>loading...</span>
+                                </div>
                             </div>
 
                             <div className="recent-order-badge">
@@ -77,6 +82,11 @@ const UserOrder = () => {
                                 <div className="recent-order-body-content-item">
                                     <b>Amount: </b> 
                                     <span><i>#</i>50000</span>
+                                </div>
+
+                                <div className="recent-order-body-content-item">
+                                    <b>Duration: </b> 
+                                    <span>1d 3hr</span>
                                 </div>
                             </div>
 

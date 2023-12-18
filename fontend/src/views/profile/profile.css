@@ -67,11 +67,33 @@
     display: block;
 }
 
+.pro-update-button-block{
+    grid-column: 1 / span 2;
+    text-align: right;
+}
+
+@media screen and (max-width: 760px){
+
+    .pro-update-button-block{
+        grid-column: 1 ;
+    }
+}
+
+.pro-update-button-block button{
+    font-size: 1.0rem;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #11c049;
+}
+
 
 /* profile more action */
 .pro-change-pass-block {
     padding: 10px;
-    margin: 10px auto;
+    margin: 30px auto;
     box-shadow: 0px 0px 10px #dddd;
 }
 
@@ -80,8 +102,8 @@
 }
 
 .pro-change-pass-block form input{
-    width: 94%;
-    padding: 2%;
+    width: 90%;
+    padding: 10px;
 }
 
 .pro-change-passBtn {
@@ -92,7 +114,7 @@
 
 .pro-change-passBtn button {
     width: 100px;
-    padding: 5px;
+    padding: 10px;
     border: none;
     color: #ffffff;
     background-color: #11c049;
