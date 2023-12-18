@@ -2,16 +2,23 @@
     gap: 10px;
     padding: 20px;
     display: grid;
-    /* align-items: center; */
     justify-content: center;
     grid-template-columns: 300px 1fr;
+}
+
+@media screen and (max-width: 600px){
+
+    .profileBlock {
+        grid-template-columns: 100%;
+    }
+    
 }
 
 
 .pro-card-photo {
     width: 200px;
     height: 200px;
-    margin: 50px auto;
+    margin: 20px auto;
 }
 
 .pro-card-photo img{
@@ -25,18 +32,11 @@
 }
 
 
-.pro-other {
+/* others block styling */
+.pro-other-block {
+    margin: 10px auto;
     box-shadow: 0px 0px 10px #dddd;
 }
-
-@media screen and (max-width: 600px){
-
-    .profileBlock {
-        grid-template-columns: 100%;
-    }
-    
-}
-
 
 .pro-info {
     gap: 10px;
@@ -45,11 +45,87 @@
     grid-template-columns: 1fr 1fr;
 }
 
-
 @media screen and (max-width: 600px){
 
     .pro-info{
         grid-template-columns: 100%;
     }
-    
+}
+
+
+.input-box {
+    margin: 20px 0px;
+}
+
+.input-box label {
+    display: block;
+}
+
+.input-box input {
+    width: 90%;
+    padding: 10px;
+    display: block;
+}
+
+
+/* profile more action */
+.pro-change-pass-block {
+    padding: 10px;
+    margin: 10px auto;
+    box-shadow: 0px 0px 10px #dddd;
+}
+
+.pro-change-pass-block h2{
+    padding-bottom: 10px;
+}
+
+.pro-change-pass-block form input{
+    width: 94%;
+    padding: 2%;
+}
+
+.pro-change-passBtn {
+    padding-top: 10px;
+    text-align: right;
+}
+
+
+.pro-change-passBtn button {
+    width: 100px;
+    padding: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #11c049;
+    box-shadow: 0px 0px 5px #dddddd;
+}
+
+/* account delete button */
+.pro-delete-account {
+    margin: 20px auto;
+}
+
+.pro-delete-account button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: #ffffff;
+    border-radius: 25px;
+    background-color: red;
+    box-shadow: 0px 0px 10px #ddd;
+}
+
+@media screen and (max-width: 760px) {
+
+    .pro-more-action-desktop {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 760px) {
+
+    .pro-more-action-mobile {
+        display: none;
+    }
+
 }
