@@ -4,13 +4,13 @@ import "./product.css";
 //components
 import Sider from '../../../components/sider/Sider';
 import ProductCard from "../../../components/productCard/ProductCard";
+import { useEffect, useState } from "react";
 
 
 
 const Product = ({pf, serverSuccess, admin}) => {
 
-
-    const products = [ 
+    const data = [
         {
             "_id": 1,
             "name": "Palm Oil",
@@ -48,6 +48,19 @@ const Product = ({pf, serverSuccess, admin}) => {
             ]   
         }
     ]
+
+    const [products, setProducts] = useState(data);
+
+
+    useEffect(() => {
+      
+        fetch(``)
+        .then((products) => {
+            return setProducts(JSON.Stringify(products));
+        })
+        .catch(e => {console.log(e)});
+    }, [])
+    
 
     return (
         <div className="dashboard">

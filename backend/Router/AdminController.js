@@ -3,6 +3,7 @@ import express from "express";
 //administrators api
 import { adminLogin, createAdmin, getAllAdmins } from "../api/admin.js";
 import { allOrder, declineOrder, removeOrder, setOrder } from "../api/order.js";
+import { getProducts, updateProduct } from "../api/product.js";
 
 //initialize express router
 const Router = express.Router();
@@ -29,5 +30,10 @@ Router.post('/order', setOrder );
 Router.get('/order/:id', removeOrder);
 Router.put('/order/:id', declineOrder);
 
+//Product routes
+Router.get('/products', getProducts );
+// Router.post('/product', setOrder );
+// Router.get('/product/:id', removeOrder);
+Router.put('/product/:id', updateProduct);
 
 export default Router;

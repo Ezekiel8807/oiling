@@ -4,18 +4,16 @@ import express from "express";
 import { register, login } from "../api/auth.js";
 
 import {singleUser} from "../api/user.js";
+import { getProducts } from "../api/product.js";
 
 //initialize express router
 const Router = express.Router();
-
-// ======= Admin controller ================
 
 
 // ========= user controller ================
 Router.post('/login', login );
 // Router.get('/auth', authRouter );
 // Router.update('/auth', authRouter );
-
 
 //Registration
 Router.post('/register', register );
@@ -27,5 +25,8 @@ Router.post('/register', register );
 
 //user 
 Router.get('/:username', singleUser );
+
+//all products
+Router.get('/products', getProducts);
 
 export default Router;

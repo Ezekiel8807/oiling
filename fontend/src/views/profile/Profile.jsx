@@ -4,38 +4,115 @@ import { useState } from "react";
 
 
 
-const Profile = ({user}) => {
+const Profile = ({user, serverError, serverSuccess}) => {
 
+    //personal details
     const [firstname, setFirstname] = useState(user["user"].firstname);
     const [lastname, setLastname] = useState(user["user"].lastname);
     const [phone, setPhone] = useState(user["user"].phone);
     const [email, setEmail] = useState(user["user"].email);
+
+    // Shipping deatails
     const [city, setCity] = useState(user["user"].city);
     const [state, setState] = useState(user["user"].state);
     const [country, setCountry] = useState(user["user"].country);
     const [address, setAddress] = useState(user["user"].address);
+
+    //password changing data
+    const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [passBtn, SetPassBtn] = useState("change");
+
+    //button state value
+    const [btnValue, setBtnValue] = useState("Update");
 
     //public folder
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const handleProfileUpdate = (e) => {
+    //function to handle profile update
+    const handleProfileUpdate = async (e) => {
         e.preventDefault();
 
-        alert(`${firstname} ${lastname} ${phone} ${email} ${city} ${state} ${country} ${address}`);
+        //change button status to updating
+        setBtnValue("Updating...");
+
+        if(firstname && lastname && phone && email && city && state && country && address ) {
+
+            const updateInfo = { 
+                firstname, 
+                lastname, 
+                phone, 
+                email,
+                city,
+                state,
+                country,
+                address 
+            };
+
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}${user["user"].username}/`, {              
+                
+                // Adding method type
+                method: "PUT",
+                
+                // Adding body or contents to send
+                body: JSON.stringify(updateInfo),
+                
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+
+            const data = await response.json(); 
+
+            //check login status
+            if (response.status === 200){
+                window.location.replace(`/${user["user"].username}`);
+                serverSuccess('Updated');
+                setBtnValue("Update");
+
+            }else{
+                serverError(data.msg);
+                setBtnValue("Update");
+            }
+        }else {
+            serverError("Enter All fields!");
+            setBtnValue("Update");
+        }
     }
 
-    const handleChangePassword = (e) => {
+    //function to handle password update
+    const handleChangePassword = async (e) => {
         e.preventDefault();
+        SetPassBtn("Processing...")
 
-        if(!newPassword){
-            alert("Enter password");
-
-        }else {
-            prompt("About to change your Password");
-
-            alert("password changed: " + newPassword);
+        const passInfo = {
+            oldPassword,
+            newPassword
         }
+
+        try{
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}${user["user"].username}/pass`, {              
+                
+                // Adding method type
+                method: "PUT",
+                
+                // Adding body or contents to send
+                body: JSON.stringify(passInfo),
+                
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+
+            //check login status
+            if (response.status === 200){
+                serverSuccess("Password changed!")
+                SetPassBtn("Update")
+            }
+
+            }catch(e){serverError(e.message)};
     }
 
 
@@ -61,10 +138,11 @@ const Profile = ({user}) => {
                             <h2>Change password</h2>
 
                             <form onSubmit={ handleChangePassword } method="POST">
+                                <input type="text" placeholder="Enter Old Password" onChange={ (e) => {setOldPassword(e.target.value)}}/>
                                 <input type="text" placeholder="Enter New Password" onChange={ (e) => {setNewPassword(e.target.value)}}/>
 
                                 <div className="pro-change-passBtn">
-                                    <button type="subnit"> Change</button>
+                                    <button type="submit"> {passBtn} </button>
                                 </div>
                             </form>
                         </div>
@@ -131,7 +209,7 @@ const Profile = ({user}) => {
                             </div>
 
                             <div className="pro-update-button-block">
-                                <button type="submit"> Update </button>
+                                <button type="submit"> { btnValue } </button>
                             </div>
                             
                         </form>
@@ -143,11 +221,12 @@ const Profile = ({user}) => {
             
                             <h2>Change password</h2>
 
-                            <form action="">
-                                <input type="text" placeholder="Enter New Password"/>
+                            <form onSubmit={ handleChangePassword } method="POST">
+                                <input type="text" placeholder="Enter Old Password" onChange={ (e) => {setOldPassword(e.target.value)}}/>
+                                <input type="text" placeholder="Enter New Password" onChange={ (e) => {setNewPassword(e.target.value)}}/>
 
                                 <div className="pro-change-passBtn">
-                                    <button type="subnit"> Change</button>
+                                    <button type="submit"> {passBtn} </button>
                                 </div>
                             </form>
                         </div>

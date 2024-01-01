@@ -59,6 +59,7 @@
 
 .input-box label {
     display: block;
+    margin-bottom: 10px;
 }
 
 .input-box input {

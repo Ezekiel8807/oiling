@@ -1,8 +1,8 @@
-import './newOrder.css';
+import './orderCard2.css';
 
 
 
-const NewOrder = ({orders}) => {
+const orderCard2 = ({orders}) => {
 
     const decline = (id) => {
         console.log(id);
@@ -58,4 +58,4 @@ const NewOrder = ({orders}) => {
 }
 
 
-export default NewOrder;
+export default orderCard2;

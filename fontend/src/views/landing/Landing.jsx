@@ -14,19 +14,13 @@ import Footer from '../../components/footer/Footer';
 
 //import components
 import Slider from '../../components/slide/Slide';
-import Order from '../../components/order/Order';
+import Order from '../../components/orderForm/OrderForm';
 import LandingHeading from '../../components/landingHeading/LandingHeading';
 
 
 
 
-const Landing = ({ pf, user, serverError}) => {
-
-
-    const handleOrder  = (e) => {
-        e.preventDefault();
-    }
-
+const Landing = ({ pf, user, serverError, serverWarn}) => {
 
     
     return( 
@@ -60,7 +54,7 @@ const Landing = ({ pf, user, serverError}) => {
                 </div>
             </div>
                 
-            <Order user={user} handleOrder={ handleOrder } serverError={ serverError} />
+            <Order user={user} serverError={ serverError} serverWarn={ serverWarn }/>
 
             <div className="test_comment">
 

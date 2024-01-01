@@ -20,7 +20,7 @@ const port = process.env.PORT || 5000;
 // const __dirname = path.dirname(__filename);
 
 //initiate express
-const getpalmoil = Express();
+const emak = Express();
 
 //configure environment variable
 dotenv.config();
@@ -34,28 +34,27 @@ mongoose.connect(process.env.MONGOLINK,{useNewUrlParser:true})
 })
 
 // ======= middle wares ==========
-getpalmoil.use(cors());
+emak.use(cors());
 
 // parse application/json
-getpalmoil.use(bodyParser.json());
+emak.use(bodyParser.json());
 
 // parse application/x-www-form-urlencoded
-getpalmoil.use(bodyParser.urlencoded({ extended: false }));
+emak.use(bodyParser.urlencoded({ extended: false }));
 
 //static folders
-// getpalmoil.use(Express.static(path.join(__dirname + '/fontend/build')));
+// emak.use(Express.static(path.join(__dirname + '/fontend/build')));
 
 
 // express entry point
-getpalmoil.use("/api", controller);
-getpalmoil.use("/api/admin", AdminController);
+emak.use("/api", controller);
+emak.use("/api/admin", AdminController);
 
 //not found routes
-getpalmoil.use("*", (req, res) => {
-    res.send("Page not found!!!");
+emak.use("*", (req, res) => {
     // res.sendFile(path.join(__dirname + '/fontend/build',  'index.html'));
-    res.status(404);
+    res.status(404).json({"Msg": "Request not Found!"});
 });
 
 //server listening port
-getpalmoil.listen( port, () => console.log("server runing on port " + port));
+emak.listen( port, () => console.log("server runing on port " + port));

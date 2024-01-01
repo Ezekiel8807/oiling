@@ -46,24 +46,21 @@
 }
 
 .deleveryFees {
-    color: grey;
+    color: #131212;
     display: block;
     margin-top: -10px;
     text-align: right;
 }
 
 .note {
-    text-align: center;
-    font-weight: bold;
-    font-style: italic;
-}
-
-.note p{
+    display: flex;
     margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.note h2{
-    margin-top: 10px;
+.note span {
+    font-weight: bold;
 }
 
 .orderBtnDiv {

@@ -1,8 +1,9 @@
 import './dashboard.css';
+import { useEffect, useState } from 'react';
+
 //components
 import Sider from '../../../components/sider/Sider';
-import NewOrder from '../../../components/newOrder/NewOrder';
-import { useEffect, useState } from 'react';
+import OrderCard2 from '../../../components/orderCard2/orderCard2';
 
 
 const Dashboard = ({pf, serverSuccess, admin }) => {
@@ -45,8 +46,9 @@ const Dashboard = ({pf, serverSuccess, admin }) => {
                 <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin}/>
                 <div className="main-content">
                     <h1 id='dash_heading' className='dash_heading'>New Orders</h1>
+
                     <div id="sub-content" className="sub-content">
-                        <NewOrder orders={orders}/> 
+                        <OrderCard2 orders={orders}/>
                     </div>
                 </div>
             </main>

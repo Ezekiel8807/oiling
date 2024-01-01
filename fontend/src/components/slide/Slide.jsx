@@ -2,9 +2,12 @@ import "./slide.css";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
 
 
 
@@ -12,11 +15,11 @@ const Slide = ({pf}) => {
 
     return(
         <Swiper
+        modules={[Autoplay]}
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
+        autoplay= {{delay: 10000}} >
+        
         <SwiperSlide>
             <div className="slide2">
 
