@@ -53,16 +53,16 @@ const AdminList = ({pf, serverSuccess, admin}) => {
                                     <th>ACTION</th>
                                 </tr>
                             </thead>
-                            { admins.map(admin => 
-                                <tbody key={admin._id} className='adminList_body'>
-                                    <tr id='adminId'>
+                            <tbody className='adminList_body'>
+                                { admins.map(admin => 
+                                    <tr id='adminId'  key={admin._id}>
                                         <td>{admin.username}</td>
                                         <td>{admin.email}</td>
                                         <td>{admin.type}</td>
-                                        <td><button className='actionBtn'>Delete</button></td>
+                                        <td><a className='actionBtn' href={`/admin/adminList/${admin._id}`}>Delete</a></td>
                                     </tr>
-                                </tbody>
-                            )}
+                                )}
+                            </tbody>  
                         </table>
                     </div>
                 </div>
