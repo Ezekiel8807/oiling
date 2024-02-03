@@ -23,8 +23,7 @@ const CreateAdmin = ({pf, serverSuccess, serverError, admin}) => {
         e.preventDefault();
 
         const adminInfo = { username, email, password };
-
-        const response = await fetch(`http://127.0.0.1:5000/api/admin/register`, {              
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admin//register`, {              
             
             // Adding method type
             method: "POST",

@@ -8,7 +8,9 @@ import OrderCard2 from '../../../components/orderCard2/orderCard2';
 
 const Dashboard = ({pf, serverSuccess, admin }) => {
 
-    const [orders, setOrders] = useState([]);
+    const allOrders = JSON.parse(localStorage.getItem("orders"));
+
+    const [orders, setOrders] = useState((allOrders == null)? [] : allOrders);
 
     //get all orders
     const getOders =  async () => {
@@ -21,21 +23,14 @@ const Dashboard = ({pf, serverSuccess, admin }) => {
             return console.log(data.msg);
 
         }else{ 
+            data.filter(order => order.status === "new");
             localStorage.setItem( "orders", JSON.stringify([...data]));
+            setOrders(data);
         }
     } 
 
-
-    const getAllNewOrders = () => {
-        const allOrders = JSON.parse(localStorage.getItem("orders"));
-
-        const newOrders = allOrders.filter(order => order.status === "new");
-        setOrders(newOrders);
-    }
-
     useEffect( () => {
         getOders();
-        getAllNewOrders()
     },[])
     
 
