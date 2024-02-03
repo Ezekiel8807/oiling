@@ -9,7 +9,8 @@ import { useState, useEffect } from 'react';
 
 const AdminList = ({pf, serverSuccess, admin}) => {
 
-    const [admins, setAdmins] = useState( JSON.parse(localStorage.getItem("admins")) != null ? JSON.parse(localStorage.getItem("admins")) : [] );
+    const allAdmins = JSON.parse(localStorage.getItem("admins"));
+    const [admins, setAdmins] = useState( (allAdmins == null)? [] : allAdmins);
 
     //get all orders
     const getAlAdmins =  async () => {

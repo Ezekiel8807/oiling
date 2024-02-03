@@ -9,7 +9,6 @@ import OrderCard2 from '../../../components/orderCard2/orderCard2';
 const Dashboard = ({pf, serverSuccess, admin }) => {
 
     const allOrders = JSON.parse(localStorage.getItem("orders"));
-
     const [orders, setOrders] = useState((allOrders == null)? [] : allOrders);
 
     //get all orders
