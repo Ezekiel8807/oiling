@@ -10,56 +10,19 @@ import { useEffect, useState } from "react";
 
 const Product = ({pf, serverSuccess, admin}) => {
 
-    const data = [
-        {
-            "_id": 1,
-            "name": "Palm Oil",
-            "type": [
-                {
-                    litre: 1,
-                    price: 1000
-                }, 
-                {
-                    litre: 5,
-                    price: 5200
-                },
-                {
-                    litre: 25,
-                    price: 24000
-                }
-            ]
-        },
-        {
-            "_id": 2,
-            "name": "Groundnut Oil",
-            "type": [
-                {
-                    litre: 1,
-                    price: 1200
-                }, 
-                {
-                    litre: 5,
-                    price: 5400
-                },
-                {
-                    litre: 25,
-                    price: 26000
-                }
-            ]   
-        }
-    ]
-
-    const [products, setProducts] = useState(data);
+    const [products, setProducts] = useState([]);
 
 
+    // fetch products on pageload
     useEffect(() => {
-      
-        fetch(``)
-        .then((products) => {
-            return setProducts(JSON.Stringify(products));
-        })
-        .catch(e => {console.log(e)});
-    }, [])
+        // Fetch data from MongoDB or your backend API
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admin/products`)
+            .then(response => response.json())
+            .then(data => {
+                setProducts(data);
+            })
+            .catch(error => console.error("Error fetching products:", error));
+    }, []);
     
 
     return (

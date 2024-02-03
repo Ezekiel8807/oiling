@@ -74,14 +74,14 @@ const Login = ({serverError, serverSuccess}) => {
 
                     <h2 className='loginHead'>Sign In To Oily</h2>
 
-                    <div className="login_with">
+                    {/* <div className="login_with">
                         <button type='button'> Continue with google</button> 
                         <button type='button'> Continue with facebook </button> 
-                    </div>
+                    </div> */}
 
-                    <div className="divider">
+                    {/* <div className="divider">
                         <span>-------------</span> <span> OR </span> <span>-------------</span>
-                    </div>
+                    </div> */}
 
                     <div className="login_">
                         <InlineErrorMsg errMsg={ errMsg }/>
