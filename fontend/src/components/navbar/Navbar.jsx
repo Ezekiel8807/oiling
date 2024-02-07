@@ -47,7 +47,7 @@ const Navbar = ({admin, user, serverSuccess, openCloseAdminMobileNav}) => {
             <nav className="navlink" id="navlink"> 
                 <a href="/"> Home </a> 
                 {user && <a href={`/${user["user"].username}`}> profile </a>}
-                {user && <a href={`/${user["user"]._id}/orders`}> Order </a>}
+                {user && <a href={`/${user["user"].username}/orders`}> Order </a>}
                 <a href="/about"> About </a> 
                 {!user && <a href="/register">Register</a>} 
                 {!user && <a href="/login">Login</a> }

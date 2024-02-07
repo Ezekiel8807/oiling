@@ -5,12 +5,13 @@ import { useNavigate } from "react-router";
 
 
 //components
-const Order = ({user, serverError, serverWarn}) => {
+const Order = ({user, serverSuccess, serverError, serverWarn}) => {
 
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedQuality, setSelectedQuality] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [deliveryFees, setDeliveryFees] = useState(500);
     const [totalAmount, setTotalAmount] = useState(0);
 
     //react router navigation
@@ -23,6 +24,7 @@ const Order = ({user, serverError, serverWarn}) => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
+                setDeliveryFees(1000);
                 setSelectedProduct(data[0]); // Select the first oil by default
                 setSelectedQuality(data[0]?.type[0]); // Select the first quality by default
             })
@@ -32,10 +34,10 @@ const Order = ({user, serverError, serverWarn}) => {
     useEffect(() => {
         // Update total amount whenever selectedOil, selectedQuality, or quantity changes
         if (selectedProduct && selectedQuality) {
-            const price = selectedQuality.price * quantity;
+            const price = selectedQuality.price * quantity + deliveryFees;
             setTotalAmount(price);
         }
-    }, [selectedProduct, selectedQuality, quantity]);
+    }, [selectedProduct, selectedQuality, quantity, deliveryFees]);
     
 
     const handleOrder = (e) => {
@@ -44,13 +46,46 @@ const Order = ({user, serverError, serverWarn}) => {
         if(user === null) {
             navigate("/login");
             serverError("Login required!");
+
         } else if (user["user"].isUpdated === false) {
             navigate(`/${user["user"].username}`);
             serverWarn("Update your profile!!!");
+
         } else {
-            console.log("hello");
-            console.log(`you ordered ${selectedProduct.name}`);
-            console.log(`${quantity} kegs - ${totalAmount}`);
+            if(!selectedProduct || !selectedQuality || !quantity ){
+                serverError("All fields require");
+
+            }else{
+
+                const orderObj = {
+                    user: user['user'].username,
+                    product: selectedProduct['name'],
+                    quality: selectedQuality['litre'],
+                    quantity: quantity,
+                    amount: totalAmount,
+                }
+
+                fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders`, {
+                                        
+                    // Adding method type
+                    method: "POST",
+                    
+                    // Adding body or contents to send
+                    body: JSON.stringify(orderObj),
+                    
+                    // Adding headers to the request
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    navigate(`/${user["user"].username}/orders`);
+                    serverSuccess(data.msg);
+                })
+                .catch(e => serverError(e.msg))
+
+            }
         }
     }
 
@@ -93,11 +128,11 @@ const Order = ({user, serverError, serverWarn}) => {
                     />
 
                     <div className="note">
-                        <small className="deliveryFees"> Delivery fees: </small> <small>{`#${500}`}</small>
+                        <small className="deliveryFees"> Delivery fees: </small> <small>{`#${deliveryFees}`}</small>
                     </div>
 
                     <div className="note">
-                        <p>Total balance: </p> <span>{`#${totalAmount + 500}`}</span>
+                        <p>Total balance: </p> <span>{`#${totalAmount}`}</span>
                     </div>
 
                     <div className="orderBtnDiv">

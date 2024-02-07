@@ -20,7 +20,7 @@ import LandingHeading from '../../components/landingHeading/LandingHeading';
 
 
 
-const Landing = ({ pf, user, serverError, serverWarn}) => {
+const Landing = ({ pf, user, serverSuccess, serverError, serverWarn}) => {
 
     
     return( 
@@ -53,8 +53,14 @@ const Landing = ({ pf, user, serverError, serverWarn}) => {
                     </div>
                 </div>
             </div>
-                
-            <Order user={user} serverError={ serverError} serverWarn={ serverWarn }/>
+            
+
+            <div className="ordering-block">
+                <div className="ordering-form">
+                    <Order user={user} serverSuccess= {serverSuccess} serverError={ serverError} serverWarn={ serverWarn }/>
+                </div>
+            </div>
+            
 
             <div className="test_comment">
 

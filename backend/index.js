@@ -9,8 +9,8 @@ import Express, { Router } from 'express';
 
 //controller
 import controller from './Router/controller.js';
-// import UserController from './Router/userController.js';
-import AdminController from './Router/AdminController.js';
+import userController from './Router/userController.js';
+import adminController from './Router/AdminController.js';
 
 //listening port number
 const port = process.env.PORT || 5000;
@@ -48,7 +48,8 @@ emak.use(bodyParser.urlencoded({ extended: false }));
 
 // express entry point
 emak.use("/api", controller);
-emak.use("/api/admin", AdminController);
+emak.use("/api/user", userController);
+emak.use("/api/admin", adminController);
 
 //not found routes
 emak.use("*", (req, res) => {

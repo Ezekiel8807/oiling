@@ -3,15 +3,23 @@ import mongoose from 'mongoose'
 
 
 const orderSchema = new mongoose.Schema({
-    orderBy: String,
+    user: String,
     product: String,
     quality: Number,
     quantity: Number,
+    deliveryTime: {
+        type: String,
+        default: "loading..."
+    },
     status: {
         type: String,
-        default: "new"
+        default: "processing",
     },
-    amount: Number
+    amount: Number,
+    time: {
+        type: Date,
+        default: Date.now(),
+    }
 });
 
 const orders = mongoose.model('orders', orderSchema);

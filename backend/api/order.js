@@ -14,15 +14,30 @@ export const allOrder = async (req, res) => {
     }
 }
 
+//get userOrder
+export const userOrder = async (req, res) => {
+
+    const username = req.params.id;
+
+    try{
+        //check if user exist with that username
+        const userOrders= await orders.find({user: username})
+        res.status(200).json(userOrders);
+
+    }catch(err){
+        res.status(403).json({ msg: "Something went wrong!" });
+    }
+}
+
 
 //store user border
 export const setOrder = async (req, res) => {
     try {
-        const { fullname, product, quality, quantity, amount } = req.body;
-        if(!fullname || !product || !quality || !quantity || !amount ) return res.status(400).json({ msg: "Invalid credentials. " });
+        const { user, product, quality, quantity, amount } = req.body;
+        if(!user || !product || !quality || !quantity || !amount ) return res.status(400).json({ msg: "Invalid credentials. " });
 
         const newOrder = new orders({
-            fullname,
+            user,
             product,
             quality,
             quantity,

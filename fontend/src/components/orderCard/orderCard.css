@@ -1,62 +1,57 @@
 
-.recent_order {
-    margin: 10px;
-    width: 300px;
-    max-width: 100%;
+.new_order {
+    width: 200px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
+    position: relative;
     background-color: #ffffff;
     box-shadow: 0px 0px 5px #ddd;
 }
 
-.recent_order:hover {
+.new_order:hover {
     box-shadow: 0px 0px 10px #ddd;
 }
 
 
-.recent-order-header {
+.new-order-header {
     padding: 10px;
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
     border-bottom: 2px solid #ddd;
 }
 
-.recent-order-body {
-    position: relative;
-}
-
-.recent-order-body-content-item {
+.new-order-body-content-item {
     padding: 10px;
     display: flex;
+    font-size: 0.8em;
     justify-content: space-between;
 }
 
-.recent-order-badge {
-    top: 25%;
-    left: 40%;
-    opacity: 0.4;
-    padding: 5px;
-    transform: rotate(45deg);
-    border-radius: 25px;
+.new-order-badge {
+    top: 0;
+    left: 0;
+    padding: 2px;
     position: absolute;
     background-color: yellow;
 }
 
-.recent-order-badge span{
+.new-order-badge span{
     font-size: 10px;
     font-weight: bold;
 }
 
-.recent-order-actionBtn {
+.new-order-actionBtn {
     margin: 0px 10px;
     padding-bottom: 10px;
 }
 
-.recent-order-actionBtn button {
+.new-order-actionBtn button {
     width: 100%;
     padding: 10px;
     border: none;
     color: #ffffff;
     cursor: pointer;
     border-radius: 25px;
-    background-color: red;
+    background-color: #eb2424;
 }

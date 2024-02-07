@@ -1,33 +1,70 @@
 import "./profile.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ChangePass from "../../components/changePass/ChangePass";
+import DelAcctBtn from "../../components/delAcctBtn/DelAcctBtn";
 
 
 
-const Profile = ({user, serverError, serverSuccess}) => {
+const Profile = ({serverError, serverSuccess}) => {
+
+    //user data store
+    const [conUser, setConUser] = useState(null);
 
     //personal details
-    const [firstname, setFirstname] = useState(user["user"].firstname);
-    const [lastname, setLastname] = useState(user["user"].lastname);
-    const [phone, setPhone] = useState(user["user"].phone);
-    const [email, setEmail] = useState(user["user"].email);
+    const [firstname, setFirstname] = useState(conUser ? conUser.firstname : "" );
+    const [lastname, setLastname] = useState(conUser ? conUser.lastname : "");
+    const [phone, setPhone] = useState(conUser ? conUser.phone : "");
+    const [email, setEmail] = useState(conUser ? conUser.email : "");
 
     // Shipping deatails
-    const [city, setCity] = useState(user["user"].city);
-    const [state, setState] = useState(user["user"].state);
-    const [country, setCountry] = useState(user["user"].country);
-    const [address, setAddress] = useState(user["user"].address);
+    const [city, setCity] = useState(conUser ? conUser.city : "");
+    const [state, setState] = useState(conUser ? conUser.state : "");
+    const [country, setCountry] = useState(conUser ? conUser.country : "");
+    const [address, setAddress] = useState(conUser ? conUser.address : "");
 
-    //password changing data
-    const [oldPassword, setOldPassword] = useState("");
-    const [newPassword, setNewPassword] = useState("");
-    const [passBtn, SetPassBtn] = useState("change");
 
     //button state value
     const [btnValue, setBtnValue] = useState("Update");
 
     //public folder
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
+
+
+
+    //fetch user information
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        // Fetch data from MongoDB or your backend API
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user["user"]._id}`)
+            .then(response => response.json())
+            .then(data => {
+                setConUser(data);
+                setUserData(data);
+            })
+            .catch(error => console.error("Error fetching current User:", error));
+    }, []);
+
+
+    // function to update user state
+    const setUserData = (data) => {
+
+        //personal information
+        setFirstname(data.firstname);
+        setLastname(data.lastname);
+        setPhone(data.phone);
+        setEmail(data.email);
+
+        // Shipping deatails
+        setCity(data.city);
+        setState(data.state);
+        setCountry(data.country);
+        setAddress(data.address);
+    }
+
+
+
 
     //function to handle profile update
     const handleProfileUpdate = async (e) => {
@@ -36,83 +73,56 @@ const Profile = ({user, serverError, serverSuccess}) => {
         //change button status to updating
         setBtnValue("Updating...");
 
-        if(firstname && lastname && phone && email && city && state && country && address ) {
+        if(!firstname || !lastname || !phone || !email || !city || !state || !country || !address ) {
 
-            const updateInfo = { 
-                firstname, 
-                lastname, 
-                phone, 
-                email,
-                city,
-                state,
-                country,
-                address 
-            };
-
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}${user["user"].username}/`, {              
-                
-                // Adding method type
-                method: "PUT",
-                
-                // Adding body or contents to send
-                body: JSON.stringify(updateInfo),
-                
-                // Adding headers to the request
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            })
-
-            const data = await response.json(); 
-
-            //check login status
-            if (response.status === 200){
-                window.location.replace(`/${user["user"].username}`);
-                serverSuccess('Updated');
-                setBtnValue("Update");
-
-            }else{
-                serverError(data.msg);
-                setBtnValue("Update");
-            }
-        }else {
             serverError("Enter All fields!");
             setBtnValue("Update");
-        }
-    }
 
-    //function to handle password update
-    const handleChangePassword = async (e) => {
-        e.preventDefault();
-        SetPassBtn("Processing...")
+        }else {
 
-        const passInfo = {
-            oldPassword,
-            newPassword
-        }
+            try {
 
-        try{
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}${user["user"].username}/pass`, {              
-                
-                // Adding method type
-                method: "PUT",
-                
-                // Adding body or contents to send
-                body: JSON.stringify(passInfo),
-                
-                // Adding headers to the request
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                const updateInfo = { 
+                    firstname, 
+                    lastname, 
+                    phone, 
+                    email,
+                    city,
+                    state,
+                    country,
+                    address 
+                };
+    
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${conUser._id}`, {              
+                    
+                    // Adding method type
+                    method: "PUT",
+                    
+                    // Adding body or contents to send
+                    body: JSON.stringify(updateInfo),
+                    
+                    // Adding headers to the request
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+
+                const data = await response.json(); 
+
+                //check login status
+                if (response.status === 200){
+                    window.location.replace(`/${conUser.username}`);
+                    serverSuccess('Account Updated');
+                    setBtnValue("Update");
+    
+                }else{
+                    serverError(data.msg);
+                    setBtnValue("Update");
                 }
-            })
-
-            //check login status
-            if (response.status === 200){
-                serverSuccess("Password changed!")
-                SetPassBtn("Update")
-            }
 
             }catch(e){serverError(e.message)};
+
+        }
     }
 
 
@@ -127,29 +137,15 @@ const Profile = ({user, serverError, serverSuccess}) => {
                         <img src={pf + "img/bg/d.jpg"} alt="pro_photo" />
                     </div>
 
-                    <div class="pro-card-label">
-                        <h1 id="Username">{user["user"].username}</h1>
+                    <div className="pro-card-label">
+                        <h1 id="Username">{ conUser ? conUser.username : "Username" }</h1>
                     </div>
 
                     <div className="pro-more-action-desktop">
                         
-                        <div className="pro-change-pass-block">
-            
-                            <h2>Change password</h2>
+                        <ChangePass serverError={serverError} serverSuccess={serverSuccess} conUser={conUser}/>
 
-                            <form onSubmit={ handleChangePassword } method="POST">
-                                <input type="text" placeholder="Enter Old Password" onChange={ (e) => {setOldPassword(e.target.value)}}/>
-                                <input type="text" placeholder="Enter New Password" onChange={ (e) => {setNewPassword(e.target.value)}}/>
-
-                                <div className="pro-change-passBtn">
-                                    <button type="submit"> {passBtn} </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div className="pro-delete-account">
-                            <button type="button"> Delete Account </button>
-                        </div>
+                        <DelAcctBtn conUser={conUser}/>
                     </div>
                 </div>
 
@@ -217,23 +213,9 @@ const Profile = ({user, serverError, serverSuccess}) => {
 
                     <div className="pro-more-action-mobile">
                         
-                        <div className="pro-change-pass-block">
-            
-                            <h2>Change password</h2>
+                        <ChangePass serverError={serverError} serverSuccess={serverSuccess} conUser={conUser}/>
 
-                            <form onSubmit={ handleChangePassword } method="POST">
-                                <input type="text" placeholder="Enter Old Password" onChange={ (e) => {setOldPassword(e.target.value)}}/>
-                                <input type="text" placeholder="Enter New Password" onChange={ (e) => {setNewPassword(e.target.value)}}/>
-
-                                <div className="pro-change-passBtn">
-                                    <button type="submit"> {passBtn} </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div className="pro-delete-account">
-                            <button type="button"> Delete Account </button>
-                        </div>
+                        <DelAcctBtn conUser={conUser}/>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ const Slide = ({pf}) => {
                 <div className="content">
                     <h1>Buy your oil at an affordable</h1>
                     <p>Price</p>
-                    <a href="#buyNow">Order Now</a>
+                    <a href="/#buyNow">Order Now</a>
                 </div>
             </div>
         </SwiperSlide> 

@@ -46,13 +46,30 @@
 
 
 .feature:hover {
-    color: rgb(228,24,24);
+    color: #e41818;
     box-shadow: 2px 2px 20px #ddd;
 }
 
 .feature:hover ~ .featureInner span {
     transform: rotate(5deg);
 }
+
+
+/* ordering form block */
+.ordering-block{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.ordering-beside {
+    padding: 1px;
+    background-color: #e41818;
+}
+
 
 
 /* contact form design */

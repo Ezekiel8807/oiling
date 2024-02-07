@@ -83,7 +83,7 @@ function App() {
       <Routes>
 
         {/* Index Routes */}
-        <Route exact path="/" element={ <Home pf={ pf } user={user} serverWarn={serverWarn} serverSuccess= {serverSuccess} serverError={serverError}/> }/>
+        <Route exact path="/" element={ <Home pf={ pf } user={user} serverWarn= {serverWarn} serverSuccess= {serverSuccess} serverError={serverError}/> }/>
         <Route path="/about" element={ <About pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
@@ -91,7 +91,7 @@ function App() {
 
         {/* User routes */}
         <Route path="/:username" element={ <Profile user={user} serverSuccess={serverSuccess} serverError={serverError}/> } />
-        <Route path="/:username/orders" element={ <UserOrder user={user} serverWarn={serverWarn} serverSuccess={serverSuccess} serverError={serverError}/> } />
+        <Route path="/:username/orders" element={ <UserOrder user={user} serverwarn= {serverWarn} serverSuccess={serverSuccess} serverError={serverError}/> } />
 
 
         {/* Admin routes */}
