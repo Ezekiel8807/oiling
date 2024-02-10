@@ -46,11 +46,11 @@ const Navbar = ({admin, user, serverSuccess, openCloseAdminMobileNav}) => {
             { (admin === null) && 
             <nav className="navlink" id="navlink"> 
                 <a href="/"> Home </a> 
-                {user && <a href={`/${user["user"].username}`}> profile </a>}
-                {user && <a href={`/${user["user"].username}/orders`}> Order </a>}
+                {user && <a href={`/${user.username}`}> profile </a>}
+                {user && <a href={`/${user.username}/orders`}> Orders</a>}
                 <a href="/about"> About </a> 
-                {!user && <a href="/register">Register</a>} 
-                {!user && <a href="/login">Login</a> }
+                { (user === null) && <a href="/register">Register</a>} 
+                {(user === null) && <a href="/login">Login</a> }
                 {user && <button className="userLogout" onClick={ userLogout }> Logout </button>}
             </nav>}
 

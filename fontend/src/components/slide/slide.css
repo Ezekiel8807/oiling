@@ -1,6 +1,13 @@
+.slide {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .imgBox {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     margin: 20px auto;
 }
 
@@ -9,18 +16,12 @@
     height: 100%;
 }
 
-.content {
-    text-align: center;
-}
-
 .content h1 {
     font-size: 3em;
-    text-align: center;
 }
 
 .content p {
     font-size: 3em;
-    text-align: center;
     color: #e41818;
     font-weight: bold;
 }
@@ -28,12 +29,42 @@
 .content a {
     width: 200px;
     border: none;
-    padding: 10px;
-    font-size: 16px;
+    padding: 20px;
+    font-size: 20px;
     color: #ffffff;
-    margin: 20px auto;
     cursor: pointer;
     display: block;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 10px;
     text-decoration: none;
     background-color: #e41818;
+    box-shadow: 0px 0px 2px #000;
+}
+
+@media screen and (max-width: 760px){
+
+    .slide {
+        flex-direction: column-reverse;
+        align-content: center;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .content a {
+        padding: 10px;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .imgBox {
+        width: 300px;
+        height: 300px;
+        margin: 20px auto;
+    }
+
+
 }

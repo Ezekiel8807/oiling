@@ -63,7 +63,7 @@
 }
 
 .orderBtnDiv {
-   padding: 20px;
+   padding: 20px 0;
    text-align: center;
 }
 
@@ -76,4 +76,10 @@
     border-radius: 5px;
     border: 2px solid #11c049;
     background-color: #11c049;
+}
+
+@media screen  and (max-width: 760px){
+    .orderBtn {
+        width: 100%;;
+    }
 }

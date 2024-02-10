@@ -7,15 +7,27 @@ const productSchema = new mongoose.Schema({
     type: [
         {
             litre: Number,
-            price: Number
+            price: Number,
+            devFees: {
+                type: Number,
+                default: 200
+            }
         },
         {
             litre: Number,
-            price: Number
+            price: Number,
+            devFees: {
+                type: Number,
+                default: 500
+            }
         },
         {
             litre: Number,
-            price: Number
+            price: Number,
+            devFees: {
+                type: Number,
+                default: 200
+            }
         }
     ],
 

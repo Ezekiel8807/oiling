@@ -1,6 +1,10 @@
 import "./profile.css";
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+
+
+//components
 import ChangePass from "../../components/changePass/ChangePass";
 import DelAcctBtn from "../../components/delAcctBtn/DelAcctBtn";
 
@@ -30,7 +34,8 @@ const Profile = ({serverError, serverSuccess}) => {
     //public folder
     const pf = process.env.REACT_APP_PUBLIC_FOLDER;
 
-
+    // initialize useNavigation
+    const navigate = useNavigate();
 
     //fetch user information
     useEffect(() => {
@@ -62,9 +67,6 @@ const Profile = ({serverError, serverSuccess}) => {
         setCountry(data.country);
         setAddress(data.address);
     }
-
-
-
 
     //function to handle profile update
     const handleProfileUpdate = async (e) => {
@@ -111,7 +113,7 @@ const Profile = ({serverError, serverSuccess}) => {
 
                 //check login status
                 if (response.status === 200){
-                    window.location.replace(`/${conUser.username}`);
+                    navigate(`/${conUser.username}`);
                     serverSuccess('Account Updated');
                     setBtnValue("Update");
     

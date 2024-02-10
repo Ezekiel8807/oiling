@@ -1,21 +1,37 @@
 import "./orderForm.css";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-
+import { useState, useEffect } from "react";
 
 //components
-const Order = ({user, serverSuccess, serverError, serverWarn}) => {
+const Order = ({ serverSuccess, serverError, serverWarn}) => {
+
+    //user store
+    const [user, setUser ] = useState(null);
 
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedQuality, setSelectedQuality] = useState(null);
+    const [deliveryFees, setDeliveryFees] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const [deliveryFees, setDeliveryFees] = useState(500);
     const [totalAmount, setTotalAmount] = useState(0);
 
     //react router navigation
-    const navigate = useNavigate();
+    // const navigate = Navigate();
+
+    //fetch user information
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if(user){
+            // Fetch data from MongoDB or your backend API
+            fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user["user"]._id}`)
+            .then(response => response.json())
+            .then(data => {
+                setUser(data);
+            })
+            .catch(error => console.error("Error fetching current User:", error));
+        }
+
+    }, []);
 
     // fetch products on pageload
     useEffect(() => {
@@ -24,17 +40,17 @@ const Order = ({user, serverSuccess, serverError, serverWarn}) => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
-                setDeliveryFees(1000);
                 setSelectedProduct(data[0]); // Select the first oil by default
                 setSelectedQuality(data[0]?.type[0]); // Select the first quality by default
+                setDeliveryFees(data[0]?.type[0].devFees);
             })
-            .catch(error => console.error("Error fetching oils:", error));
+            .catch(error => console.error("Error fetching products:", error));
     }, []);
 
+    // Update total amount whenever selectedOil, selectedQuality, or quantity changes
     useEffect(() => {
-        // Update total amount whenever selectedOil, selectedQuality, or quantity changes
-        if (selectedProduct && selectedQuality) {
-            const price = selectedQuality.price * quantity + deliveryFees;
+        if (selectedProduct && selectedQuality ) {
+            const price = (selectedQuality.price * quantity) + deliveryFees;
             setTotalAmount(price);
         }
     }, [selectedProduct, selectedQuality, quantity, deliveryFees]);
@@ -44,11 +60,11 @@ const Order = ({user, serverSuccess, serverError, serverWarn}) => {
         e.preventDefault();
 
         if(user === null) {
-            navigate("/login");
+            window.location.replace("/login");
             serverError("Login required!");
 
-        } else if (user["user"].isUpdated === false) {
-            navigate(`/${user["user"].username}`);
+        } else if (user.isUpdated === false) {
+            window.location.replace(`/${user.username}`);
             serverWarn("Update your profile!!!");
 
         } else {
@@ -58,7 +74,7 @@ const Order = ({user, serverSuccess, serverError, serverWarn}) => {
             }else{
 
                 const orderObj = {
-                    user: user['user'].username,
+                    user: user.username,
                     product: selectedProduct['name'],
                     quality: selectedQuality['litre'],
                     quantity: quantity,
@@ -80,7 +96,7 @@ const Order = ({user, serverSuccess, serverError, serverWarn}) => {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    navigate(`/${user["user"].username}/orders`);
+                    window.location.replace(`/${user.username}/orders`);
                     serverSuccess(data.msg);
                 })
                 .catch(e => serverError(e.msg))
@@ -111,8 +127,9 @@ const Order = ({user, serverSuccess, serverError, serverWarn}) => {
                     <label htmlFor="quality">Quality (Litres): </label>
                     <select name="quality" id="quality" value = { selectedQuality ?  
                         selectedQuality.litre : ""} onChange={(e) => {
-                        const selectedQuality = selectedProduct.type.find(type => type.litre === parseInt(e.target.value));
-                        setSelectedQuality(selectedQuality); }}>
+                            const selectedQuality = selectedProduct.type.find(type => type.litre === parseInt(e.target.value));
+                            // const selectedDevFees = selectedProduct.type.find(type => type.devFees)
+                            setSelectedQuality(selectedQuality); setDeliveryFees( (deliveryFees * quantity) / 2 ); }}>
 
                         {selectedProduct && selectedProduct.type.map(type => (
                             <option key={type.litre} value={type.litre}>{`${type.litre} litres`}</option>
@@ -121,7 +138,9 @@ const Order = ({user, serverSuccess, serverError, serverWarn}) => {
 
                     <label htmlFor="quantity">Quantity: </label>
                     <input name="quantity" id="quantity" type="number" value={quantity}
-                        onChange={(e) => setQuantity(parseInt(e.target.value))}
+                        onChange={(e) => {
+                            setQuantity(parseInt(e.target.value))}
+                        }
                         autoComplete="true"
                         placeholder="Number of kegs"
                         required

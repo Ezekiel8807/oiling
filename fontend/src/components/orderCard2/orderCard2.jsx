@@ -2,21 +2,92 @@ import './orderCard2.css';
 
 
 
-const orderCard2 = ({orders}) => {
+const orderCard2 = ({orders, serverSuccess }) => {
 
     const decline = (id) => {
-        console.log(id);
+        
+        const requirement = {
+            status: "Declined"
+        }
+
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+
+            //methods
+            method: "PUT",
+
+            // Adding body or contents to send
+            body: JSON.stringify(requirement),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
     }
 
-    const processing = (id) => {
+    const accept = (id) => {
+        
+        const requirement = {
+            status: "Accepted"
+        }
+
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+
+            //methods
+            method: "PUT",
+
+            // Adding body or contents to send
+            body: JSON.stringify(requirement),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
         
     }
 
     const delivered = (id) => {
+                
+        const requirement = {
+            status: "Delivered"
+        }
 
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+
+            //methods
+            method: "PUT",
+
+            // Adding body or contents to send
+            body: JSON.stringify(requirement),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
     }
-
-
 
     return (
         <div>
@@ -26,7 +97,7 @@ const orderCard2 = ({orders}) => {
                         <tbody>
                             <tr>
                                 <td>Name: </td>
-                                <td>{order.fullname}</td>
+                                <td>{order.user}</td>
                             </tr>
                             <tr>
                                 <td>Product: </td>
@@ -47,9 +118,9 @@ const orderCard2 = ({orders}) => {
                         </tbody>
                     </table>
                     <div className="actionsBtn">
-                        <button onClick={ decline(order._id)} className='decline'>Decline</button>
-                        <button onClick={processing(order._id)} className='processing'>processing</button>
-                        <button onClick={delivered(order._id)} className='delivered'>Delivered</button>
+                        <button onClick={ () => { decline(order._id)}} className='decline'>Decline</button>
+                        <button onClick={ () => { accept(order._id)}} className='processing'>Accept</button>
+                        <button onClick={ () => { delivered(order._id)}} className='delivered'>Delivered</button>
                     </div>
                 </div>
             )}

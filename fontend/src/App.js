@@ -31,14 +31,13 @@ import NotFound from './views/notfound/NotFound';
 // import SellerDash from './views/sellerDash/SellerDash';
 
 import UserOrder from './views/userOrder/UserOrder.jsx';
+import Order from './views/order/Order.jsx';
 
 function App() {
 
   const getAdmin = JSON.parse(localStorage.getItem('admin'));
-  const getUser = JSON.parse(localStorage.getItem('user'));
 
-
-  const [ user, setUser] = useState(getUser != null ? getUser : false);
+  const [ user, setUser] = useState(null);
   const [ admin, setAdmin] = useState(getAdmin != null ? getAdmin : false);
 
   // server error messsages
@@ -53,12 +52,22 @@ function App() {
   useEffect(() => {
 
     //Update user data on refresh
-    setUser(JSON.parse(localStorage.getItem('user')));
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if(user){
+      // Fetch user data from MongoDB or your backend API
+      fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user['user']._id}`)
+      .then(response => response.json())
+      .then(data => {
+        setUser(data);
+      })
+      .catch(error => console.error("Error fetching user:", error));
+    }
 
     //up
     setAdmin(JSON.parse(localStorage.getItem('admin')));
 
-  }, [])
+  }, [user])
 
 
 
@@ -83,14 +92,17 @@ function App() {
       <Routes>
 
         {/* Index Routes */}
-        <Route exact path="/" element={ <Home pf={ pf } user={user} serverWarn= {serverWarn} serverSuccess= {serverSuccess} serverError={serverError}/> }/>
+        <Route exact path="/" element={ <Home pf={ pf } serverWarn= {serverWarn} serverSuccess= {serverSuccess} serverError={serverError}/> }/>
+        <Route path="/order" element={ <Order pf={ pf } serverWarn= {serverWarn} serverSuccess= {serverSuccess} serverError={serverError}/> } />
+
+
         <Route path="/about" element={ <About pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/login" element={ <Login pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
         <Route path="/register" element={ <Register pf={ pf } serverSuccess= {serverSuccess} serverError={serverError}/> } />
 
 
         {/* User routes */}
-        <Route path="/:username" element={ <Profile user={user} serverSuccess={serverSuccess} serverError={serverError}/> } />
+        <Route path="/:username" element={ <Profile serverSuccess={serverSuccess} serverError={serverError}/> } />
         <Route path="/:username/orders" element={ <UserOrder user={user} serverwarn= {serverWarn} serverSuccess={serverSuccess} serverError={serverError}/> } />
 
 

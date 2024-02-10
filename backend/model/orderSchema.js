@@ -13,7 +13,7 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "processing",
+        default: "Processing",
     },
     amount: Number,
     time: {

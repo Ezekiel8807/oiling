@@ -14,7 +14,7 @@ export const allOrder = async (req, res) => {
     }
 }
 
-//get userOrder
+//get single  userOrder
 export const userOrder = async (req, res) => {
 
     const username = req.params.id;
@@ -30,7 +30,7 @@ export const userOrder = async (req, res) => {
 }
 
 
-//store user border
+//store user order
 export const setOrder = async (req, res) => {
     try {
         const { user, product, quality, quantity, amount } = req.body;
@@ -54,15 +54,13 @@ export const setOrder = async (req, res) => {
 
 
 
-//Remove user border
+//Remove user order
 export const removeOrder = async (req, res) => {
     try {
 
         const { id } = req.params;
-        const order = await orders.findOne({_id : id});
-
-        await orders.remove(order);
-        res.status(200).json({ msg: "Ordered Removed" });
+        const order = await orders.findByIdAndDelete({_id: id});
+        if(order) return res.status(200).json({ msg: "Ordered Removed" });
 
       } catch (err) {
         res.status(500).json({ error: err.message });
@@ -70,23 +68,16 @@ export const removeOrder = async (req, res) => {
 }
 
 
-//reject user border
-export const declineOrder = async (req, res) => {
+//update user order
+export const updateOrder = async (req, res) => {
     try {
 
         const { id } = req.params;
-        const order = await orders.findOne({_id : id});
+
+        const order = await orders.findByIdAndUpdate(id, req.body);
         if(!order) return res.status(404).json({ msg: "something went wrong" });
 
-        const updatedOrder = order({
-            fullname,
-            product,
-            quality,
-            quantity,
-            amount,
-            status: "declined"
-        });
-
+        return res.status(200).json({ msg: "updated" });
 
       } catch (err) {
         res.status(500).json({ error: err.message });

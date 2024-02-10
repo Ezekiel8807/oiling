@@ -1,16 +1,136 @@
 import './orderCard.css';
-import { BsDropbox} from 'react-icons/bs';
+import { TbTrash } from "react-icons/tb";
 
-const OrderCard = ({orders}) => {
+const OrderCard = ({orders, serverSuccess}) => {
 
+
+    //delete each other
+    const deleteOrder = (id) => {
+
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+
+            //methods
+            method: "DELETE",
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
+    }
+
+
+    //cancel each other
+    const cancelOrder = (id) => {
+
+        const requirement = {
+            status: "Declined"
+        }
+
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+
+            //methods
+            method: "PUT",
+
+            // Adding body or contents to send
+            body: JSON.stringify(requirement),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
+    }
+
+
+    //Confirm delivered order
+    const orderDelivered = (id) => {
+
+        const requirement = {
+            status: "Delivered"
+        }
+
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+
+            //methods
+            method: "PUT",
+
+            // Adding body or contents to send
+            body: JSON.stringify(requirement),
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
+    }
+
+    
 
     return(
         <>
-            { orders.map(order => {
+            { orders.map( order => {
+
+
+                const value = ["#FEDE00", "#FE0000", "#11c049", "#00C2FF"];
+
+                let color;
+
+                switch(order.status){
+
+                    case "Processing":
+                        color = value[0];
+                        break;
+
+                    case "Declined":
+                        color = value[1];
+                        break; 
+                        
+                    case "Accepted":
+                        color = value[2];
+                        break;
+                    
+                    default:
+                        color = value[3];
+                        break;
+                }
+
+                const state = {
+                    padding: '5px',
+                    color: 'white',
+                    fontSize: '10px',
+                    fontWeight: 'bold',
+                    backgroundColor: color,
+                }
+
                 return (
+
                     <div className="new_order" key={order._id}>
+
                         <div className="new-order-header">
                             <h3>{order.product}</h3>
+                            <TbTrash onClick={ () => { deleteOrder(order._id) }}/>
                         </div>
             
                         <div className="new-order-body">
@@ -38,11 +158,12 @@ const OrderCard = ({orders}) => {
                             </div>
             
                             <div className="new-order-badge">
-                                <span className="state">{order.status}</span>
+                                <span style={state}>{order.status}</span>
                             </div>
-            
+
                             <div className="new-order-actionBtn">
-                                <button type="button">Cancel order</button>
+                                {(order.status === "Processing") && <button onClick={() => {cancelOrder(order._id)}} type="button">Cancel order</button>}
+                                {(order.status === "Accepted") && <button onClick={() => {orderDelivered(order._id)}} type="button" className='confirm'>Confirm delivery</button> }
                             </div>
                         </div>
                     </div>

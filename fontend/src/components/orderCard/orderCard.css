@@ -1,9 +1,8 @@
-
 .new_order {
     width: 200px;
     padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 15px;
+    margin-bottom: 20px;
     border-radius: 10px;
     position: relative;
     background-color: #ffffff;
@@ -17,7 +16,8 @@
 
 .new-order-header {
     padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
     border-bottom: 2px solid #ddd;
 }
 
@@ -30,15 +30,8 @@
 
 .new-order-badge {
     top: 0;
-    left: 0;
-    padding: 2px;
+    left: 10px;
     position: absolute;
-    background-color: yellow;
-}
-
-.new-order-badge span{
-    font-size: 10px;
-    font-weight: bold;
 }
 
 .new-order-actionBtn {
@@ -54,4 +47,26 @@
     cursor: pointer;
     border-radius: 25px;
     background-color: #eb2424;
+}
+
+.new-order-actionBtn .confirm {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: #11c049;
+}
+
+
+@media screen and (max-width: 760px){
+
+    .new_order {
+        width: 250px;
+        padding: 10px;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
 }

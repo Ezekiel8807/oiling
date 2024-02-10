@@ -36,7 +36,7 @@ const OrderList = ({pf, serverSuccess, admin}) => {
                         <table className='adminList'>
                             <thead>
                                 <tr className='adminList_head'>
-                                    <th>Fullname</th>
+                                    <th>User</th>
                                     <th>Product</th>
                                     <th>Quality</th>
                                     <th>Quantity</th>
@@ -49,7 +49,7 @@ const OrderList = ({pf, serverSuccess, admin}) => {
 
                                 <tbody key={order._id} >
                                     <tr className='adminList_body'>
-                                        <td>{order.fullname}</td>
+                                        <td>{order.user}</td>
                                         <td>{order.product}</td>
                                         <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
                                         <td>{order.quantity}</td>

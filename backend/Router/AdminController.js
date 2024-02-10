@@ -2,7 +2,7 @@ import express from "express";
 
 //administrators api
 import { adminLogin, createAdmin, getAllAdmins } from "../api/admin.js";
-import { allOrder, declineOrder, removeOrder, setOrder } from "../api/order.js";
+import { allOrder, removeOrder, setOrder, updateOrder } from "../api/order.js";
 import { getProducts, setProduct, updateProduct } from "../api/product.js";
 
 //initialize express router
@@ -28,7 +28,7 @@ Router.post('/register', createAdmin );
 Router.get('/order', allOrder );
 Router.post('/order', setOrder );
 Router.get('/order/:id', removeOrder);
-Router.put('/order/:id', declineOrder);
+Router.put('/order/:id', updateOrder);
 
 //Product routes
 Router.get('/products', getProducts );

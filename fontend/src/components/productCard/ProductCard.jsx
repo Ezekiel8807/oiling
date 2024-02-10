@@ -1,11 +1,7 @@
-import { useState } from "react";
 import "./productCard.css";
 
 
 const ProductCard = ({products}) => {
-
-    const [name, setName] = useState("")
-    const [type, setType] = useState("")
 
     return(
         <div className="productCard">

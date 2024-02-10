@@ -21,7 +21,13 @@ const Slide = ({pf}) => {
         autoplay= {{delay: 10000}} >
         
         <SwiperSlide>
-            <div className="slide2">
+            <div className="slide">
+
+                <div className="content">
+                    <h1>Buy your oil at an affordable</h1>
+                    <p>Price</p>
+                    <a href="/#buyNow">Order Now</a>
+                </div>
 
                 <div className="image">
                     <div className="imgBox">
@@ -29,28 +35,24 @@ const Slide = ({pf}) => {
                     </div>
                 </div>
 
-                <div className="content">
-                    <h1>Buy your oil at an affordable</h1>
-                    <p>Price</p>
-                    <a href="/#buyNow">Order Now</a>
-                </div>
             </div>
         </SwiperSlide> 
 
         <SwiperSlide>
-            <div className="slide2">
-
-                <div className="image">
-                    <div className="imgBox">
-                        <img src={`${pf}img/bg/e.png`} alt="image1" />
-                    </div>
-                </div>
+            <div className="slide">
 
                 <div className="content">
                     <h1>Buy your oil at an affordable</h1>
                     <p>Price</p>
                     <a href="#buyNow">Order Now</a>
                 </div>
+
+                <div className="image">
+                    <div className="imgBox">
+                        <img src={`${pf}img/bg/e.png`} alt="image1" />
+                    </div>
+                </div>
+                
             </div>
         </SwiperSlide> 
       </Swiper>
