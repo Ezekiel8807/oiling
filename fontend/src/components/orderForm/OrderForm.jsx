@@ -50,7 +50,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
     // Update total amount whenever selectedOil, selectedQuality, or quantity changes
     useEffect(() => {
         if (selectedProduct && selectedQuality ) {
-            const price = (selectedQuality.price * quantity) + deliveryFees;
+            const price = (selectedQuality.price * quantity) + (deliveryFees * quantity) / quantity ;
             setTotalAmount(price);
         }
     }, [selectedProduct, selectedQuality, quantity, deliveryFees]);
@@ -127,9 +127,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
                     <label htmlFor="quality">Quality (Litres): </label>
                     <select name="quality" id="quality" value = { selectedQuality ?  
                         selectedQuality.litre : ""} onChange={(e) => {
-                            const selectedQuality = selectedProduct.type.find(type => type.litre === parseInt(e.target.value));
-                            // const selectedDevFees = selectedProduct.type.find(type => type.devFees)
-                            setSelectedQuality(selectedQuality); setDeliveryFees( (deliveryFees * quantity) / 2 ); }}>
+                            const selectedQuality = selectedProduct.type.find(type => type.litre === parseInt(e.target.value)); setSelectedQuality(selectedQuality); setDeliveryFees(selectedQuality.devFees)}}>
 
                         {selectedProduct && selectedProduct.type.map(type => (
                             <option key={type.litre} value={type.litre}>{`${type.litre} litres`}</option>
@@ -148,6 +146,10 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
 
                     <div className="note">
                         <small className="deliveryFees"> Delivery fees: </small> <small>{`#${deliveryFees}`}</small>
+                    </div>
+
+                    <div className="note">
+                        <small className="deliveryFees"> price per one: </small> <small>{`#${(selectedQuality && selectedQuality.price)}`}</small>
                     </div>
 
                     <div className="note">
