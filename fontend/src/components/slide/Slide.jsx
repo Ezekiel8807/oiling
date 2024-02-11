@@ -24,8 +24,9 @@ const Slide = ({pf}) => {
             <div className="slide">
 
                 <div className="content">
-                    <h1>Buy your oil at an affordable</h1>
-                    <p>Price</p>
+                    <h1>Premium <span>food oils</span></h1>
+                    <p>Discover quality food oils at prices that won't break the bank. Elevate your cooking experience at affordable <span>Price</span>
+                    </p>
                     <a href="/#buyNow">Order Now</a>
                 </div>
 
@@ -42,9 +43,10 @@ const Slide = ({pf}) => {
             <div className="slide">
 
                 <div className="content">
-                    <h1>Buy your oil at an affordable</h1>
-                    <p>Price</p>
-                    <a href="#buyNow">Order Now</a>
+                    <h1>Premium <span>food oils</span></h1>
+                    <p>Discover quality food oils at prices that won't break the bank. Elevate your cooking experience at affordable <span>Price</span>
+                    </p>
+                    <a href="/#buyNow">Order Now</a>
                 </div>
 
                 <div className="image">
