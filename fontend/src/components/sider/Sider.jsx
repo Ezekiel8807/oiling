@@ -23,7 +23,8 @@ const Side = ({serverSuccess, pf, admin}) => {
             <nav className="sideNav">
                 <Link to="/admin">Home</Link>
                 <Link to="/admin/product">Products</Link>
-                <Link to="/admin/OrderList">Order List</Link>
+                <Link to="/admin/orderList">Order List</Link>
+                <Link to="/admin/userList">User List</Link>
                 <Link to="/admin/adminList">Admin List</Link>
                 <Link to="/admin/createAdmin">Create Admin</Link>
                 <button  onClick={ logout }>Logout</button>

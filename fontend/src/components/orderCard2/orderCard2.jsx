@@ -4,13 +4,21 @@ import './orderCard2.css';
 
 const orderCard2 = ({orders, serverSuccess }) => {
 
+    // sort orders
+    const filterOrders = orders.filter((order) => {
+        if(order.status !== "Declined" && order.status !== "Delivered") return order;
+    });
+
+    //reverse order array
+    const revArray  = [...filterOrders].reverse();
+
     const decline = (id) => {
         
         const requirement = {
             status: "Declined"
         }
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
 
             //methods
             method: "PUT",
@@ -38,7 +46,7 @@ const orderCard2 = ({orders, serverSuccess }) => {
             status: "Accepted"
         }
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
 
             //methods
             method: "PUT",
@@ -67,7 +75,7 @@ const orderCard2 = ({orders, serverSuccess }) => {
             status: "Delivered"
         }
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
 
             //methods
             method: "PUT",
@@ -91,7 +99,7 @@ const orderCard2 = ({orders, serverSuccess }) => {
 
     return (
         <div>
-           { orders.map(order => 
+           { revArray.map(order => 
                 <div key={order._id} className="newOrder_div">
                     <table>
                         <tbody>

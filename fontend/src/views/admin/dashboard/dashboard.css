@@ -6,26 +6,19 @@
     grid-template-columns: 20% 80%;
 }
 
-.-board .main-content{
-    width: 100%;
-}
-
-.-board .sub-content {
-    width: 100%;
-    overflow-x: scroll;
-}
-
 @media screen and (max-width: 800px){
     .-board {
         display: block;
     }
 
-    .-board .main-content{
-        width: 100%;
+    .main-block-content{
+        width: 90%;
+        margin: auto;
     }
 
-    .sub-content {
-        margin: auto;
+    .main-block-content .dash_heading{
+        font-size: 1.5em;
+        margin: 20px auto;
     }
 }
 

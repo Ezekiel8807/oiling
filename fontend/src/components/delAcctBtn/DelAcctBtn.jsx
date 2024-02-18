@@ -11,7 +11,7 @@ const DelAcctBtn = ({conUser}) => {
         e.preventDefault();
         setDelBtn("Deleting...")
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${conUser._id}`, {
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${conUser._id}`, {
 
             // Adding method type
             method: "DELETE",

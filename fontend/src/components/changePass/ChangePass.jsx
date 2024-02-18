@@ -31,7 +31,7 @@ const ChangePass = ({serverError, serverSuccess, conUser}) => {
             }
 
             try{
-                const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/changePass`, {              
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/changePass`, {              
                     
                     // Adding method type
                     method: "PUT",

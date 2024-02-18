@@ -3,7 +3,7 @@ import orders from "../model/orderSchema.js";
 
 
 //get all order
-export const allOrder = async (req, res) => {
+export const allOrders = async (req, res) => {
     try{
         //check if user exist with that username
         const allOrders= await orders.find();

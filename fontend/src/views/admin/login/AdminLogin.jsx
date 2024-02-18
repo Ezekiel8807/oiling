@@ -28,7 +28,7 @@ const AdminLogin = ({serverError, serverSuccess, setIsAdmin}) => {
         }else {
             const loginInfo = { username, password };
 
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admin/login/`, {              
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/login/`, {              
                 
                 // Adding method type
                 method: "POST",

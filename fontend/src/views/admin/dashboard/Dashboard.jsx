@@ -11,30 +11,43 @@ const Dashboard = ({pf, serverSuccess, admin }) => {
     const [orders, setOrders] = useState([]);
 
 
-    useEffect( () => {
-        fetch(`http://127.0.0.1:5000/api/admin/order`)
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/orders`,{
+
+            //methods
+            method: "GET",
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
         .then(response => response.json())
         .then(data => {
             setOrders(data);
         })
-        .catch( err => console.log(err));
-
-    },[])
-    
+        .catch(err => console.error("Error fetching orders:", err ));
+    }, []);
 
 
     return (
         <div className="dashboard">
+
             <main className='-board'>
                 <Sider pf={ pf } serverSuccess={serverSuccess} admin={admin}/>
-                <div className="main-content">
-                    <h1 id='dash_heading' className='dash_heading'>New Orders</h1>
 
-                    <div id="sub-content" className="sub-content">
-                        <OrderCard2 orders={orders} serverSuccess={serverSuccess}/>
+                <div className="main-content">
+                    <div className="main-block-content">
+                        <h1 id='dash_heading' className='dash_heading'>New Orders</h1>
+
+                        <div id="sub-content" className="sub-content">
+                            <OrderCard2 orders={orders} serverSuccess={serverSuccess}/>
+                        </div>
                     </div>
                 </div>
             </main>
+
         </div>
     )
 }

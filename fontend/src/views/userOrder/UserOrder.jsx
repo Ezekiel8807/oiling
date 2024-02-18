@@ -19,7 +19,7 @@ const UserOrder = ({serverWarn, serverSuccess, serverError}) => {
         const user = JSON.parse(localStorage.getItem('user'));
 
         // Fetch data from MongoDB or your backend API
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user["user"]._id}`)
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${user["user"]._id}`)
             .then(response => response.json())
             .then(data => {
                 setUser(data);
@@ -34,7 +34,7 @@ const UserOrder = ({serverWarn, serverSuccess, serverError}) => {
         if(user){
             
             // Fetch data from MongoDB or your backend API
-            fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${user.username}`, {
+            fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${user.username}`, {
 
                 // Adding method type
                 method: "GET",

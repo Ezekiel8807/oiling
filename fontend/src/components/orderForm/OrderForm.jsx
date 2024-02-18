@@ -23,7 +23,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
 
         if(user){
             // Fetch data from MongoDB or your backend API
-            fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user["user"]._id}`)
+            fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${user["user"]._id}`)
             .then(response => response.json())
             .then(data => {
                 setUser(data);
@@ -36,7 +36,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
     // fetch products on pageload
     useEffect(() => {
         // Fetch data from MongoDB or your backend API
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admin/products`)
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/products`)
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
@@ -81,7 +81,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
                     amount: totalAmount,
                 }
 
-                fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders`, {
+                fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders`, {
                                         
                     // Adding method type
                     method: "POST",
@@ -149,7 +149,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
                     </div>
 
                     <div className="note">
-                        <small className="deliveryFees"> price per one: </small> <small>{`#${(selectedQuality && selectedQuality.price)}`}</small>
+                        <small className="deliveryFees"> Price / one: </small> <small>{`#${(selectedQuality && selectedQuality.price)}`}</small>
                     </div>
 
                     <div className="note">

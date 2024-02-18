@@ -48,8 +48,8 @@ emak.use(bodyParser.urlencoded({ extended: false }));
 
 // express entry point
 emak.use("/api", controller);
-emak.use("/api/user", userController);
-emak.use("/api/admin", adminController);
+emak.use("/api/users", userController);
+emak.use("/api/admins", adminController);
 
 //not found routes
 emak.use("*", (req, res) => {

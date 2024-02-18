@@ -16,7 +16,7 @@ const Product = ({pf, serverSuccess, admin}) => {
     // fetch products on pageload
     useEffect(() => {
         // Fetch data from MongoDB or your backend API
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admin/products`)
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/products`)
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
@@ -29,12 +29,14 @@ const Product = ({pf, serverSuccess, admin}) => {
         <div className="dashboard">
             <main className='-board'>
                 <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin} />
-                <div className="main-content">
-        
-                    <h1 id='dash_heading' className='dash_heading'>Products</h1>
 
-                    <div id="sub-content" className="sub-content">
-                        <ProductCard products={products}/>
+                <div className="main-content">
+                    <div className="main-block-content">
+                        <h1 id='dash_heading' className='dash_heading'>Products</h1>
+
+                        <div id="sub-content" className="sub-content">
+                            <ProductCard products={products}/>
+                        </div>
                     </div>
                 </div>
             </main>

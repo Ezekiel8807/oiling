@@ -42,7 +42,7 @@ const Profile = ({serverError, serverSuccess}) => {
         const user = JSON.parse(localStorage.getItem('user'));
 
         // Fetch data from MongoDB or your backend API
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user["user"]._id}`)
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${user["user"]._id}`)
             .then(response => response.json())
             .then(data => {
                 setConUser(data);
@@ -95,7 +95,7 @@ const Profile = ({serverError, serverSuccess}) => {
                     address 
                 };
     
-                const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${conUser._id}`, {              
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${conUser._id}`, {              
                     
                     // Adding method type
                     method: "PUT",

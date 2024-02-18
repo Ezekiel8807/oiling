@@ -1,4 +1,4 @@
-import './adminList.css';
+import './userList.css';
 
 
 //components
@@ -7,13 +7,13 @@ import { useState, useEffect } from 'react';
 
 
 
-const AdminList = ({pf, serverSuccess, admin}) => {
+const UserList = ({pf, serverSuccess, admin}) => {
 
-    const [admins, setAdmins] = useState([]);
+    const [users, setUsers] = useState([]);
 
     //get all orders
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users`,{
 
             //methods
             method: "GET",
@@ -26,14 +26,18 @@ const AdminList = ({pf, serverSuccess, admin}) => {
         })
         .then(response => response.json())
         .then(data => {
-            setAdmins(data);
+            setUsers(data);
         })
         .catch(err => console.error("Error fetching orders:", err ));
     }, []);
 
 
+    //users in reverse order
+    const revUsers = [...users].reverse();
+
+
     //oder delete function
-    const deleteAdmin = (id) => {
+    const deleteUser = (id) => {
 
         console.log(id);
 
@@ -67,7 +71,7 @@ const AdminList = ({pf, serverSuccess, admin}) => {
                 <div className="main-content">
                     <div className="main-block-content">
 
-                        <h1 id='dash_heading' className='dash_heading'>Admin List</h1>
+                        <h1 id='dash_heading' className='dash_heading'>Users List</h1>
 
                         <div id="sub-content" className="sub-content">
 
@@ -76,18 +80,30 @@ const AdminList = ({pf, serverSuccess, admin}) => {
                                     <thead className='adminList_head'>
                                         <tr>
                                             <th>USERNAME</th>
+                                            <th>FIRSTNAME</th>
+                                            <th>LASTNAME</th>
+                                            <th>PHONE</th>
                                             <th>EMAIL</th>
-                                            <th>TYPE</th>
+                                            <th>CITY</th>
+                                            <th>STATE</th>
+                                            <th>COUNTRY</th>
+                                            <th>ADDRESS</th>
                                             <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody className='adminList_body'>
-                                        { admins.map(admin => 
-                                            <tr id='adminId'  key={admin._id}>
-                                                <td>{admin.username}</td>
-                                                <td>{admin.email}</td>
-                                                <td>{admin.type}</td>
-                                                <td><button onClick={ () => { deleteAdmin(admin._id) }} className='actionBtn'>Delete</button></td>
+                                        { revUsers.map(user => 
+                                            <tr id='adminId'  key={user._id}>
+                                                <td>{user.username}</td>
+                                                <td>{user.firstname}</td>
+                                                <td>{user.lastname}</td>
+                                                <td>{user.phone}</td>
+                                                <td>{user.email}</td>
+                                                <td>{user.city}</td>
+                                                <td>{user.state}</td>
+                                                <td>{user.country}</td>
+                                                <td>{user.address}</td>
+                                                <td><button onClick={ () => { deleteUser(user._id) }} className='actionBtn'>Delete</button></td>
                                             </tr>
                                         )}
                                     </tbody>  
@@ -101,4 +117,4 @@ const AdminList = ({pf, serverSuccess, admin}) => {
     )
 }
 
-export default AdminList;
+export default UserList;

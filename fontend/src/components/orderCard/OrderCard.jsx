@@ -3,11 +3,14 @@ import { TbTrash } from "react-icons/tb";
 
 const OrderCard = ({orders, serverSuccess}) => {
 
+    // Reverse order 
+    const reversedOder = [...orders].reverse();
+
 
     //delete each other
     const deleteOrder = (id) => {
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
 
             //methods
             method: "DELETE",
@@ -34,7 +37,7 @@ const OrderCard = ({orders, serverSuccess}) => {
             status: "Declined"
         }
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
 
             //methods
             method: "PUT",
@@ -64,7 +67,7 @@ const OrderCard = ({orders, serverSuccess}) => {
             status: "Delivered"
         }
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
 
             //methods
             method: "PUT",
@@ -90,7 +93,7 @@ const OrderCard = ({orders, serverSuccess}) => {
 
     return(
         <>
-            { orders.map( order => {
+            { reversedOder.map( order => {
 
 
                 const value = ["#FEDE00", "#FE0000", "#11c049", "#00C2FF"];

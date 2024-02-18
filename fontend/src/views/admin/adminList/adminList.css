@@ -1,6 +1,5 @@
 .adminList {
     width: 100%;
-    overflow-x: scroll;
     border: 1px solid #ddd;
 }
 
@@ -30,8 +29,12 @@
 @media screen and (max-width: 640px){
 
     .adminList {
-        width: 100px;
-        overflow-x: scroll;
+        overflow-x: hidden;
 
+    }
+
+    .sub-content-block {
+        margin: auto;
+        overflow-x: scroll;
     }
 }

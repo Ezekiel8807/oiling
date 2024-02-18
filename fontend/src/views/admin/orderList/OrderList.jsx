@@ -9,57 +9,96 @@ import Sider from '../../../components/sider/Sider';
 
 const OrderList = ({pf, serverSuccess, admin}) => {
 
-
-    // get all Oders fron the localstorage
     const [orders, setOrders] = useState([]);
 
-    const fetchOrders = () => {
-        const getOrders = JSON.parse(localStorage.getItem("orders"));
-        setOrders(getOrders);
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/orders`,{
+
+            //methods
+            method: "GET",
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            setOrders(data);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
+    }, []);
+
+    //reverse order array
+    const revArray = [...orders].reverse();
+
+
+
+    //oder delete function
+    const deleteOrder = (id) => {
+
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/orders/${id}`,{
+
+            //methods
+            method: "DELETE",
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
     }
 
-    useEffect(() => {
-        fetchOrders();
-    }, [])
-    
+
 
     return (
         <div className="dashboard">
             <main className='-board'>
                 <Sider pf={ pf } serverSuccess= {serverSuccess} admin={admin} />
                 <div className="main-content">
+                    <div className="main-block-content">
+                        <h1 id='dash_heading' className='dash_heading'>Order List</h1>
 
-                    <h1 id='dash_heading' className='dash_heading'>Order List</h1>
+                        <div id="sub-content" className="sub-content">
 
-                    <div id="sub-content" className="sub-content">
+                            <div className="sub-content-block">
+                                <table className='adminList'>
+                                    <thead>
+                                        <tr className='adminList_head'>
+                                            <th>User</th>
+                                            <th>Product</th>
+                                            <th>Quality</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    { revArray.map(order => 
 
-                        <table className='adminList'>
-                            <thead>
-                                <tr className='adminList_head'>
-                                    <th>User</th>
-                                    <th>Product</th>
-                                    <th>Quality</th>
-                                    <th>Quantity</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            { orders.map(order => 
-
-                                <tbody key={order._id} >
-                                    <tr className='adminList_body'>
-                                        <td>{order.user}</td>
-                                        <td>{order.product}</td>
-                                        <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
-                                        <td>{order.quantity}</td>
-                                        <td>{order.amount}</td>
-                                        <td>{order.status}</td>
-                                        <td><button className='actionBtn'>Delete</button></td>
-                                    </tr>
-                                </tbody>
-                            )}
-                        </table>
+                                        <tbody key={order._id} >
+                                            <tr className='adminList_body'>
+                                                <td>{order.user}</td>
+                                                <td>{order.product}</td>
+                                                <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
+                                                <td>{order.quantity}</td>
+                                                <td>{order.amount}</td>
+                                                <td>{order.status}</td>
+                                                <td><button onClick={ () => { deleteOrder(order._id) }} className='actionBtn'>Delete</button></td>
+                                            </tr>
+                                        </tbody>
+                                    )}
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>

@@ -16,6 +16,7 @@ import Navbar from './components/navbar/Navbar.jsx';
 import AdminLogin from './views/admin/login/AdminLogin';
 import Product from './views/admin/product/Product.jsx';
 import AdminList from './views/admin/adminList/AdminList';
+import UserList from './views/admin/userList/UserList.jsx';
 import OrderList from './views/admin/orderList/OrderList';
 import AdminDashboard from './views/admin/dashboard/Dashboard';
 import CreateAdmin from './views/admin/createAdmin/CreateAdmin.jsx';
@@ -56,7 +57,7 @@ function App() {
 
     if(user){
       // Fetch user data from MongoDB or your backend API
-      fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/${user['user']._id}`)
+      fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${user['user']._id}`)
       .then(response => response.json())
       .then(data => {
         setUser(data);
@@ -67,7 +68,7 @@ function App() {
     //up
     setAdmin(JSON.parse(localStorage.getItem('admin')));
 
-  }, [user])
+  }, [])
 
 
 
@@ -118,6 +119,11 @@ function App() {
 
         {/* admin list route */}
         { admin && <Route path="/admin/adminList" element={<AdminList pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/> } /> }
+
+
+        {/* user list route */}
+        { admin && <Route path="/admin/userList" element={<UserList pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/>} />}
+
 
         {/* admin list route */}
         { admin && <Route path="/admin/orderList" element={<OrderList pf={ pf } admin={admin} serverSuccess= {serverSuccess} serverError={serverError}/>} />}

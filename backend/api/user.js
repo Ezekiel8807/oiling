@@ -18,7 +18,7 @@ export const singleUser = async (req, res) => {
     }
 }
 
-export const getAllUser = async (req, res) => {
+export const AllUser = async (req, res) => {
     try{
 
         //check if user exist with that username
