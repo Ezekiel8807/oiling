@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 //DataBase model
 import userData from "../model/userSchema.js";
+import orders from "../model/orderSchema.js";
 
 
 export const singleUser = async (req, res) => {
@@ -115,10 +116,25 @@ export const updatePassword = async(req, res) => {
 }
 
 export const delUser = async(req, res) => {
+    try {
 
-    const userId = req.params.id;
+        const { id } = req.params;
 
+        //Get user
+        const user = await userData.findById(id);
+        if(!user) return res.status(404).json({ msg: "User not found" });
 
-    const deletedUser = userData.findByIdAndDelete(userId);
-    console.log(deletedUser);
+        //Delete user orders..
+        const delUserOrders = await orders.deleteMany({"user": user.username});
+        if(!delUserOrders) return res.status(500).json({ msg: "Orders not found" });
+
+        //Delete user
+        const delUser = await userData.findByIdAndDelete({_id: id});
+        if(!delUser) return res.status(500).json({ msg: "Something went wrong while deleting user" });
+
+        res.status(200).json({ msg: "User Removed!" });
+
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 }

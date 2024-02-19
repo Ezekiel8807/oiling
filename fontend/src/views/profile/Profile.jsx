@@ -165,7 +165,7 @@ const Profile = ({serverError, serverSuccess}) => {
                                 </div>
 
                                 <div className="input-box">
-                                    <label htmlFor="lastname">Lastnane: </label>
+                                    <label htmlFor="lastname">Lastname: </label>
                                     <input type="text" name="lastname" id="lastname" defaultValue={lastname} placeholder="Enter Lastname" onChange={ (e) => {setLastname(e.target.value)}}/>
                                 </div>
 

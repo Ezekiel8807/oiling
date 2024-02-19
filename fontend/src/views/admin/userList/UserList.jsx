@@ -11,7 +11,7 @@ const UserList = ({pf, serverSuccess, admin}) => {
 
     const [users, setUsers] = useState([]);
 
-    //get all orders
+    //get all users
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users`,{
 
@@ -39,25 +39,23 @@ const UserList = ({pf, serverSuccess, admin}) => {
     //oder delete function
     const deleteUser = (id) => {
 
-        console.log(id);
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/${id}`,{
 
-        // fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}user/orders/${id}`,{
+            //methods
+            method: "DELETE",
 
-        //     //methods
-        //     method: "DELETE",
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
 
-        //     // Adding headers to the request
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8"
-        //     }
-
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     window.location.reload();
-        //     serverSuccess(data.msg);
-        // })
-        // .catch(err => console.error("Error fetching orders:", err ));
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.replace('/admin');
+            serverSuccess(data.msg);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
     }
 
 
