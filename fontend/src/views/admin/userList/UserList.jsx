@@ -11,6 +11,7 @@ const UserList = ({pf, serverSuccess, admin}) => {
 
     const [users, setUsers] = useState([]);
 
+
     //get all users
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users`,{
@@ -52,7 +53,7 @@ const UserList = ({pf, serverSuccess, admin}) => {
         })
         .then(response => response.json())
         .then(data => {
-            window.location.replace('/admin');
+            window.location.replace('/admin/userList');
             serverSuccess(data.msg);
         })
         .catch(err => console.error("Error fetching orders:", err ));
