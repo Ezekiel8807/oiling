@@ -1,7 +1,7 @@
 import express from "express";
 
 //administrators api
-import { adminLogin, createAdmin, getAllAdmins } from "../api/admin.js";
+import { adminLogin, createAdmin, delAdmin, getAllAdmins } from "../api/admin.js";
 import { allOrders, removeOrder, setOrder, updateOrder } from "../api/order.js";
 import { getProducts, setProduct, updateProduct } from "../api/product.js";
 
@@ -11,6 +11,7 @@ const Router = express.Router();
 
 // ======= Admin controller ================
 Router.get("/", getAllAdmins);
+Router.delete('/:id', delAdmin );
 
 // ======= Admin controller ================
 Router.post('/login', adminLogin);

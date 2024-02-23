@@ -1,8 +1,13 @@
 import './orderCard2.css';
+import { useState } from 'react';
 
 
 
-const orderCard2 = ({orders, serverSuccess }) => {
+
+const orderCard2 = ({orders, serverSuccess }) => { 
+
+    //const [duration, setDuration] = useState
+
 
     // sort orders
     const filterOrders = orders.filter((order) => {
@@ -43,7 +48,8 @@ const orderCard2 = ({orders, serverSuccess }) => {
     const accept = (id) => {
         
         const requirement = {
-            status: "Accepted"
+            status: "Accepted",
+            // duration: duration
         }
 
         fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
@@ -123,6 +129,10 @@ const orderCard2 = ({orders, serverSuccess }) => {
                                 <td>Amount: </td>
                                 <td>{order.amount}</td>
                             </tr>
+                            {/* <tr>
+                                <td>Duration: </td>
+                                <td><input onChange={ (e) => {setDuration(e.target.value)}} type="text" name="duration" id="duration" defaultValue={order.duration} /></td>
+                            </tr> */}
                         </tbody>
                     </table>
                     <div className="actionsBtn">

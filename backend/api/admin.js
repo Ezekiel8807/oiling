@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
+//DataBase model
 import admins from "../model/adminSchema.js";
 
 // admin login api
@@ -56,6 +58,7 @@ export const createAdmin = async (req, res) => {
 }
 
 
+//function to get single admin
 // export const SingleAdmin = async (req, res) => {
 //   try{
 
@@ -71,6 +74,7 @@ export const createAdmin = async (req, res) => {
 // }
 
 
+
 //get all admins function
 export const getAllAdmins = async (req, res) => {
   try{
@@ -80,5 +84,31 @@ export const getAllAdmins = async (req, res) => {
 
   }catch(err){
       res.status(404).json({ msg: "Invalid credentials. " });
+  }
+}
+
+
+// function to delete admin
+export const delAdmin = async(req, res) => {
+
+  try {
+
+      const { id } = req.params;
+
+      //Get user
+      const admin = await admins.findById(id);
+      if(!admin) return res.status(404).json({ msg: "Admin not found" });
+
+      // Chect its not main admin
+      if (admin.type == "main") return res.status(500).json({ msg: "Can't delete the main Admin" });
+
+      //Delete admin
+      const delAdmin = await admins.findByIdAndDelete({_id: id});
+      if(!delAdmin) return res.status(500).json({ msg: "Something went wrong while deleting Admin" });
+
+      res.status(200).json({ msg: "Admin Removed!" });
+
+    } catch (err) {
+      res.status(500).json({ error: err.message });
   }
 }
