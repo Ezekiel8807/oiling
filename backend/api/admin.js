@@ -59,19 +59,22 @@ export const createAdmin = async (req, res) => {
 
 
 //function to get single admin
-// export const SingleAdmin = async (req, res) => {
-//   try{
+export const singleAdmin = async (req, res) => {
+  try{
 
-//     const { id } =  req.params;
+    const { id } =  req.params;
 
-//     //get all admins
-//     const admin = await admins.findById(id);
-//     res.status(200).json(admin);
+    //get all admins
+    const admin = await admins.findById(id);
+    if(!admin) return res.status(404).json({ msg: "Admin not found!" });
 
-//   }catch(err){
-//       res.status(404).json({ msg: "Invalid credentials. " });
-//   }
-// }
+
+    res.status(200).json(admin);
+
+  }catch(err){
+      res.status(404).json({ msg: "Invalid credentials. " });
+  }
+}
 
 
 
@@ -103,7 +106,7 @@ export const delAdmin = async(req, res) => {
       if (admin.type == "main") return res.status(500).json({ msg: "Can't delete the main Admin" });
 
       //Delete admin
-      const delAdmin = await admins.findByIdAndDelete({_id: id});
+      const delAdmin = await admins.findByIdAndDelete({_id: admin._id});
       if(!delAdmin) return res.status(500).json({ msg: "Something went wrong while deleting Admin" });
 
       res.status(200).json({ msg: "Admin Removed!" });

@@ -11,24 +11,18 @@ const OrderList = ({pf, serverSuccess, admin}) => {
 
     const [orders, setOrders] = useState([]);
 
+
+    // function to fetch all orders on page load
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/orders`,{
 
-            //methods
-            method: "GET",
-
-            // Adding headers to the request
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-
-        })
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/orders`)
         .then(response => response.json())
         .then(data => {
-            setOrders(data);
+           (data === null) ? setOrders([]) : setOrders(data);
         })
         .catch(err => console.error("Error fetching orders:", err ));
     }, []);
+
 
     //reverse order array
     const revArray = [...orders].reverse();
@@ -54,7 +48,7 @@ const OrderList = ({pf, serverSuccess, admin}) => {
             window.location.reload();
             serverSuccess(data.msg);
         })
-        .catch(err => console.error("Error fetching orders:", err ));
+        .catch(err => console.error("Error deleting order:", err ));
     }
 
 

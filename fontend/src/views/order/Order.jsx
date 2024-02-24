@@ -4,10 +4,10 @@ import './order.css';
 import Order from '../../components/orderForm/OrderForm';
 
 
-const OrderPage = ({serverWarn, serverSuccess, serverError}) => {
+const OrderPage = ({ serverWarn, serverSuccess, serverError}) => {
     return(
         <div className="orderPage">
-            <Order serverWarn={ serverWarn } serverSuccess= {serverSuccess} serverError={ serverError} />
+            <Order serverWarn= {serverWarn} serverSuccess= {serverSuccess} serverError={ serverError} />
         </div>
     )
 }

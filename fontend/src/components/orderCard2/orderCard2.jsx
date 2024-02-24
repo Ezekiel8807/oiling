@@ -1,12 +1,24 @@
 import './orderCard2.css';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
+
+const OrderCard2 = ({ serverSuccess }) => { 
+
+    const [orders, setOrders] = useState([]);
+    const [duration, setDuration] = useState("loading...");
 
 
+    // function to fetch all orders on page load
+    useEffect(() => {
 
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/orders`)
+        .then(response => response.json())
+        .then(data => {
+            (data === null) ? setOrders([]) : setOrders(data);
+        })
+        .catch(err => console.error("Error fetching orders:", err ));
+    }, []);
 
-const orderCard2 = ({orders, serverSuccess }) => { 
-
-    //const [duration, setDuration] = useState
 
 
     // sort orders
@@ -17,6 +29,8 @@ const orderCard2 = ({orders, serverSuccess }) => {
     //reverse order array
     const revArray  = [...filterOrders].reverse();
 
+
+    // decline order function
     const decline = (id) => {
         
         const requirement = {
@@ -45,11 +59,13 @@ const orderCard2 = ({orders, serverSuccess }) => {
         .catch(err => console.error("Error fetching orders:", err ));
     }
 
+
+    //accept order and update duration function
     const accept = (id) => {
         
         const requirement = {
             status: "Accepted",
-            // duration: duration
+            deliveryTime: duration
         }
 
         fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
@@ -75,33 +91,6 @@ const orderCard2 = ({orders, serverSuccess }) => {
         
     }
 
-    const delivered = (id) => {
-                
-        const requirement = {
-            status: "Delivered"
-        }
-
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}users/orders/${id}`,{
-
-            //methods
-            method: "PUT",
-
-            // Adding body or contents to send
-            body: JSON.stringify(requirement),
-
-            // Adding headers to the request
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-
-        })
-        .then(response => response.json())
-        .then(data => {
-            window.location.reload();
-            serverSuccess(data.msg);
-        })
-        .catch(err => console.error("Error fetching orders:", err ));
-    }
 
     return (
         <div>
@@ -109,7 +98,7 @@ const orderCard2 = ({orders, serverSuccess }) => {
                 <div key={order._id} className="newOrder_div">
                     <table>
                         <tbody>
-                            <tr>
+                            <tr> 
                                 <td>Name: </td>
                                 <td>{order.user}</td>
                             </tr>
@@ -129,16 +118,19 @@ const orderCard2 = ({orders, serverSuccess }) => {
                                 <td>Amount: </td>
                                 <td>{order.amount}</td>
                             </tr>
-                            {/* <tr>
+                            <tr>
                                 <td>Duration: </td>
-                                <td><input onChange={ (e) => {setDuration(e.target.value)}} type="text" name="duration" id="duration" defaultValue={order.duration} /></td>
-                            </tr> */}
+                                <td><input className='duration' onChange={ (e) => {setDuration(e.target.value)}} type="text" name="duration" defaultValue={ order.deliveryTime } /></td>
+                            </tr>
                         </tbody>
                     </table>
                     <div className="actionsBtn">
-                        <button onClick={ () => { decline(order._id)}} className='decline'>Decline</button>
-                        <button onClick={ () => { accept(order._id)}} className='processing'>Accept</button>
-                        <button onClick={ () => { delivered(order._id)}} className='delivered'>Delivered</button>
+                            { order.status !== "Accepted" &&
+                                <>
+                                    <button onClick={ () => { decline(order._id)}} className='decline'>Decline</button>
+                                    <button onClick={ () => { accept(order._id)}} className='processing'>Accept</button>
+                                </>
+                            }
                     </div>
                 </div>
             )}
@@ -147,4 +139,4 @@ const orderCard2 = ({orders, serverSuccess }) => {
 }
 
 
-export default orderCard2;
+export default OrderCard2;

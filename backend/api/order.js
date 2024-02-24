@@ -4,9 +4,15 @@ import orders from "../model/orderSchema.js";
 
 //get all order
 export const allOrders = async (req, res) => {
+
     try{
-        //check if user exist with that username
+
+        //get all orders
         const allOrders= await orders.find();
+
+        //ckech if no orders
+        if(!allOrders) return res.status(500).json({ msg: "No orders found!" });
+    
         res.status(200).json(allOrders);
 
     }catch(err){

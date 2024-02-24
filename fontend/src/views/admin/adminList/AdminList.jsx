@@ -7,13 +7,15 @@ import { useState, useEffect } from 'react';
 
 
 
+
 const AdminList = ({pf, serverSuccess, serverError, admin}) => {
 
     const [admins, setAdmins] = useState([]);
 
+
     //get all orders
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins`,{
+        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/`,{
 
             //methods
             method: "GET",
@@ -26,34 +28,59 @@ const AdminList = ({pf, serverSuccess, serverError, admin}) => {
         })
         .then(response => response.json())
         .then(data => {
-            setAdmins(data);
+            (data === null) ? setAdmins([]) : setAdmins(data);
         })
         .catch(err => console.error("Error fetching orders:", err ));
     }, []);
 
 
+
     //oder delete function
-    const deleteAdmin = (id) => {
+    const deleteAdmin = async(id) => {
 
-        fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/${id}`,{
+        // current admin id
+        const adminId = await JSON.parse(localStorage.getItem("admin"))["admin"]._id;
 
-            //methods
-            method: "DELETE",
+        // fetch to be deleted admin data
+        const getToDeleteAdmin = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/${id}`);
 
-            // Adding headers to the request
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
+        // to be deleted admin data
+        const AdminData_toBeDeleted = await getToDeleteAdmin.json();
+
+        // check id current admin is same as to be deleted admin
+        if(adminId === AdminData_toBeDeleted._id){
+
+            serverError("You are currently login!");
+
+        }
+        else {
+
+            if(AdminData_toBeDeleted.type === "main"){
+
+                serverError("Can't delete main Admin! ");
             }
+            else {
 
-        })
-        .then(response => response.json())
-        .then(data => {
-            window.location.reload();
-            serverSuccess(data.msg)
-        })
-        .catch(err => serverError(err));
+                fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}admins/${id}`,{
+
+                    //methods
+                    method: "DELETE",
+
+                    // Adding headers to the request
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.reload();
+                    serverSuccess(data.msg)
+                })
+                .catch(err => serverError(err)); 
+            }
+        }
     }
-
 
 
 
