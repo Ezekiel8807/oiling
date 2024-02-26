@@ -98,27 +98,27 @@ const OrderCard2 = ({ serverSuccess }) => {
                 <div key={order._id} className="newOrder_div">
                     <table>
                         <tbody>
-                            <tr> 
+                            <tr className='space'> 
                                 <td>Name: </td>
                                 <td>{order.user}</td>
                             </tr>
-                            <tr>
+                            <tr className='space'>
                                 <td>Product: </td>
                                 <td>{order.product}</td>
                             </tr>
-                            <tr>
+                            <tr className='space'>
                                 <td>Quality: </td>
                                 <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
                             </tr>
-                            <tr>
+                            <tr className='space'>
                                 <td>Quantity: </td>
                                 <td>{order.quantity}</td>
                             </tr>
-                            <tr>
+                            <tr className='space'>
                                 <td>Amount: </td>
                                 <td>{order.amount}</td>
                             </tr>
-                            <tr>
+                            <tr className='space'>
                                 <td>Duration: </td>
                                 <td><input className='duration' onChange={ (e) => {setDuration(e.target.value)}} type="text" name="duration" defaultValue={ order.deliveryTime } /></td>
                             </tr>

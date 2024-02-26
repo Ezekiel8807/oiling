@@ -76,10 +76,11 @@ const OrderList = ({pf, serverSuccess, admin}) => {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    { revArray.map(order => 
 
-                                        <tbody key={order._id} >
-                                            <tr className='adminList_body'>
+                                        <tbody >
+
+                                            { revArray.map( order => 
+                                            <tr className='adminList_body' key={order._id}>
                                                 <td>{order.user}</td>
                                                 <td>{order.product}</td>
                                                 <td>{(order.quality === 1) ?`${order.quality} Bottle`: `${order.quality} Litres`}</td>
@@ -88,8 +89,8 @@ const OrderList = ({pf, serverSuccess, admin}) => {
                                                 <td>{order.status}</td>
                                                 <td><button onClick={ () => { deleteOrder(order._id) }} className='actionBtn'>Delete</button></td>
                                             </tr>
+                                            )}
                                         </tbody>
-                                    )}
                                 </table>
                             </div>
                         </div>
