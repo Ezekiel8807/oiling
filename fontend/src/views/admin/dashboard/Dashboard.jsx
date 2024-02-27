@@ -1,6 +1,6 @@
 import './dashboard.css';
 
-//components
+//components 
 import Sider from '../../../components/sider/Sider';
 import OrderCard2 from '../../../components/orderCard2/OrderCard2';
 
