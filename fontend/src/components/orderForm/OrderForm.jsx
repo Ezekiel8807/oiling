@@ -56,6 +56,7 @@ const Order = ({ serverSuccess, serverError, serverWarn}) => {
     }, [selectedProduct, selectedQuality, quantity, deliveryFees]);
     
 
+    // function to handle orders
     const handleOrder = (e) => {
         e.preventDefault();
 
