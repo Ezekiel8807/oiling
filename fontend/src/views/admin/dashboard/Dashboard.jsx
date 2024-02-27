@@ -2,7 +2,7 @@ import './dashboard.css';
 
 //components 
 import Sider from '../../../components/sider/Sider';
-import OrderCard2 from '../../../components/orderCard2/OrderCard2';
+// import OrderCard2 from '../../../components/orderCard2/OrderCard2';
 
 
 const Dashboard = ({pf, serverSuccess, admin }) => {
@@ -18,7 +18,7 @@ const Dashboard = ({pf, serverSuccess, admin }) => {
                         <h1 id='dash_heading' className='dash_heading'>New Orders</h1>
 
                         <div id="sub-content" className="sub-content">
-                            <OrderCard2 serverSuccess={serverSuccess}/>
+                            {/* <OrderCard2 serverSuccess={serverSuccess}/> */}
                         </div>
                     </div>
                 </div>
