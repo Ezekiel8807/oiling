@@ -1,110 +1,136 @@
-import './login.css'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';   //useNavigate
+import "./login.css";
+import { useState } from "react";
+import { Link } from "react-router-dom"; //useNavigate
 
 //components
-import InlineErrorMsg from '../../components/errorMessages/InlineErrorMsg';
+import InlineErrorMsg from "../../components/errorMessages/InlineErrorMsg";
 
+const Login = ({ serverError, serverSuccess }) => {
+  //local state to store user inputs
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginFormValue, setLoginFormValue] = useState("Login");
+  const [errMsg, setErrMsg] = useState("");
 
-const Login = ({serverError, serverSuccess}) => { 
+  // initialize useNavigation
+  // const navigate = useNavigate();
 
-    //local state to store user inputs
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginFormValue, setLoginFormValue] = useState("Login");
-    const [errMsg, setErrMsg] = useState("");
+  //sign in with email and password
+  const signWithEmail = async (e) => {
+    e.preventDefault();
 
+    if (!username || !password) {
+      setErrMsg("All fields required");
+    } else {
+      setLoginFormValue("Authenticating...");
+      const loginInfo = { username, password };
 
-    // initialize useNavigation
-    // const navigate = useNavigate();
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_API_BASE_URL}login/`,
+        {
+          // Adding method type
+          method: "POST",
 
-    //sign in with email and password
-    const signWithEmail = async (e) => {
-        e.preventDefault();
+          // Adding body or contents to send
+          body: JSON.stringify(loginInfo),
 
-        if(!username || !password ){
-            setErrMsg("All fields required");
-
-
-        }else {
-
-            setLoginFormValue("Authenticating...")
-            const loginInfo = { username, password };
-
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_API_BASE_URL}login/`, {              
-                
-                // Adding method type
-                method: "POST",
-                
-                // Adding body or contents to send
-                body: JSON.stringify(loginInfo),
-                
-                // Adding headers to the request
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            })
-
-            const data = await response.json(); 
-
-            //check login status
-            if (response.status === 200){
-                localStorage.setItem( "user", JSON.stringify({...data }));
-                window.location.replace("/");
-                serverSuccess('login Successful');
-
-            }else if (response.status === 500){
-                serverError("Sorry! something when wrong");
-                setLoginFormValue("Login");
-
-            }else{
-                setErrMsg(data.msg);
-                setLoginFormValue("Login");
-            }
+          // Adding headers to the request
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
         }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      //check login status
+      if (response.status === 200) {
+        localStorage.setItem("user", JSON.stringify({ ...data }));
+        window.location.replace("/");
+        serverSuccess("login Successful");
+      } else if (response.status === 500) {
+        serverError("Sorry! something when wrong");
+        setLoginFormValue("Login");
+      } else {
+        setErrMsg(data.msg);
+        setLoginFormValue("Login");
+      }
     }
+  };
 
+  return (
+    <div className="login">
+      <div className="loginBlock">
+        <form onSubmit={signWithEmail} action="" method="POST">
+          <h2 className="loginHead">Sign In To Oily</h2>
 
+          <div className="login_with">
+            <button type="button"> Continue with google</button>
+            <button type="button"> Continue with facebook </button>
+          </div>
 
-    return(
-        <div className="login">
-            <div className="loginBlock">
+          <div className="divider">
+            <span>-------------</span> <span> OR </span>{" "}
+            <span>-------------</span>
+          </div>
 
-                <form onSubmit={ signWithEmail } action="" method="POST">
+          <div className="login_">
+            <InlineErrorMsg errMsg={errMsg} />
+            <input
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              type="text"
+              name="username"
+              id="username"
+              autoComplete="true"
+              placeholder="Username"
+            />
+            <input
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              type="password"
+              name="password"
+              id="password"
+              autoComplete="true"
+              placeholder="Password"
+            />
+          </div>
 
-                    <h2 className='loginHead'>Sign In To Oily</h2>
+          <small style={{ margin: "2% 5%", textDecoration: "none" }}>
+            <Link to="/" target="_self" rel="noopener noreferrer">
+              Back to homepage{" "}
+            </Link>
+          </small>
+          <Link
+            className="forget"
+            to="/forget"
+            target="_self"
+            rel="noopener noreferrer"
+          >
+            Forget Password?{" "}
+          </Link>
 
-                    <div className="login_with">
-                        <button type='button'> Continue with google</button> 
-                        <button type='button'> Continue with facebook </button> 
-                    </div>
+          <div className="loginButtonBlock">
+            <button className="loginButton" type="submit">
+              {loginFormValue}
+            </button>
+          </div>
 
-                    <div className="divider">
-                        <span>-------------</span> <span> OR </span> <span>-------------</span>
-                    </div>
-
-                    <div className="login_">
-                        <InlineErrorMsg errMsg={ errMsg }/>
-                        <input onChange={ (e) => {setUsername(e.target.value)}} type="text" name="username" id="username" autoComplete="true" placeholder='Username' /> 
-                        <input onChange={ (e) => {setPassword(e.target.value)}} type="password" name="password" id="password" autoComplete="true" placeholder='Password' />
-                    </div>
-                    
-                    <small style={{ "margin" : "2% 5%", "textDecoration": "none" }}><Link to="/"  target="_self" rel="noopener noreferrer">Back to homepage </Link></small>
-                    <Link className='forget' to="/forget" target="_self" rel="noopener noreferrer">Forget Password? </Link>
-
-                    <div className="loginButtonBlock">
-                        <button className='loginButton' type="submit">{loginFormValue}</button>
-                    </div>
-
-                    <div className="login_foot">
-                        <p>Not a member yet? <Link to="/register" target="_self" rel="noopener noreferrer">Sign up</Link></p>
-                    </div>
-                    
-                </form>
-            </div>
-
-        </div>
-    )
-}
+          <div className="login_foot">
+            <p>
+              Not a member yet?{" "}
+              <Link to="/register" target="_self" rel="noopener noreferrer">
+                Sign up
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default Login;
